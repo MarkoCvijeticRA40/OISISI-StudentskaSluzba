@@ -1,6 +1,7 @@
 package models;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Profesor {
 
@@ -14,7 +15,7 @@ public class Profesor {
 	public int brojLicneKarte;
 	public String zvanje;
 	public int godineStaza;
-	//TODO spisak predmeta
+	public List<Predmet> predmeti;
 	
 	public Profesor(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja, String kontaktTelefon,
 			String email, Adresa adresaKancelarije, int brojLicneKarte, String zvanje, int godineStaza) {

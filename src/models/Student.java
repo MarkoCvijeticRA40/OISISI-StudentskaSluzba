@@ -1,8 +1,9 @@
 package models;
 
 import java.time.LocalDate;
+import java.util.List;
 
-enum Status {B, S};
+enum Status {B, S}
 
 public class Student {
 	
@@ -17,8 +18,8 @@ public class Student {
 	public int trenutnaGodinaStudija;
 	public Status status;
 	public double prosecnaOcena;
-	//TODO spisak polozenih ispita
-	//TODO spisak nepolozenih sipita
+	public List<Predmet> polozeni;
+	public List<Predmet> nePolozeni;
 	
 	public Student(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja, String kontaktTelefon,
 			String email, String brojIndeksa, int godinaUpisa, int trenutnaGodinaStudija, Status status,
