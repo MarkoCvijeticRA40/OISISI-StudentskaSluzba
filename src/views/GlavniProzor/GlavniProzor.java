@@ -16,6 +16,7 @@ public class GlavniProzor extends JFrame {
 		setSize(3 * (screenDimension.width / 4), 3 * (screenDimension.height / 4));
 		setLocationRelativeTo(null);
 		setTitle("Studentska služba");
+		setJMenuBar(new MenuBar());
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
