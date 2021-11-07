@@ -1,4 +1,4 @@
-package views;
+package views.GlavniProzor;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
