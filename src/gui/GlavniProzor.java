@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -17,6 +18,7 @@ public class GlavniProzor extends JFrame {
 		setLocationRelativeTo(null);
 		setTitle("Studentska služba");
 		setJMenuBar(new MenuBar());
+		add(new ToolBar(), BorderLayout.NORTH);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
