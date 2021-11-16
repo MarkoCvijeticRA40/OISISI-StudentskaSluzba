@@ -1,6 +1,6 @@
 package main;
 
-import views.GlavniProzor.GlavniProzor;
+import gui.GlavniProzor;
 
 public class MyApp {
 

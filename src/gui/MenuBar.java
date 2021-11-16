@@ -1,9 +1,10 @@
-package views.GlavniProzor;
+package gui;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+@SuppressWarnings("serial")
 public class MenuBar extends JMenuBar {
 
 	public MenuBar( ) {
