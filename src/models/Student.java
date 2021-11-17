@@ -129,4 +129,11 @@ public class Student {
 		this.rating = rating;
 	}
 	
+	public List<ExamMark> getPassedExams() {
+		return this.passedExams;
+	}
+	
+	public List<Subject> getNotPassedExams() { 
+		return this.notPassedExams;
+	}
 }
