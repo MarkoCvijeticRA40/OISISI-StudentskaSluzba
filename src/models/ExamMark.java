@@ -38,7 +38,8 @@ public class ExamMark {
 	}
 
 	public void setMark(int mark) {
-		this.mark = mark;
+		if(mark >= 6 && mark <= 10)
+			this.mark = mark;
 	}
 
 	public Date getExamDate() {

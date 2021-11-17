@@ -1,5 +1,6 @@
 package models;
 
+import java.util.LinkedList;
 import java.util.List;
 
 enum Semestar {letnji,Zimski}
@@ -23,42 +24,63 @@ public class Subject {
 		this.studyYear = studyYear;
 		this.professor = professor;
 		this.espb = espb;
+		this.passedStudents = new LinkedList<>();
+		this.notPassedStudents = new LinkedList<>();
 	}
 	
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public Semestar getSemester() {
 		return semester;
 	}
+	
 	public void setSemester(Semestar semester) {
 		this.semester = semester;
 	}
+	
 	public int getStudyYear() {
 		return studyYear;
 	}
+	
 	public void setStudyYear(int studyYear) {
 		this.studyYear = studyYear;
 	}
+	
 	public Professor getProfessor() {
 		return professor;
 	}
+	
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
+	
 	public int getEspb() {
 		return espb;
 	}
+	
 	public void setEspb(int espb) {
 		this.espb = espb;
-	}	
+	}
+
+	public List<Student> getPassedStudents() {
+		return passedStudents;
+	}
+	
+	public List<Student> getNotPassedStudents() {
+		return notPassedStudents;
+	}
 }

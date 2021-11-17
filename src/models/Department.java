@@ -41,4 +41,8 @@ public class Department {
 	public void setManager(Professor manager) {
 		this.manager = manager;
 	}
+
+	public List<Professor> getProfessors() {
+		return professors;
+	}
 }
