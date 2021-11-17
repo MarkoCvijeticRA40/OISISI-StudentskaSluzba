@@ -8,9 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 @SuppressWarnings("serial")
-public class GlavniProzor extends JFrame {
+public class MainFrame extends JFrame {
 
-	public GlavniProzor() {
+	public MainFrame() {
 		super();
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenDimension = kit.getScreenSize();
