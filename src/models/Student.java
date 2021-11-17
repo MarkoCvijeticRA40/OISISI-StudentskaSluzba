@@ -1,81 +1,84 @@
 package models;
 
-import java.time.LocalDate;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 enum Status {B, S}
 
 public class Student {
 	
-	public String prezime;
-	public String ime;
-	public LocalDate datumRodjenja;
-	public Adresa adresaStanovanja;
-	public String kontaktTelefon;
+	public String firstName;
+	public String lastName;
+	public Date dateOfBirth;
+	public Address address;
+	public String phoneNumber;
 	public String email;
-	public String brojIndeksa;
-	public int godinaUpisa;
-	public int trenutnaGodinaStudija;
-	public Status status;
-	public double prosecnaOcena;
-	public List<Predmet> polozeni;
-	public List<Predmet> nePolozeni;
+	public String indexNumber;
+	public int enrollmentYear;
+	public int currentStudiesYear;
+	public Status financingStatus;
+	public double rating;
+	public List<ExamMark> passedExams;
+	public List<Subject> notPassedExams;
 	
-	public Student(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja, String kontaktTelefon,
-			String email, String brojIndeksa, int godinaUpisa, int trenutnaGodinaStudija, Status status,
-			double prosecnaOcena) {
+	public Student(String firstName, String lastName, Date dateOfBirth, Address address, String phoneNumber,
+			String email, String indexNumber, int enrollmentYear, int currentStudiesYear, Status financingStatus,
+			double rating) {
 		super();
-		this.prezime = prezime;
-		this.ime = ime;
-		this.datumRodjenja = datumRodjenja;
-		this.adresaStanovanja = adresaStanovanja;
-		this.kontaktTelefon = kontaktTelefon;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
 		this.email = email;
-		this.brojIndeksa = brojIndeksa;
-		this.godinaUpisa = godinaUpisa;
-		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
-		this.status = status;
-		this.prosecnaOcena = prosecnaOcena;
+		this.indexNumber = indexNumber;
+		this.enrollmentYear = enrollmentYear;
+		this.currentStudiesYear = currentStudiesYear;
+		this.financingStatus = financingStatus;
+		this.rating = rating;
+		this.passedExams = new LinkedList<>();
+		this.notPassedExams = new LinkedList<>();
 	}
 
-	public String getPrezime() {
-		return prezime;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setPrezime(String prezime) {
-		this.prezime = prezime;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getIme() {
-		return ime;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setIme(String ime) {
-		this.ime = ime;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public LocalDate getDatumRodjenja() {
-		return datumRodjenja;
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setDatumRodjenja(LocalDate datumRodjenja) {
-		this.datumRodjenja = datumRodjenja;
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
-	public Adresa getAdresaStanovanja() {
-		return adresaStanovanja;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAdresaStanovanja(Adresa adresaStanovanja) {
-		this.adresaStanovanja = adresaStanovanja;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
-	public String getKontaktTelefon() {
-		return kontaktTelefon;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setKontaktTelefon(String kontaktTelefon) {
-		this.kontaktTelefon = kontaktTelefon;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getEmail() {
@@ -86,44 +89,51 @@ public class Student {
 		this.email = email;
 	}
 
-	public String getBrojIndeksa() {
-		return brojIndeksa;
+	public String getIndexNumber() {
+		return indexNumber;
 	}
 
-	public void setBrojIndeksa(String brojIndeksa) {
-		this.brojIndeksa = brojIndeksa;
+	public void setIndexNumber(String indexNumber) {
+		this.indexNumber = indexNumber;
 	}
 
-	public int getGodinaUpisa() {
-		return godinaUpisa;
+	public int getEnrollmentYear() {
+		return enrollmentYear;
 	}
 
-	public void setGodinaUpisa(int godinaUpisa) {
-		this.godinaUpisa = godinaUpisa;
+	public void setEnrollmentYear(int enrollmentYear) {
+		this.enrollmentYear = enrollmentYear;
 	}
 
-	public int getTrenutnaGodinaStudija() {
-		return trenutnaGodinaStudija;
+	public int getCurrentStudiesYear() {
+		return currentStudiesYear;
 	}
 
-	public void setTrenutnaGodinaStudija(int trenutnaGodinaStudija) {
-		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
+	public void setCurrentStudiesYear(int currentStudiesYear) {
+		this.currentStudiesYear = currentStudiesYear;
 	}
 
-	public Status getStatus() {
-		return status;
+	public Status getFinancingStatus() {
+		return financingStatus;
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
+	public void setFinancingStatus(Status financingStatus) {
+		this.financingStatus = financingStatus;
 	}
 
-	public double getProsecnaOcena() {
-		return prosecnaOcena;
+	public double getRating() {
+		return rating;
 	}
 
-	public void setProsecnaOcena(double prosecnaOcena) {
-		this.prosecnaOcena = prosecnaOcena;
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
 	
+	public List<ExamMark> getPassedExams() {
+		return this.passedExams;
+	}
+	
+	public List<Subject> getNotPassedExams() { 
+		return this.notPassedExams;
+	}
 }
