@@ -18,8 +18,8 @@ public class Student {
 	public int trenutnaGodinaStudija;
 	public Status status;
 	public double prosecnaOcena;
-	public List<Predmet> polozeni;
-	public List<Predmet> nePolozeni;
+	public List<Subject> polozeni;
+	public List<Subject> nePolozeni;
 	
 	public Student(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja, String kontaktTelefon,
 			String email, String brojIndeksa, int godinaUpisa, int trenutnaGodinaStudija, Status status,

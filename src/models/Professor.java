@@ -16,7 +16,7 @@ public class Professor {
 	public int idCardNumber;
 	public String title;
 	public int yearsOfService;
-	public List<Predmet> subjects;
+	public List<Subject> subjects;
 	
 	public Professor(String firstName, String lastName, LocalDate dateOfBirth, Address address, String phoneNumber,
 			String email, Address officeAddress, int idCardNumber, String title, int yearsOfService) {
