@@ -2,7 +2,7 @@ package models;
 
 import java.util.List;
 
-enum Semestar {letnji,Zimski}
+enum Semestar {letnji, Zimski}
 
 public class Predmet {
 
