@@ -1,6 +1,6 @@
 package main;
 
-import gui.MainFrame;
+import views.MainFrame;
 
 public class MyApp {
 
