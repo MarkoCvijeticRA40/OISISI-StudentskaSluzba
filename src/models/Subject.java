@@ -53,8 +53,8 @@ public class Subject {
 		this.name = name;
 	}
 	
-	public Semester getSemester() {
-		return semester;
+	public String getSemester() {
+		return semester.toString();
 	}
 	
 	public void setSemester(Semester semester) {
