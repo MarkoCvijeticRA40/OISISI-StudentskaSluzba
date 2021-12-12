@@ -34,6 +34,14 @@ public class Professor {
 		this.subjects = new LinkedList<>();
 	}
 	
+	public Professor(String firstName, String lastName, String title, String email) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.title = title;
+		this.email = email;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -116,5 +124,11 @@ public class Professor {
 	
 	public List<Subject> getSubjects() {
 		return this.subjects;
+	}
+
+	@Override
+	public String toString() {
+		return "Professor [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", title=" + title
+				+ "]";
 	}
 }
