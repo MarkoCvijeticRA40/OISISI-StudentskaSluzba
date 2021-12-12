@@ -19,7 +19,9 @@ public class MainFrame extends JFrame {
 		setTitle("Studentska služba");
 		setJMenuBar(new MenuBar());
 		add(new ToolBar(), BorderLayout.NORTH);
+		add(new TabbedPane(), BorderLayout.CENTER);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
+
 }
