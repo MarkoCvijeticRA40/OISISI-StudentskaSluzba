@@ -38,6 +38,24 @@ public class ProfessorDatabase {
 		this.professors.add(professor);
 	}
 	
+	public void editProfessor(int row, Professor professor) {
+		Professor professorToEdit = this.getRow(row);
+		professorToEdit.setFirstName(professor.getFirstName());
+		professorToEdit.setLastName(professor.getLastName());
+		professorToEdit.setDateOfBirth(professor.getDateOfBirth());
+		professorToEdit.setAddress(professor.getAddress());
+		professorToEdit.setEmail(professor.getEmail());
+		professorToEdit.setOfficeAddress(professor.getOfficeAddress());
+		professorToEdit.setTitle(professor.getTitle());
+		professorToEdit.setPhoneNumber(professor.getPhoneNumber());
+		professorToEdit.setIdCardNumber(professor.getIdCardNumber());
+		professorToEdit.setYearsOfService(professor.getYearsOfService());
+	}
+	
+	public void deleteProfessor(int row) {
+		this.professors.remove(row);
+	}
+	
 	public List<Professor> getProfessors() {
 		return this.professors;
 	}
@@ -58,6 +76,10 @@ public class ProfessorDatabase {
 			default:
 				return null;
 		}
+	}
+	
+	public Professor getRow(int rowIndex) {
+		return this.professors.get(rowIndex);
 	}
 	
 	public int getRowCount() {

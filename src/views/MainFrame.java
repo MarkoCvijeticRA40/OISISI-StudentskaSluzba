@@ -9,8 +9,12 @@ import javax.swing.WindowConstants;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
+	
+	private static MainFrame frame;
+	
+	private TabbedPane tabbedPane;
 
-	public MainFrame() {
+	private MainFrame() {
 		super();
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenDimension = kit.getScreenSize();
@@ -19,9 +23,20 @@ public class MainFrame extends JFrame {
 		setTitle("Studentska služba");
 		setJMenuBar(new MenuBar());
 		add(new ToolBar(), BorderLayout.NORTH);
-		add(new TabbedPane(), BorderLayout.CENTER);
+		tabbedPane = new TabbedPane();
+		add(tabbedPane, BorderLayout.CENTER);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	}
+	
+	public static MainFrame getInstance() {
+		if (frame == null)
+			frame = new MainFrame();
+		return frame;
+	}
+	
+	public TabbedPane getTabbedPane() {
+		return this.tabbedPane;
 	}
 
 }

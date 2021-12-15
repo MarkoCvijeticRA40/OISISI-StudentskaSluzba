@@ -19,19 +19,23 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 
-@SuppressWarnings("serial")
+import views.Professor.Add.AddProfessorDialog;
+import views.Professor.Edit.EditProfessorDialog;
+
 public class ToolBar extends JToolBar {
 	
+	private static final long serialVersionUID = 8774931849219584680L;
+
 	public ToolBar()
 	{
 		setBackground(Color.WHITE);
 		setFloatable(false);
 		setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, Color.DARK_GRAY));
 		
-		JButton newBtn = createButton("src/views/images/new.png", "Novi", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-		JButton editBtn = createButton("src/views/images/edit.png", "Izmeni", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		JButton deleteBtn = createButton("src/views/images/delete.png", "Obrisi", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-		JButton searchBtn = createButton("src/views/images/search.png", "Pretraga", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
+		JButton newBtn = createButton("src/views/images/new.png", "Novi", "add", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		JButton editBtn = createButton("src/views/images/edit.png", "Izmeni", "edit", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		JButton deleteBtn = createButton("src/views/images/delete.png", "Obrisi", "delete", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		JButton searchBtn = createButton("src/views/images/search.png", "Pretraga", "search", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
 		
 		JTextField input = new JTextField();
 		input.setPreferredSize(new Dimension(200, 25));
@@ -58,27 +62,53 @@ public class ToolBar extends JToolBar {
 		add(panel, BorderLayout.CENTER);
 	}
 	
-	private JButton createButton(String imageURL, String tooltip, Color color, KeyStroke keyStroke) 
+	private JButton createButton(String imageURL, String tooltip, String btnName, Color color, KeyStroke keyStroke) 
 	{
-		Action buttonAction = new AbstractAction()
-		{
-			
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				System.out.println(tooltip + " pressed");
-			}
-			
-		};
-		buttonAction.putValue(Action.ACCELERATOR_KEY, keyStroke);
-		buttonAction.putValue(Action.MNEMONIC_KEY, KeyEvent.VK_N);
-		JButton newBtn = new JButton(buttonAction);
+		JButton newBtn = new JButton(new ButtonAbstractAction(btnName));
+		newBtn.getAction().putValue(Action.ACCELERATOR_KEY, keyStroke);
+		newBtn.getAction().putValue(Action.MNEMONIC_KEY, KeyEvent.VK_N);
+		newBtn.setName(tooltip);
 		newBtn.setIcon(new ImageIcon(imageURL));
 		newBtn.setBorder(BorderFactory.createEmptyBorder());
 		newBtn.setBackground(color);
 		newBtn.setToolTipText(tooltip);
-		newBtn.getActionMap().put("btnAction", buttonAction);
-		newBtn.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put((KeyStroke) buttonAction.getValue(Action.ACCELERATOR_KEY), "btnAction");
+		newBtn.getActionMap().put("btnAction", newBtn.getAction());
+		newBtn.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put((KeyStroke) newBtn.getAction().getValue(Action.ACCELERATOR_KEY), "btnAction");
 		return newBtn;
+	}
+	
+	class ButtonAbstractAction extends AbstractAction {
+		
+		private static final long serialVersionUID = 3856937795633689149L;
+		
+		private String btnName;
+		
+		public ButtonAbstractAction(String btnName) {
+			this.btnName = btnName;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int selectedTab = MainFrame.getInstance().getTabbedPane().getSelectedIndex();
+			switch (selectedTab) {
+				case 0:
+					switch(btnName) {
+						case "add": 
+							AddProfessorDialog.getInstance().init();
+							break;
+						case "edit": 
+							EditProfessorDialog.getInstance().init();
+							break;
+						case "delete":
+							break;
+					}
+					break;
+				case 1:
+					break;
+				case 2:
+					break;
+			}
+		}
+		
 	}
 }

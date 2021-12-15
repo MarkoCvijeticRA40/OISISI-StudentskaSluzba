@@ -1,6 +1,6 @@
 package models;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class Professor {
 
 	public String firstName;
 	public String lastName;
-	public LocalDate dateOfBirth;
+	public Date dateOfBirth;
 	public Address address;
 	public String phoneNumber;
 	public String email;
@@ -18,7 +18,7 @@ public class Professor {
 	public int yearsOfService;
 	public List<Subject> subjects;
 	
-	public Professor(String firstName, String lastName, LocalDate dateOfBirth, Address address, String phoneNumber,
+	public Professor(String firstName, String lastName, Date dateOfBirth, Address address, String phoneNumber,
 			String email, Address officeAddress, int idCardNumber, String title, int yearsOfService) {
 		super();
 		this.firstName = firstName;
@@ -58,11 +58,11 @@ public class Professor {
 		this.lastName = lastName;
 	}
 	
-	public LocalDate getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 	
-	public void setDateOfBirth(LocalDate dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 	
