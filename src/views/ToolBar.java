@@ -14,11 +14,13 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 
+import controllers.ProfessorController;
 import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
 
@@ -100,6 +102,12 @@ public class ToolBar extends JToolBar {
 							EditProfessorDialog.getInstance().init();
 							break;
 						case "delete":
+							int result = JOptionPane.showConfirmDialog(null,
+									"Da li ste sigurno da zelite da obriste profesora", 
+									"Brisanje profesora", 
+									JOptionPane.YES_NO_OPTION);
+							if (result == JOptionPane.YES_OPTION)
+								ProfessorController.getInstance().delete();
 							break;
 					}
 					break;

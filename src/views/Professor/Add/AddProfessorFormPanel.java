@@ -34,6 +34,7 @@ public class AddProfessorFormPanel extends BaseProfessorFormJPanel {
 			}
 			
 		});
+		
 	}
 	
 	public void init() {
