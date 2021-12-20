@@ -14,7 +14,6 @@ import persistence.ProfessorDatabase;
 import views.MainFrame;
 import views.Professor.BaseProfessorFormJPanel;
 import views.Professor.Add.AddProfessorDialog;
-import views.Professor.Edit.EditProfessorDialog;
 import views.Professor.Representation.ProfessorsJTable;
 
 public class ProfessorController {
@@ -23,14 +22,12 @@ public class ProfessorController {
 	
 	private ProfessorFormValidator formValidator;
 	private BaseProfessorFormJPanel addForm;
-	private BaseProfessorFormJPanel editForm;
 	private ProfessorsJTable professorTable;
 	private ProfessorDatabase professorsDatabase;
 	
 	private ProfessorController() {
 		this.formValidator = new ProfessorFormValidator();
 		this.addForm = AddProfessorDialog.getInstance().getAddForm();
-		this.editForm = EditProfessorDialog.getInstance().getEditForm();
 		this.professorTable = MainFrame.getInstance().getTabbedPane().getProfessorTab().getTable();
 		this.professorsDatabase = ProfessorDatabase.getInstance();
 	}
@@ -49,17 +46,6 @@ public class ProfessorController {
 		ProfessorsJTable.getInstance().updateView();
 		JOptionPane.showMessageDialog(null, "Profesor uspesno dodat!");
 		AddProfessorDialog.getInstance().dispose();
-	}
-	
-	public void edit() {
-		Professor professor = createProfessor(this.editForm);
-		if (professor == null)
-			return;
-		int selectedRow = professorTable.getSelectedRow();
-		this.professorsDatabase.editProfessor(selectedRow, professor);
-		ProfessorsJTable.getInstance().updateView();
-		JOptionPane.showMessageDialog(null, "Profesor uspesno izmenjen!");
-		EditProfessorDialog.getInstance().dispose();
 	}
 	
 	public void delete() {
