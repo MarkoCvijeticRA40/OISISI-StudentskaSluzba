@@ -22,7 +22,6 @@ import javax.swing.KeyStroke;
 
 import controllers.ProfessorController;
 import views.Professor.Add.AddProfessorDialog;
-import views.Professor.Edit.EditProfessorDialog;
 
 public class ToolBar extends JToolBar {
 	
@@ -98,8 +97,7 @@ public class ToolBar extends JToolBar {
 						case "add": 
 							AddProfessorDialog.getInstance().init();
 							break;
-						case "edit": 
-							EditProfessorDialog.getInstance().init();
+						case "edit":
 							break;
 						case "delete":
 							int result = JOptionPane.showConfirmDialog(null,
