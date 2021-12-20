@@ -96,8 +96,7 @@ public class ToolBar extends JToolBar {
 						case "add": 
 							AddProfessorDialog.getInstance().init();
 							break;
-						case "edit": 
-							EditProfessorDialog.getInstance().init();
+						case "edit":
 							break;
 						case "delete":
 							break;
