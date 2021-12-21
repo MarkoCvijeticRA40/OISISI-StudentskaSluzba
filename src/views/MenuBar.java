@@ -1,13 +1,19 @@
 package views;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+
+import controllers.ProfessorController;
+import views.Professor.Add.AddProfessorDialog;
+import views.Professor.Edit.EditProfessorDialog;
 
 @SuppressWarnings("serial")
 public class MenuBar extends JMenuBar {
@@ -15,8 +21,20 @@ public class MenuBar extends JMenuBar {
 	public MenuBar( ) {
 		JMenu file = new JMenu("File");
 		file.setMnemonic('F');
-		file.add(createMenuItem("New","src/views/images/new.png", KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK), 'N'));
+		
+		JMenuItem newEntity = createMenuItem("New","src/views/images/new.png", KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK), 'N');
+		newEntity.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showAppropriateWindow("add");
+			}
+			
+		});
+		file.add(newEntity);
+		
 		file.add(createMenuItem("Save","src/views/images/save.png", KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK), 'S'));
+		
 		JMenu open = new JMenu("Open");
 		open.setMnemonic('O');
 		open.setIcon(new ImageIcon("src/views/images/open.png"));
@@ -26,10 +44,30 @@ public class MenuBar extends JMenuBar {
 		open.add(createMenuItem("Katedre","src/views/images/katedre.png", KeyStroke.getKeyStroke(KeyEvent.VK_K, ActionEvent.SHIFT_MASK), 'A'));
 		file.add(open);
 		file.add(createMenuItem("Close","src/views/images/close.png",KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK), 'C'));
+		
 		JMenu edit = new JMenu("Edit");
 		edit.setMnemonic('E');
-		edit.add(createMenuItem("Edit","src/views/images/edit.png",KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK), 'D'));
-		edit.add(createMenuItem("Delete","src/views/images/delete.png",KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK), 'T'));
+		JMenuItem editEntity = createMenuItem("Edit","src/views/images/edit.png",KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK), 'D');
+		editEntity.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showAppropriateWindow("edit");
+			}
+			
+		});
+		edit.add(editEntity);
+		JMenuItem deleteEntity = createMenuItem("Delete","src/views/images/delete.png",KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK), 'T');
+		deleteEntity.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showAppropriateWindow("delete");
+			}
+			
+		});
+		edit.add(deleteEntity);
+		
 		JMenu help = new JMenu("Help");
 		help.setMnemonic('H');
 		help.add(createMenuItem("Help","src/views/images/help.png",KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK), 'L'));
@@ -46,6 +84,34 @@ public class MenuBar extends JMenuBar {
 		item.setAccelerator(keyStroke);
 		item.setMnemonic(mnemonic);
 		return item;
+	}
+	
+	private void showAppropriateWindow(String window) {
+		int selectedTab = MainFrame.getInstance().getTabbedPane().getSelectedIndex();
+		switch(selectedTab) {
+			case 0:
+				switch(window) {
+					case "add": 
+						AddProfessorDialog.getInstance().init();
+						break;
+					case "edit": 
+						EditProfessorDialog.getInstance().init();
+						break;
+					case "delete":
+						int result = JOptionPane.showConfirmDialog(null,
+								"Da li ste sigurno da zelite da obriste profesora", 
+								"Brisanje profesora", 
+								JOptionPane.YES_NO_OPTION);
+						if (result == JOptionPane.YES_OPTION)
+							ProfessorController.getInstance().delete();
+						break;
+				}
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+		}
 	}
 	
 	

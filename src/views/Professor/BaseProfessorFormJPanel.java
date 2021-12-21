@@ -21,10 +21,16 @@ public class BaseProfessorFormJPanel extends JPanel {
 	protected JTextField firstNameTxt;
 	protected JTextField lastNameTxt;
 	protected JTextField dateOfBirthTxt;
-	protected JTextField addressTxt;
+	protected JTextField addressStreetTxt;
+	protected JTextField addressHouseNumberTxt;
+	protected JTextField addressCityTxt;
+	protected JTextField addressCountryTxt;
 	protected JTextField phoneNumberTxt;
 	protected JTextField emailTxt;
-	protected JTextField officeAddressTxt;
+	protected JTextField officeAddressStreetTxt;
+	protected JTextField officeAddressHouseNumberTxt;
+	protected JTextField officeAddressCityTxt;
+	protected JTextField officeAddressCountryTxt;
 	protected JTextField idCardNumberTxt;
 	protected JTextField titleTxt;
 	protected JTextField yearsOfServiceTxt;
@@ -71,15 +77,51 @@ public class BaseProfessorFormJPanel extends JPanel {
 		
 		this.add(Box.createVerticalStrut(10));
 		
-		JPanel addressPanel = new JPanel();
-		addressPanel.setLayout(new BoxLayout(addressPanel, BoxLayout.X_AXIS));
-		addressPanel.add(new JLabel("Adresa stanovanja*"));
-		addressTxt = createTextField();
-		addressTxt.setName("address");
-		addressTxt.addFocusListener(listener);
-		addressPanel.add(Box.createHorizontalGlue());
-		addressPanel.add(addressTxt);
-		this.add(addressPanel);
+		JPanel addressStreetPanel = new JPanel();
+		addressStreetPanel.setLayout(new BoxLayout(addressStreetPanel, BoxLayout.X_AXIS));
+		addressStreetPanel.add(new JLabel("Ulica*"));
+		addressStreetTxt = createTextField();
+		addressStreetTxt.setName("addressStreet");
+		addressStreetTxt.addFocusListener(listener);
+		addressStreetPanel.add(Box.createHorizontalGlue());
+		addressStreetPanel.add(addressStreetTxt);
+		this.add(addressStreetPanel);
+		
+		this.add(Box.createVerticalStrut(10));
+		
+		JPanel addressHouseNumberPanel = new JPanel();
+		addressHouseNumberPanel.setLayout(new BoxLayout(addressHouseNumberPanel, BoxLayout.X_AXIS));
+		addressHouseNumberPanel.add(new JLabel("Broj kuće/stana*"));
+		addressHouseNumberTxt = createTextField();
+		addressHouseNumberTxt.setName("addressHouseNumber");
+		addressHouseNumberTxt.addFocusListener(listener);
+		addressHouseNumberPanel.add(Box.createHorizontalGlue());
+		addressHouseNumberPanel.add(addressHouseNumberTxt);
+		this.add(addressHouseNumberPanel);
+		
+		this.add(Box.createVerticalStrut(10));
+		
+		JPanel addressCityPanel = new JPanel();
+		addressCityPanel.setLayout(new BoxLayout(addressCityPanel, BoxLayout.X_AXIS));
+		addressCityPanel.add(new JLabel("Grad*"));
+		addressCityTxt = createTextField();
+		addressCityTxt.setName("addressCity");
+		addressCityTxt.addFocusListener(listener);
+		addressCityPanel.add(Box.createHorizontalGlue());
+		addressCityPanel.add(addressCityTxt);
+		this.add(addressCityPanel);
+		
+		this.add(Box.createVerticalStrut(10));
+		
+		JPanel addressCountryPanel = new JPanel();
+		addressCountryPanel.setLayout(new BoxLayout(addressCountryPanel, BoxLayout.X_AXIS));
+		addressCountryPanel.add(new JLabel("Država*"));
+		addressCountryTxt = createTextField();
+		addressCountryTxt.setName("addressCountry");
+		addressCountryTxt.addFocusListener(listener);
+		addressCountryPanel.add(Box.createHorizontalGlue());
+		addressCountryPanel.add(addressCountryTxt);
+		this.add(addressCountryPanel);
 		
 		this.add(Box.createVerticalStrut(10));
 		
@@ -107,15 +149,51 @@ public class BaseProfessorFormJPanel extends JPanel {
 		
 		this.add(Box.createVerticalStrut(10));
 		
-		JPanel officeAddressPanel = new JPanel();
-		officeAddressPanel.setLayout(new BoxLayout(officeAddressPanel, BoxLayout.X_AXIS));
-		officeAddressPanel.add(new JLabel("Adresa kancelarije*"));
-		officeAddressTxt = createTextField();
-		officeAddressTxt.setName("officeAddress");
-		officeAddressTxt.addFocusListener(listener);
-		officeAddressPanel.add(Box.createHorizontalGlue());
-		officeAddressPanel.add(officeAddressTxt);
-		this.add(officeAddressPanel);
+		JPanel officeAddressStreetPanel = new JPanel();
+		officeAddressStreetPanel.setLayout(new BoxLayout(officeAddressStreetPanel, BoxLayout.X_AXIS));
+		officeAddressStreetPanel.add(new JLabel("Ulica kancelarije*"));
+		officeAddressStreetTxt = createTextField();
+		officeAddressStreetTxt.setName("officeAddressStreet");
+		officeAddressStreetTxt.addFocusListener(listener);
+		officeAddressStreetPanel.add(Box.createHorizontalGlue());
+		officeAddressStreetPanel.add(officeAddressStreetTxt);
+		this.add(officeAddressStreetPanel);
+		
+		this.add(Box.createVerticalStrut(10));
+		
+		JPanel officeAddressHouseNumberPanel = new JPanel();
+		officeAddressHouseNumberPanel.setLayout(new BoxLayout(officeAddressHouseNumberPanel, BoxLayout.X_AXIS));
+		officeAddressHouseNumberPanel.add(new JLabel("Broj kuće/stana*"));
+		officeAddressHouseNumberTxt = createTextField();
+		officeAddressHouseNumberTxt.setName("officeAddressHouseNumber");
+		officeAddressHouseNumberTxt.addFocusListener(listener);
+		officeAddressHouseNumberPanel.add(Box.createHorizontalGlue());
+		officeAddressHouseNumberPanel.add(officeAddressHouseNumberTxt);
+		this.add(officeAddressHouseNumberPanel);
+		
+		this.add(Box.createVerticalStrut(10));
+		
+		JPanel officeAddressCityPanel = new JPanel();
+		officeAddressCityPanel.setLayout(new BoxLayout(officeAddressCityPanel, BoxLayout.X_AXIS));
+		officeAddressCityPanel.add(new JLabel("Grad*"));
+		officeAddressCityTxt = createTextField();
+		officeAddressCityTxt.setName("officeAddressCity");
+		officeAddressCityTxt.addFocusListener(listener);
+		officeAddressCityPanel.add(Box.createHorizontalGlue());
+		officeAddressCityPanel.add(officeAddressCityTxt);
+		this.add(officeAddressCityPanel);
+		
+		this.add(Box.createVerticalStrut(10));
+		
+		JPanel officeAddressCountryPanel = new JPanel();
+		officeAddressCountryPanel.setLayout(new BoxLayout(officeAddressCountryPanel, BoxLayout.X_AXIS));
+		officeAddressCountryPanel.add(new JLabel("Država*"));
+		officeAddressCountryTxt = createTextField();
+		officeAddressCountryTxt.setName("officeAddressCountry");
+		officeAddressCountryTxt.addFocusListener(listener);
+		officeAddressCountryPanel.add(Box.createHorizontalGlue());
+		officeAddressCountryPanel.add(officeAddressCountryTxt);
+		this.add(officeAddressCountryPanel);
 		
 		this.add(Box.createVerticalStrut(10));
 		
@@ -171,10 +249,16 @@ public class BaseProfessorFormJPanel extends JPanel {
 		this.firstNameTxt.setBorder(border);
 		this.lastNameTxt.setBorder(border);
 		this.dateOfBirthTxt.setBorder(border);
-		this.addressTxt.setBorder(border);
+		this.addressStreetTxt.setBorder(border);
+		this.addressHouseNumberTxt.setBorder(border);
+		this.addressCityTxt.setBorder(border);
+		this.addressCountryTxt.setBorder(border);
 		this.phoneNumberTxt.setBorder(border);
 		this.emailTxt.setBorder(border);
-		this.officeAddressTxt.setBorder(border);
+		this.officeAddressStreetTxt.setBorder(border);
+		this.officeAddressHouseNumberTxt.setBorder(border);
+		this.officeAddressCityTxt.setBorder(border);
+		this.officeAddressCountryTxt.setBorder(border);
 		this.idCardNumberTxt.setBorder(border);
 		this.titleTxt.setBorder(border);
 		this.yearsOfServiceTxt.setBorder(border);
@@ -199,8 +283,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		return dateOfBirthTxt;
 	}
 
-	public JTextField getAddressTxt() {
-		return addressTxt;
+	public JTextField getAddressStreetTxt() {
+		return addressStreetTxt;
 	}
 
 	public JTextField getPhoneNumberTxt() {
@@ -211,8 +295,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		return emailTxt;
 	}
 
-	public JTextField getOfficeAddressTxt() {
-		return officeAddressTxt;
+	public JTextField getOfficeAddressStreetTxt() {
+		return officeAddressStreetTxt;
 	}
 
 	public JTextField getIdCardNumberTxt() {
@@ -229,5 +313,29 @@ public class BaseProfessorFormJPanel extends JPanel {
 	
 	public JButton getSubmitBtn() {
 		return this.submitBtn;
+	}
+
+	public JTextField getAddressHouseNumberTxt() {
+		return addressHouseNumberTxt;
+	}
+
+	public JTextField getAddressCityTxt() {
+		return addressCityTxt;
+	}
+
+	public JTextField getAddressCountryTxt() {
+		return addressCountryTxt;
+	}
+
+	public JTextField getOfficeAddressHouseNumberTxt() {
+		return officeAddressHouseNumberTxt;
+	}
+
+	public JTextField getOfficeAddressCityTxt() {
+		return officeAddressCityTxt;
+	}
+
+	public JTextField getOfficeAddressCountryTxt() {
+		return officeAddressCountryTxt;
 	}
 }
