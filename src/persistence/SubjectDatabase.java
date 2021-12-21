@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import models.Semester;
 import models.Subject;
 
 public class SubjectDatabase {
@@ -16,6 +17,11 @@ public class SubjectDatabase {
 	
 	private SubjectDatabase() {
 		subjects = new LinkedList<>();
+		subjects.add(new Subject(0, "Algebra", Semester.Zimski, 1, 9));
+		subjects.add(new Subject(1, "OISISI", Semester.Zimski, 3, 6));
+		subjects.add(new Subject(2, "OS", Semester.Letnji, 2, 8));
+		subjects.add(new Subject(3, "SAU", Semester.Letnji, 2, 8));
+		subjects.add(new Subject(3, "NANS", Semester.Zimski, 3, 5));
 		columnNames = new ArrayList<>();
 		columnNames.add("Šifra");
 		columnNames.add("Naziv");

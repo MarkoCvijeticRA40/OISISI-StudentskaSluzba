@@ -1,5 +1,0 @@
-0 Algebra 9 1 0
-1 OISISI 6 3 0
-2 OS 8 2 1
-3 SAU 8 2 1
-4 NANS 4 3 0
