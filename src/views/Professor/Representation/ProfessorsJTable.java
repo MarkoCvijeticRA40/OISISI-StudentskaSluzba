@@ -47,5 +47,6 @@ public class ProfessorsJTable extends JTable {
 	public void updateView() {
 		AbstractTableModelProfessor model = (AbstractTableModelProfessor) this.getModel();
 		model.fireTableDataChanged();
+		this.setRowSelectionInterval(0, 0);
 	}
 }

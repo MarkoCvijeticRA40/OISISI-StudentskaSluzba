@@ -53,10 +53,16 @@ public class EditProfessorFormPanel extends BaseProfessorFormJPanel {
 		this.firstNameTxt.setText(professor.getFirstName());
 		this.lastNameTxt.setText(professor.getLastName());
 		this.dateOfBirthTxt.setText(ValidationPatterns.dateFormat.format(professor.getDateOfBirth()));
-		this.addressTxt.setText(professor.getAddress().toString());
+		this.addressStreetTxt.setText(professor.getAddress().getStreet());
+		this.addressHouseNumberTxt.setText(String.valueOf(professor.getAddress().getHouseNumber()));
+		this.addressCityTxt.setText(professor.getAddress().getCity());
+		this.addressCountryTxt.setText(professor.getAddress().getCountry());
 		this.phoneNumberTxt.setText(professor.getPhoneNumber());
 		this.emailTxt.setText(professor.getEmail());
-		this.officeAddressTxt.setText(professor.getOfficeAddress().toString());
+		this.officeAddressStreetTxt.setText(professor.getOfficeAddress().getStreet());
+		this.officeAddressHouseNumberTxt.setText(String.valueOf(professor.getOfficeAddress().getHouseNumber()));
+		this.officeAddressCityTxt.setText(professor.getOfficeAddress().getCity());
+		this.officeAddressCountryTxt.setText(professor.getOfficeAddress().getCountry());
 		this.idCardNumberTxt.setText(String.valueOf(professor.getIdCardNumber()));
 		this.titleTxt.setText(professor.getTitle());
 		this.yearsOfServiceTxt.setText(String.valueOf(professor.getYearsOfService()));

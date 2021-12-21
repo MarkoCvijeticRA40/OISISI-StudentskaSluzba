@@ -78,7 +78,11 @@ public class ProfessorController {
 	}
 	
 	public boolean inputFieldCheck(JTextField input) {
-		return formValidator.validateInput(input.getName(), input.getText());
+		boolean result =  formValidator.validateInput(input.getName(), input.getText());
+		if (result && input.getName() == "email") {
+			return !this.checkEmailExistence(input.getText());
+		}
+		return result;
 	}
 	
 	public boolean inputFieldsValidationState() {
@@ -103,10 +107,18 @@ public class ProfessorController {
 			JOptionPane.showMessageDialog(null, "Datum nije validan!");
 			return null;
 		}
-		Address address = createAddress(form.getAddressTxt().getText());
+		Address address = new Address(
+				form.getAddressStreetTxt().getText(),
+				Integer.parseInt(form.getAddressHouseNumberTxt().getText()),
+				form.getAddressCityTxt().getText(),
+				form.getAddressCountryTxt().getText());
 		String phoneNumber = form.getPhoneNumberTxt().getText();
 		String email = form.getEmailTxt().getText();
-		Address officeAddress = createAddress(form.getOfficeAddressTxt().getText());
+		Address officeAddress = new Address(
+				form.getOfficeAddressStreetTxt().getText(),
+				Integer.parseInt(form.getOfficeAddressHouseNumberTxt().getText()),
+				form.getOfficeAddressCityTxt().getText(),
+				form.getOfficeAddressCountryTxt().getText());
 		int idCardNumber = Integer.parseInt(form.getIdCardNumberTxt().getText());
 		String title = form.getTitleTxt().getText();
 		int yearsOfService = Integer.parseInt(form.getYearsOfServiceTxt().getText());
@@ -123,17 +135,11 @@ public class ProfessorController {
 				yearsOfService);
 	}
 	
-	private Address createAddress(String addressString) {
-		String[] fullAddress = addressString.split(", ");
-		String city = fullAddress[1];
-		String country = fullAddress[2];
-		String[] streetAndNumber = fullAddress[0].split(" ");
-		int houseNumber = Integer.parseInt(streetAndNumber[streetAndNumber.length - 1]);
-		String street = fullAddress[0].replaceAll("\s[0-9]+", "");
-		return new Address(
-				street,
-				houseNumber,
-				city,
-				country);
+	private boolean checkEmailExistence(String email) {
+		for (Professor professor : this.professorsDatabase.getProfessors()) {
+			if (professor.getEmail().compareTo(email) == 0)
+				return true;
+		}
+		return false;
 	}
 }
