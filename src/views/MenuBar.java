@@ -90,24 +90,24 @@ public class MenuBar extends JMenuBar {
 		int selectedTab = MainFrame.getInstance().getTabbedPane().getSelectedIndex();
 		switch(selectedTab) {
 			case 0:
-				switch(window) {
-					case "add": 
-						AddProfessorDialog.getInstance().init();
-						break;
-					case "edit": 
-						EditProfessorDialog.getInstance().init();
-						break;
-					case "delete":
-						int result = JOptionPane.showConfirmDialog(null,
-								"Da li ste sigurno da zelite da obriste profesora", 
-								"Brisanje profesora", 
-								JOptionPane.YES_NO_OPTION);
-						if (result == JOptionPane.YES_OPTION)
-							ProfessorController.getInstance().delete();
-						break;
-				}
 				break;
 			case 1:
+				switch(window) {
+				case "add": 
+					AddProfessorDialog.getInstance().init();
+					break;
+				case "edit": 
+					EditProfessorDialog.getInstance().init();
+					break;
+				case "delete":
+					int result = JOptionPane.showConfirmDialog(null,
+							"Da li ste sigurno da zelite da obriste profesora", 
+							"Brisanje profesora", 
+							JOptionPane.YES_NO_OPTION);
+					if (result == JOptionPane.YES_OPTION)
+						ProfessorController.getInstance().delete();
+					break;
+			}
 				break;
 			case 2:
 				break;

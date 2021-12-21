@@ -13,7 +13,6 @@ public class SubjectDatabase {
 	
 	private List<Subject> subjects;
 	private List<String> columnNames;
-	private final String dbFilePath = "src/persistence/subjects.txt";
 	
 	private SubjectDatabase() {
 		subjects = new LinkedList<>();
@@ -79,9 +78,5 @@ public class SubjectDatabase {
 	
 	public String getColumnName(int columnIndex) {
 		return columnNames.get(columnIndex);
-	}
-	
-	public String getDbFilePath() {
-		return this.dbFilePath;
 	}
 }

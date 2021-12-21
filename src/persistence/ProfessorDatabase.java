@@ -15,7 +15,6 @@ public class ProfessorDatabase {
 	
 	private List<Professor> professors;
 	private List<String> columnNames;
-	private final String dbFilePath = "src/persistence/professors.txt";
 	
 	private ProfessorDatabase() {
 		professors = new LinkedList<>();
@@ -154,9 +153,5 @@ public class ProfessorDatabase {
 	
 	public String getColumnName(int column) {
 		return columnNames.get(column);
-	}
-	
-	public String getDbFilePath() {
-		return this.dbFilePath;
 	}
 }
