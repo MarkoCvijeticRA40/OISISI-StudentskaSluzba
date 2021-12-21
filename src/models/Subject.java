@@ -3,7 +3,6 @@ package models;
 import java.util.LinkedList;
 import java.util.List;
 
-enum Semester {Zimski ,Letnji}
 
 public class Subject {
 
@@ -16,25 +15,15 @@ public class Subject {
 	public List<Student> passedStudents;
 	public List<Student> notPassedStudents;
 	
-	public Subject(int id, String name, Semester semester, int studyYear, Professor professor, int espb) {
+	public Subject(int id, String name, Semester semester, int studyYear, int espb) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.semester = semester;
 		this.studyYear = studyYear;
-		this.professor = professor;
 		this.espb = espb;
 		this.passedStudents = new LinkedList<>();
 		this.notPassedStudents = new LinkedList<>();
-	}
-	
-	public Subject(int id, String name, int espb, int studyYear, int semester) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.espb = espb;
-		this.studyYear = studyYear;
-		this.semester = Semester.values()[semester];
 	}
 	
 	public int getId() {
