@@ -7,7 +7,6 @@ import java.util.List;
 
 import controllers.validators.ValidationPatterns;
 import models.Address;
-import models.Professor;
 import models.Status;
 import models.Student;
 

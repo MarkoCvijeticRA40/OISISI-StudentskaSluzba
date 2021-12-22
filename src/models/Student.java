@@ -22,7 +22,7 @@ public class Student {
 	public List<Subject> notPassedExams;
 	
 	public Student(String firstName, String lastName, Date dateOfBirth, Address address, String phoneNumber,
-			String email, String indexNumber, int enrollmentYear, int currentStudiesYear, Status financingStatus,
+			String email, String indexNumber, int enrollmentYear, int currentStudiesYear, Status financingStatus, 
 			double rating) {
 		super();
 		this.firstName = firstName;
