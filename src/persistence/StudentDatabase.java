@@ -90,6 +90,9 @@ private static StudentDatabase db;
 		studentToEdit.setCurrentStudiesYear(student.getCurrentStudiesYear());
 		studentToEdit.setFinancingStatus(student.getFinancingStatus());
 	}
+	public void deleteStudent(int row) {
+		this.students.remove(row);
+	}
 	
 	public List<Student> getStudents() {
 		return students;
