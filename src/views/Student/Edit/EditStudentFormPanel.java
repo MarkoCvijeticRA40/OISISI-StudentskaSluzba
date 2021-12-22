@@ -6,12 +6,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 
-import controllers.ProfessorController;
 import controllers.StudentController;
 import controllers.validators.ValidationPatterns;
-import models.Professor;
 import models.Student;
-import views.Professor.Edit.EditProfessorDialog;
 import views.Student.BaseStudentFormJPanel;
 import views.Student.listeners.EditStudentFocusListener;
 

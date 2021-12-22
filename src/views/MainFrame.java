@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
 	private static MainFrame frame;
 	
 	private TabbedPane tabbedPane;
+	private StatusBar statusBar;
 
 	private MainFrame() {
 		super();
@@ -25,6 +26,8 @@ public class MainFrame extends JFrame {
 		add(new ToolBar(), BorderLayout.NORTH);
 		tabbedPane = new TabbedPane();
 		add(tabbedPane, BorderLayout.CENTER);
+		statusBar = new StatusBar();
+		add(statusBar, BorderLayout.SOUTH);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
@@ -37,6 +40,10 @@ public class MainFrame extends JFrame {
 	
 	public TabbedPane getTabbedPane() {
 		return this.tabbedPane;
+	}
+	
+	public StatusBar getStatusBar() {
+		return this.statusBar;
 	}
 
 }
