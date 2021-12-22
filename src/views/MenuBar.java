@@ -14,6 +14,7 @@ import javax.swing.KeyStroke;
 import controllers.ProfessorController;
 import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
+import views.Student.Add.AddStudentDialog;
 
 @SuppressWarnings("serial")
 public class MenuBar extends JMenuBar {
@@ -90,6 +91,15 @@ public class MenuBar extends JMenuBar {
 		int selectedTab = MainFrame.getInstance().getTabbedPane().getSelectedIndex();
 		switch(selectedTab) {
 			case 0:
+				switch(window) {
+				case "add": 
+					AddStudentDialog.getInstance().init();
+					break;
+				case "edit": 
+					break;
+				case "delete":
+					break;
+			}
 				break;
 			case 1:
 				switch(window) {
@@ -112,7 +122,5 @@ public class MenuBar extends JMenuBar {
 			case 2:
 				break;
 		}
-	}
-	
-	
+	}	
 }

@@ -23,6 +23,7 @@ import javax.swing.KeyStroke;
 import controllers.ProfessorController;
 import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
+import views.Student.Add.AddStudentDialog;
 
 public class ToolBar extends JToolBar {
 	
@@ -94,6 +95,15 @@ public class ToolBar extends JToolBar {
 			int selectedTab = MainFrame.getInstance().getTabbedPane().getSelectedIndex();
 			switch (selectedTab) {
 				case 0:
+					switch(btnName) {
+					case "add": 
+						AddStudentDialog.getInstance().init();
+						break;
+					case "edit": 
+						break;
+					case "delete":
+						break;
+					}
 					break;
 				case 1:
 					switch(btnName) {

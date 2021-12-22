@@ -8,9 +8,6 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
 
-import views.Professor.Representation.AbstractTableModelProfessor;
-import views.Professor.Representation.ProfessorsJTable;
-
 public class StudentsJTable extends JTable {
 
 	private static final long serialVersionUID = -7484521471348882698L;
