@@ -63,6 +63,13 @@ public class StudentController {
 		EditStudentDialog.getInstance().dispose();
 	}
 	
+	public void delete() {
+		int selectedRow = studentTable.getSelectedRow();
+		this.studentsDatabase.deleteStudent(selectedRow);
+		this.studentTable.updateView();
+		JOptionPane.showMessageDialog(null, "Student uspesno obrisan!");
+	}
+	
 	public Student getSelectedStudent() {
 		int selectedRow = studentTable.getSelectedRow();
 		if (this.studentsDatabase.getRowCount() <= selectedRow)

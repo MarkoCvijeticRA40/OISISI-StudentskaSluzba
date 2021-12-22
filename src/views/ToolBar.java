@@ -21,6 +21,7 @@ import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 
 import controllers.ProfessorController;
+import controllers.StudentController;
 import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
 import views.Student.Add.AddStudentDialog;
@@ -104,6 +105,12 @@ public class ToolBar extends JToolBar {
 						EditStudentDialog.getInstance().init();
 						break;
 					case "delete":
+						int result = JOptionPane.showConfirmDialog(null,
+								"Da li ste sigurno da zelite da obriste studenta", 
+								"Brisanje studenta", 
+								JOptionPane.YES_NO_OPTION);
+						if (result == JOptionPane.YES_OPTION)
+							StudentController.getInstance().delete();
 						break;
 					}
 					break;
