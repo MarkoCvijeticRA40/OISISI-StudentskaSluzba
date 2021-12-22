@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
 import controllers.validators.ValidationPatterns;
 import models.Address;
 import models.Status;
@@ -28,7 +27,7 @@ private static StudentDatabase db;
 					new Address("Laze Kostica", 150, "Novi Sad", "Srbija"),
 					"0628440456",
 					"marko.markovic@uns.ac.rs",
-					"RA40-2019",
+					"RA40/2019",
 					2019,
 					3,
 					Status.B,
@@ -40,7 +39,7 @@ private static StudentDatabase db;
 					new Address("Futoski put", 44, "Novi Sad", "Srbija"),
 					"0647740489",
 					"dejan.micic@uns.ac.rs",
-					"RA124-2020",
+					"RA124/2020",
 					2020,
 					2,
 					Status.B,
@@ -52,7 +51,7 @@ private static StudentDatabase db;
 					new Address("Safarikova", 10, "Novi Sad", "Srbija"),
 					"0623465409",
 					"mirko.dejanovic@uns.ac.rs",
-					"RA40-2021",
+					"RA40/2021",
 					2021,
 					1,
 					Status.S,
@@ -77,6 +76,19 @@ private static StudentDatabase db;
 	
 	public void addStudent(Student student) {
 		this.students.add(student);
+	}
+	
+	public void editStudent(int row, Student student) {
+		Student studentToEdit = this.getRow(row);
+		studentToEdit.setFirstName(student.getFirstName());
+		studentToEdit.setLastName(student.getLastName());
+		studentToEdit.setDateOfBirth(student.getDateOfBirth());
+		studentToEdit.setAddress(student.getAddress());
+		studentToEdit.setEmail(student.getEmail());
+		studentToEdit.setIndexNumber(student.getIndexNumber());
+		studentToEdit.setEnrollmentYear(student.getEnrollmentYear());
+		studentToEdit.setCurrentStudiesYear(student.getCurrentStudiesYear());
+		studentToEdit.setFinancingStatus(student.getFinancingStatus());
 	}
 	
 	public List<Student> getStudents() {

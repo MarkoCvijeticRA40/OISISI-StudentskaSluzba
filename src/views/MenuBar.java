@@ -15,6 +15,7 @@ import controllers.ProfessorController;
 import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
 import views.Student.Add.AddStudentDialog;
+import views.Student.Edit.EditStudentDialog;
 
 @SuppressWarnings("serial")
 public class MenuBar extends JMenuBar {
@@ -96,6 +97,7 @@ public class MenuBar extends JMenuBar {
 					AddStudentDialog.getInstance().init();
 					break;
 				case "edit": 
+					EditStudentDialog.getInstance().init();
 					break;
 				case "delete":
 					break;

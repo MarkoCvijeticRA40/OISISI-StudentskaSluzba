@@ -15,6 +15,7 @@ import persistence.StudentDatabase;
 import views.MainFrame;
 import views.Student.BaseStudentFormJPanel;
 import views.Student.Add.AddStudentDialog;
+import views.Student.Edit.EditStudentDialog;
 import views.Student.Representation.StudentsJTable;
 
 public class StudentController {
@@ -23,12 +24,14 @@ public class StudentController {
 	
 	private StudentFormValidator formValidator;
 	private BaseStudentFormJPanel addForm;
+	private BaseStudentFormJPanel editForm;
 	private StudentsJTable studentTable;
 	private StudentDatabase studentsDatabase;
 	
 	private StudentController() {
 		this.formValidator = new StudentFormValidator();
 		this.addForm = AddStudentDialog.getInstance().getAddForm();
+		this.editForm = EditStudentDialog.getInstance().getEditForm();
 		this.studentTable = MainFrame.getInstance().getTabbedPane().getStudentTab().getTable();
 		this.studentsDatabase = StudentDatabase.getInstance();
 	}
@@ -47,6 +50,25 @@ public class StudentController {
 		this.studentTable.updateView();
 		JOptionPane.showMessageDialog(null, "Student uspesno dodat!");
 		AddStudentDialog.getInstance().dispose();
+	}
+	
+	public void edit() {
+		Student student = createStudent(this.editForm);
+		if (student == null)
+			return;
+		int selectedRow = studentTable.getSelectedRow();
+		this.studentsDatabase.editStudent(selectedRow,student);
+		this.studentTable.updateView();
+		JOptionPane.showMessageDialog(null, "Student uspesno izmenjen!");
+		EditStudentDialog.getInstance().dispose();
+	}
+	
+	public Student getSelectedStudent() {
+		int selectedRow = studentTable.getSelectedRow();
+		if (this.studentsDatabase.getRowCount() <= selectedRow)
+			return null;
+		Student student = this.studentsDatabase.getRow(selectedRow);
+		return student;
 	}
 	
 	private Student createStudent(BaseStudentFormJPanel form) {

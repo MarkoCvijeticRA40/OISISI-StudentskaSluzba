@@ -24,6 +24,7 @@ import controllers.ProfessorController;
 import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
 import views.Student.Add.AddStudentDialog;
+import views.Student.Edit.EditStudentDialog;
 
 public class ToolBar extends JToolBar {
 	
@@ -99,7 +100,8 @@ public class ToolBar extends JToolBar {
 					case "add": 
 						AddStudentDialog.getInstance().init();
 						break;
-					case "edit": 
+					case "edit":
+						EditStudentDialog.getInstance().init();
 						break;
 					case "delete":
 						break;
