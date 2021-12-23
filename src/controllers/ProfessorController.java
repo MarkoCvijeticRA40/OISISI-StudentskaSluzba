@@ -64,6 +64,13 @@ public class ProfessorController {
 	
 	public void delete() {
 		int selectedRow = professorTable.getSelectedRow();
+		Professor professor = this.getSelectedProfessor();
+		if (professor == null)
+			return;
+		if (SubjectController.getInstance().checkProfessorExistence(professor)) {
+			JOptionPane.showMessageDialog(null, "Profesor neuspesno obrisan!\nPostoji referenca na predmetnog profesora.");
+			return;
+		}
 		this.professorsDatabase.deleteProfessor(selectedRow);
 		ProfessorsJTable.getInstance().updateView();
 		JOptionPane.showMessageDialog(null, "Profesor uspesno obrisan!");

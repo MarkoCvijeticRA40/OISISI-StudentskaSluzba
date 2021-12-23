@@ -15,13 +15,14 @@ public class Subject {
 	public List<Student> passedStudents;
 	public List<Student> notPassedStudents;
 	
-	public Subject(int id, String name, Semester semester, int studyYear, int espb) {
+	public Subject(int id, String name, Semester semester, int studyYear, int espb, Professor professor) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.semester = semester;
 		this.studyYear = studyYear;
 		this.espb = espb;
+		this.professor = professor;
 		this.passedStudents = new LinkedList<>();
 		this.notPassedStudents = new LinkedList<>();
 	}
