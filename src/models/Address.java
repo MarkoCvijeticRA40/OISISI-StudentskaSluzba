@@ -2,10 +2,10 @@ package models;
 
 public class Address {
 	
-	public String street;
-	public int houseNumber;
-	public String city;
-	public String country;
+	private String street;
+	private int houseNumber;
+	private String city;
+	private String country;
 	
 	public Address(String street, int houseNumber, String city, String country) {
 		super();

@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class ExamMark {
 
-	public Student student;
-	public Subject subject;
-	public int mark;
-	public Date examDate;
+	private Student student;
+	private Subject subject;
+	private int mark;
+	private Date examDate;
 	
 	public ExamMark(Student student, Subject subject, int mark, Date examDate) {
 		super();

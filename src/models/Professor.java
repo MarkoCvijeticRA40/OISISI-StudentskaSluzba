@@ -6,17 +6,17 @@ import java.util.List;
 
 public class Professor {
 
-	public String firstName;
-	public String lastName;
-	public Date dateOfBirth;
-	public Address address;
-	public String phoneNumber;
-	public String email;
-	public Address officeAddress;
-	public int idCardNumber;
-	public String title;
-	public int yearsOfService;
-	public List<Subject> subjects;
+	private String firstName;
+	private String lastName;
+	private Date dateOfBirth;
+	private Address address;
+	private String phoneNumber;
+	private String email;
+	private Address officeAddress;
+	private int idCardNumber;
+	private String title;
+	private int yearsOfService;
+	private List<Subject> subjects;
 	
 	public Professor(String firstName, String lastName, Date dateOfBirth, Address address, String phoneNumber,
 			String email, Address officeAddress, int idCardNumber, String title, int yearsOfService) {
