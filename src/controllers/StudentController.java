@@ -65,6 +65,9 @@ public class StudentController {
 	
 	public void delete() {
 		int selectedRow = studentTable.getSelectedRow();
+		Student student = this.getSelectedStudent();
+		if (student  == null)
+			return;
 		this.studentsDatabase.deleteStudent(selectedRow);
 		this.studentTable.updateView();
 		JOptionPane.showMessageDialog(null, "Student uspesno obrisan!");
@@ -120,7 +123,7 @@ public class StudentController {
 	public boolean inputFieldCheck(JTextField input, String formType) {
 		boolean result =  formValidator.validateInput(input.getName(), input.getText());
 		if (result && input.getName().compareTo("email") == 0) {
-			if (input.getText().compareTo(EditStudentDialog.getInstance().getEditForm().getCurrentEmail()) == 0)
+			if (formType.compareTo("edit") == 0 && input.getText().compareTo(EditStudentDialog.getInstance().getEditForm().getCurrentEmail()) == 0)
 				return true;
 			return !this.checkEmailExistence(input.getText());
 		}
