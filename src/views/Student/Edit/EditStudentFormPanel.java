@@ -15,6 +15,8 @@ import views.Student.listeners.EditStudentFocusListener;
 public class EditStudentFormPanel extends BaseStudentFormJPanel {
 
 	private static final long serialVersionUID = -3983591677674751305L;
+	
+	private String currentEmail;
 
 	public EditStudentFormPanel() {
 		super(new EditStudentFocusListener());
@@ -43,9 +45,10 @@ public class EditStudentFormPanel extends BaseStudentFormJPanel {
 		Student selectedStudent = StudentController.getInstance().getSelectedStudent();
 		if (selectedStudent == null)
 			return false;
+		this.currentEmail = selectedStudent.getEmail();
 		setTextFields(selectedStudent);
 		this.firstNameTxt.requestFocus();
-		this.submitBtn.setEnabled(false);
+		this.submitBtn.setEnabled(true);
 		return true;
 	}
 	
@@ -66,5 +69,7 @@ public class EditStudentFormPanel extends BaseStudentFormJPanel {
 		this.financingStatusCmb.setSelectedItem(student.getFinancingStatus());
 	}
 	
-
+	public String getCurrentEmail() {
+		return this.currentEmail;
+	}
 }

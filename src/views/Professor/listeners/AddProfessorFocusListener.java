@@ -21,7 +21,7 @@ public class AddProfessorFocusListener implements FocusListener {
 	@Override
 	public void focusLost(FocusEvent e) {
 		JTextField input = (JTextField)e.getComponent();
-		boolean result = ProfessorController.getInstance().inputFieldCheck(input);
+		boolean result = ProfessorController.getInstance().inputFieldCheck(input, "add");
 		if (!result && input.getText().compareTo("") != 0) {
 			JOptionPane.showMessageDialog(null, "Pogresan unos!");
 			input.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.RED));
