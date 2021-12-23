@@ -77,9 +77,11 @@ public class ProfessorController {
 		return professor;
 	}
 	
-	public boolean inputFieldCheck(JTextField input) {
+	public boolean inputFieldCheck(JTextField input, String formType) {
 		boolean result =  formValidator.validateInput(input.getName(), input.getText());
-		if (result && input.getName() == "email") {
+		if (result && input.getName().compareTo("email") == 0) {
+			if (input.getText().compareTo(EditProfessorDialog.getInstance().getEditForm().getCurrentEmail()) == 0)
+				return true;
 			return !this.checkEmailExistence(input.getText());
 		}
 		return result;
@@ -137,8 +139,10 @@ public class ProfessorController {
 	
 	private boolean checkEmailExistence(String email) {
 		for (Professor professor : this.professorsDatabase.getProfessors()) {
-			if (professor.getEmail().compareTo(email) == 0)
+			if (professor.getEmail().compareTo(email) == 0) {
+				this.formValidator.setValidation("email", false);
 				return true;
+			}
 		}
 		return false;
 	}

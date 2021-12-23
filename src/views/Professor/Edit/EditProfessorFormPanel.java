@@ -15,6 +15,8 @@ import views.Professor.listeners.EditProfessorFocusListener;
 public class EditProfessorFormPanel extends BaseProfessorFormJPanel {
 
 	private static final long serialVersionUID = -1915079276643860971L;
+	
+	private String currentEmail;
 
 	public EditProfessorFormPanel() {
 		super(new EditProfessorFocusListener());
@@ -42,9 +44,10 @@ public class EditProfessorFormPanel extends BaseProfessorFormJPanel {
 		Professor selectedProfessor = ProfessorController.getInstance().getSelectedProfessor();
 		if (selectedProfessor == null)
 			return false;
+		this.currentEmail = selectedProfessor.getEmail();
 		setTextFields(selectedProfessor);
 		this.firstNameTxt.requestFocus();
-		this.submitBtn.setEnabled(false);
+		this.submitBtn.setEnabled(true);
 		return true;
 	}
 	
@@ -66,6 +69,10 @@ public class EditProfessorFormPanel extends BaseProfessorFormJPanel {
 		this.idCardNumberTxt.setText(String.valueOf(professor.getIdCardNumber()));
 		this.titleTxt.setText(professor.getTitle());
 		this.yearsOfServiceTxt.setText(String.valueOf(professor.getYearsOfService()));
+	}
+	
+	public String getCurrentEmail() {
+		return this.currentEmail;
 	}
 	
 }

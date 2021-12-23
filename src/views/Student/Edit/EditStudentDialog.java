@@ -2,7 +2,7 @@ package views.Student.Edit;
 
 import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
-import controllers.ProfessorController;
+import controllers.StudentController;
 import views.MainFrame;
 
 public class EditStudentDialog extends JDialog {
@@ -35,7 +35,7 @@ public class EditStudentDialog extends JDialog {
 	}
 	
 	public void init() {
-		ProfessorController.getInstance().formValidatorSet(true);
+		StudentController.getInstance().formValidatorSet(true);
 		if (editForm.init())
 			this.setVisible(true);
 	}

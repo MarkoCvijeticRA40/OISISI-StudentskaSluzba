@@ -117,8 +117,14 @@ public class StudentController {
 				0);
 	}
 	
-	public boolean inputFieldCheck(JTextField input) {
-		return formValidator.validateInput(input.getName(), input.getText());
+	public boolean inputFieldCheck(JTextField input, String formType) {
+		boolean result =  formValidator.validateInput(input.getName(), input.getText());
+		if (result && input.getName().compareTo("email") == 0) {
+			if (input.getText().compareTo(EditStudentDialog.getInstance().getEditForm().getCurrentEmail()) == 0)
+				return true;
+			return !this.checkEmailExistence(input.getText());
+		}
+		return result;
 	}
 	
 	public boolean inputFieldsValidationState() {
@@ -127,5 +133,15 @@ public class StudentController {
 	
 	public void formValidatorSet(boolean state) {
 		formValidator.setValidator(state);
+	}
+	
+	private boolean checkEmailExistence(String email) {
+		for (Student student : this.studentsDatabase.getStudents()) {
+			if (student.getEmail().compareTo(email) == 0) {
+				this.formValidator.setValidation("email", false);
+				return true;
+			}
+		}
+		return false;
 	}
 }

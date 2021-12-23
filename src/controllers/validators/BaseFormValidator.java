@@ -24,6 +24,7 @@ public abstract class BaseFormValidator {
 			inputFieldsValidationState.replace(inputName, true);
 			return true;
 		} catch (ParseException e) {
+			inputFieldsValidationState.replace(inputName, false);
 			return false;
 		}
 	}
@@ -39,5 +40,9 @@ public abstract class BaseFormValidator {
 	public void setValidator(boolean state) {
 		for (String key : inputFieldsValidationState.keySet())
 			inputFieldsValidationState.replace(key, state);
+	}
+	
+	public void setValidation(String key, boolean state) {
+		inputFieldsValidationState.replace(key, state);
 	}
 }
