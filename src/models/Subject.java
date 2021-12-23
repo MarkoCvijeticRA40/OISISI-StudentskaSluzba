@@ -6,14 +6,14 @@ import java.util.List;
 
 public class Subject {
 
-	public int id;
-	public String name;
-	public Semester semester;
-	public int studyYear;
-	public Professor professor;
-	public int espb;
-	public List<Student> passedStudents;
-	public List<Student> notPassedStudents;
+	private int id;
+	private String name;
+	private Semester semester;
+	private int studyYear;
+	private Professor professor;
+	private int espb;
+	private List<Student> passedStudents;
+	private List<Student> notPassedStudents;
 	
 	public Subject(int id, String name, Semester semester, int studyYear, int espb, Professor professor) {
 		super();

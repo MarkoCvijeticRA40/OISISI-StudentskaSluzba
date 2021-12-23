@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Department {
 
-	public int id;
-	public String name;
-	public Professor manager;
-	public List<Professor> professors;
+	private int id;
+	private String name;
+	private Professor manager;
+	private List<Professor> professors;
 	
 	public Department(int id, String name, Professor manager) {
 		super();

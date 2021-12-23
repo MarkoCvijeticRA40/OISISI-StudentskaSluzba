@@ -7,19 +7,19 @@ import java.util.List;
 
 public class Student {
 	
-	public String firstName;
-	public String lastName;
-	public Date dateOfBirth;
-	public Address address;
-	public String phoneNumber;
-	public String email;
-	public String indexNumber;
-	public int enrollmentYear;
-	public int currentStudiesYear;
-	public Status financingStatus;
-	public double rating;
-	public List<ExamMark> passedExams;
-	public List<Subject> notPassedExams;
+	private String firstName;
+	private String lastName;
+	private Date dateOfBirth;
+	private Address address;
+	private String phoneNumber;
+	private String email;
+	private String indexNumber;
+	private int enrollmentYear;
+	private int currentStudiesYear;
+	private Status financingStatus;
+	private double rating;
+	private List<ExamMark> passedExams;
+	private List<Subject> notPassedExams;
 	
 	public Student(String firstName, String lastName, Date dateOfBirth, Address address, String phoneNumber,
 			String email, String indexNumber, int enrollmentYear, int currentStudiesYear, Status financingStatus, 
