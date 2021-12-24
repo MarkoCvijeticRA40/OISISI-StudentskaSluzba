@@ -125,7 +125,18 @@ public class StudentController {
 		if (result && input.getName().compareTo("email") == 0) {
 			if (formType.compareTo("edit") == 0 && input.getText().compareTo(EditStudentDialog.getInstance().getEditForm().getCurrentEmail()) == 0)
 				return true;
-			return !this.checkEmailExistence(input.getText());
+			boolean checkMail = this.checkEmailExistence(input.getText());
+			if(checkMail)
+				JOptionPane.showMessageDialog(null, "Email vec postoji!");
+			return !checkMail;
+		}
+		else if(result && input.getName().compareTo("indexNumber") == 0) {
+			if (formType.compareTo("edit") == 0 && input.getText().compareTo(EditStudentDialog.getInstance().getEditForm().getCurrentIndexNumber()) == 0)
+				return true;
+			boolean checkIndexNumber = this.checkIndexNumberExistence(input.getText());
+			if(checkIndexNumber)
+				JOptionPane.showMessageDialog(null, "Broj indeksa vec postoji!");
+			return !checkIndexNumber;
 		}
 		return result;
 	}
@@ -145,6 +156,16 @@ public class StudentController {
 				return true;
 			}
 		}
-		return false;
+		return ProfessorController.getInstance().checkEmailExistence(email);
 	}
+	
+	private boolean checkIndexNumberExistence(String indexNumber) {
+		for (Student student : this.studentsDatabase.getStudents()) {
+			if (student.getIndexNumber().compareTo(indexNumber) == 0) {
+				this.formValidator.setValidation("indexNumber", false);
+				return true;
+			}
+		}
+		return false;	
+	}	
 }
