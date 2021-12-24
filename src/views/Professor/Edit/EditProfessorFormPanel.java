@@ -67,7 +67,7 @@ public class EditProfessorFormPanel extends BaseProfessorFormJPanel {
 		this.officeAddressCityTxt.setText(professor.getOfficeAddress().getCity());
 		this.officeAddressCountryTxt.setText(professor.getOfficeAddress().getCountry());
 		this.idCardNumberTxt.setText(String.valueOf(professor.getIdCardNumber()));
-		this.titleTxt.setText(professor.getTitle());
+		this.titleCmb.setSelectedItem(professor.getTitle());
 		this.yearsOfServiceTxt.setText(String.valueOf(professor.getYearsOfService()));
 	}
 	

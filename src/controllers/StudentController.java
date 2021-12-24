@@ -138,7 +138,7 @@ public class StudentController {
 		formValidator.setValidator(state);
 	}
 	
-	private boolean checkEmailExistence(String email) {
+	public boolean checkEmailExistence(String email) {
 		for (Student student : this.studentsDatabase.getStudents()) {
 			if (student.getEmail().compareTo(email) == 0) {
 				this.formValidator.setValidation("email", false);

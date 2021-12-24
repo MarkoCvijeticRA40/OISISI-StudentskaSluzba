@@ -39,7 +39,7 @@ public class ProfessorDatabase {
 					"mika.mikic@uns.ac.rs",
 					new Address("Bulevar Evrope", 150, "Novi Sad", "Srbija"),
 					852741963,
-					"Dekan",
+					"Red. profesor",
 					30));
 			professors.add(new Professor(
 					"Djura",
@@ -50,7 +50,7 @@ public class ProfessorDatabase {
 					"djura.djuric@uns.ac.rs",
 					new Address("Bulevar Evrope", 150, "Novi Sad", "Srbija"),
 					753963423,
-					"Asistent",
+					"Red. profesor",
 					5));
 			professors.add(new Professor(
 					"Branko",
@@ -61,7 +61,7 @@ public class ProfessorDatabase {
 					"branko.brankovic@uns.ac.rs",
 					new Address("Bulevar Evrope", 150, "Novi Sad", "Srbija"),
 					741753963,
-					"Docent",
+					"Vandr. profesor",
 					5));
 			professors.add(new Professor(
 					"Andjela",
