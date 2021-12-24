@@ -17,7 +17,8 @@ public class EditStudentFormPanel extends BaseStudentFormJPanel {
 	private static final long serialVersionUID = -3983591677674751305L;
 	
 	private String currentEmail;
-
+	private String currentIndexNumber;
+	
 	public EditStudentFormPanel() {
 		super(new EditStudentFocusListener());
 		
@@ -46,6 +47,7 @@ public class EditStudentFormPanel extends BaseStudentFormJPanel {
 		if (selectedStudent == null)
 			return false;
 		this.currentEmail = selectedStudent.getEmail();
+		this.currentIndexNumber = selectedStudent.getIndexNumber();
 		setTextFields(selectedStudent);
 		this.firstNameTxt.requestFocus();
 		this.submitBtn.setEnabled(true);
@@ -71,5 +73,8 @@ public class EditStudentFormPanel extends BaseStudentFormJPanel {
 	
 	public String getCurrentEmail() {
 		return this.currentEmail;
+	}
+	public String getCurrentIndexNumber () {
+		return this.currentIndexNumber;
 	}
 }

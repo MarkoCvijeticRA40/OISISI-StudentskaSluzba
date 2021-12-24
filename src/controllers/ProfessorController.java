@@ -144,7 +144,7 @@ public class ProfessorController {
 				yearsOfService);
 	}
 	
-	private boolean checkEmailExistence(String email) {
+	public boolean checkEmailExistence(String email) {
 		for (Professor professor : this.professorsDatabase.getProfessors()) {
 			if (professor.getEmail().compareTo(email) == 0) {
 				this.formValidator.setValidation("email", false);

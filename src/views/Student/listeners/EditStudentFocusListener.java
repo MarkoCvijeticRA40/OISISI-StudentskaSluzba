@@ -22,11 +22,7 @@ public class EditStudentFocusListener implements FocusListener {
 	public void focusLost(FocusEvent e) {
 		JTextField input = (JTextField)e.getComponent();
 		boolean result = StudentController.getInstance().inputFieldCheck(input, "edit");
-		if (!result && input.getText().compareTo("") != 0) {
-			JOptionPane.showMessageDialog(null, "Pogresan unos!");
-			input.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.RED));
-		}
-		else if(result)
+		if(result)
 			input.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.GREEN));
 		else
 			input.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.RED));

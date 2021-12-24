@@ -23,7 +23,7 @@ public class AddStudentFormPanel extends BaseStudentFormJPanel{
 			}
 			
 		});
-		
+
 		this.cancelBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -51,7 +51,7 @@ public class AddStudentFormPanel extends BaseStudentFormJPanel{
 		this.addressCountryTxt.setText("");
 		this.phoneNumberTxt.setText("");
 		this.emailTxt.setText("");
-		this.indexNumberTxt.setText("");
+		this.indexNumberTxt.setText("RA40/2019");
 		this.enrollmentYearTxt.setText("");
 		this.currentStudiesYearCmb.setSelectedIndex(0);
 		this.financingStatusCmb.setSelectedIndex(0);
