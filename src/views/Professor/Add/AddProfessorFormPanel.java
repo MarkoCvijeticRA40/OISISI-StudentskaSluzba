@@ -59,7 +59,7 @@ public class AddProfessorFormPanel extends BaseProfessorFormJPanel {
 		this.officeAddressCityTxt.setText("");
 		this.officeAddressCountryTxt.setText("");
 		this.idCardNumberTxt.setText("");
-		this.titleTxt.setText("");
+		this.titleCmb.setSelectedIndex(0);
 		this.yearsOfServiceTxt.setText("");
 	}
 }

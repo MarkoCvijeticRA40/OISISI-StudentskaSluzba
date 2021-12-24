@@ -16,7 +16,6 @@ public class ProfessorFormValidator extends BaseFormValidator {
 		inputFieldsValidationState.put("officeAddressHouseNumber", false);
 		inputFieldsValidationState.put("officeAddressCity", false);
 		inputFieldsValidationState.put("officeAddressCountry", false);
-		inputFieldsValidationState.put("title", false);
 		inputFieldsValidationState.put("yearsOfService", false);
 	}
 	
@@ -43,8 +42,6 @@ public class ProfessorFormValidator extends BaseFormValidator {
 				return validateWithRegex(inputName, inputValue, ValidationPatterns.phoneNumber);
 			case "email":
 				return validateWithRegex(inputName, inputValue, ValidationPatterns.email);
-			case "title":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.onlyAlphabets);
 			case "idCardNumber":
 				return validateWithRegex(inputName, inputValue, ValidationPatterns.idCardNumber);
 			case "yearsOfService":

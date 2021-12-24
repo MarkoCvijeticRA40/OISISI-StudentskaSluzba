@@ -5,7 +5,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import controllers.ProfessorController;
@@ -22,11 +21,7 @@ public class AddProfessorFocusListener implements FocusListener {
 	public void focusLost(FocusEvent e) {
 		JTextField input = (JTextField)e.getComponent();
 		boolean result = ProfessorController.getInstance().inputFieldCheck(input, "add");
-		if (!result && input.getText().compareTo("") != 0) {
-			JOptionPane.showMessageDialog(null, "Pogresan unos!");
-			input.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.RED));
-		}
-		else if(result)
+		if(result)
 			input.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.GREEN));
 		else
 			input.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.RED));

@@ -87,9 +87,12 @@ public class ProfessorController {
 	public boolean inputFieldCheck(JTextField input, String formType) {
 		boolean result =  formValidator.validateInput(input.getName(), input.getText());
 		if (result && input.getName().compareTo("email") == 0) {
-			if (input.getText().compareTo(EditProfessorDialog.getInstance().getEditForm().getCurrentEmail()) == 0)
+			if (formType.compareTo("edit") == 0 && input.getText().compareTo(EditProfessorDialog.getInstance().getEditForm().getCurrentEmail()) == 0)
 				return true;
-			return !this.checkEmailExistence(input.getText());
+			boolean checkEmail = this.checkEmailExistence(input.getText());
+			if(checkEmail)
+				JOptionPane.showMessageDialog(null, "Email vec postoji!");
+			return !checkEmail;
 		}
 		return result;
 	}
@@ -129,7 +132,7 @@ public class ProfessorController {
 				form.getOfficeAddressCityTxt().getText(),
 				form.getOfficeAddressCountryTxt().getText());
 		int idCardNumber = Integer.parseInt(form.getIdCardNumberTxt().getText());
-		String title = form.getTitleTxt().getText();
+		String title = (String) form.getTitleCmb().getSelectedItem();
 		int yearsOfService = Integer.parseInt(form.getYearsOfServiceTxt().getText());
 		return new Professor(
 				firstName,
@@ -144,13 +147,13 @@ public class ProfessorController {
 				yearsOfService);
 	}
 	
-	private boolean checkEmailExistence(String email) {
+	public boolean checkEmailExistence(String email) {
 		for (Professor professor : this.professorsDatabase.getProfessors()) {
 			if (professor.getEmail().compareTo(email) == 0) {
 				this.formValidator.setValidation("email", false);
 				return true;
 			}
 		}
-		return false;
+		return StudentController.getInstance().checkEmailExistence(email);
 	}
 }

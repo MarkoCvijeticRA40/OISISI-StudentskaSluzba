@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -32,8 +33,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 	protected JTextField officeAddressCityTxt;
 	protected JTextField officeAddressCountryTxt;
 	protected JTextField idCardNumberTxt;
-	protected JTextField titleTxt;
 	protected JTextField yearsOfServiceTxt;
+	protected JComboBox<String> titleCmb;
 	protected JButton submitBtn;
 	protected JButton cancelBtn;
 	
@@ -209,18 +210,6 @@ public class BaseProfessorFormJPanel extends JPanel {
 		
 		this.add(Box.createVerticalStrut(10));
 		
-		JPanel titlePanel = new JPanel();
-		titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.X_AXIS));
-		titlePanel.add(new JLabel("Zvanje*"));
-		titleTxt = createTextField();
-		titleTxt.setName("title");
-		titleTxt.addFocusListener(listener);
-		titlePanel.add(Box.createHorizontalGlue());
-		titlePanel.add(titleTxt);
-		this.add(titlePanel);
-		
-		this.add(Box.createVerticalStrut(10));
-		
 		JPanel yearsOfServicePanel = new JPanel();
 		yearsOfServicePanel.setLayout(new BoxLayout(yearsOfServicePanel, BoxLayout.X_AXIS));
 		yearsOfServicePanel.add(new JLabel("Staž*"));
@@ -230,6 +219,19 @@ public class BaseProfessorFormJPanel extends JPanel {
 		yearsOfServicePanel.add(Box.createHorizontalGlue());
 		yearsOfServicePanel.add(yearsOfServiceTxt);
 		this.add(yearsOfServicePanel);
+		
+		this.add(Box.createVerticalStrut(10));
+		
+		JPanel titlePanel = new JPanel();
+		titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.X_AXIS));
+		titlePanel.add(new JLabel("Zvanje*"));
+		String[] titles = new String[] {"Red. profesor", "Vandr. profesor", "Asistent"};
+		titleCmb = new JComboBox<String>(titles);
+		titleCmb.setPreferredSize(new Dimension(200, 25));
+		titleCmb.setMaximumSize(new Dimension(200, 25));
+		titlePanel.add(Box.createHorizontalGlue());
+		titlePanel.add(titleCmb);
+		this.add(titlePanel);
 		
 		this.add(Box.createVerticalStrut(30));
 		
@@ -260,7 +262,6 @@ public class BaseProfessorFormJPanel extends JPanel {
 		this.officeAddressCityTxt.setBorder(border);
 		this.officeAddressCountryTxt.setBorder(border);
 		this.idCardNumberTxt.setBorder(border);
-		this.titleTxt.setBorder(border);
 		this.yearsOfServiceTxt.setBorder(border);
 	}
 	
@@ -303,10 +304,6 @@ public class BaseProfessorFormJPanel extends JPanel {
 		return idCardNumberTxt;
 	}
 
-	public JTextField getTitleTxt() {
-		return titleTxt;
-	}
-
 	public JTextField getYearsOfServiceTxt() {
 		return yearsOfServiceTxt;
 	}
@@ -337,5 +334,9 @@ public class BaseProfessorFormJPanel extends JPanel {
 
 	public JTextField getOfficeAddressCountryTxt() {
 		return officeAddressCountryTxt;
+	}
+	
+	public JComboBox<String> getTitleCmb() {
+		return this.titleCmb;
 	}
 }
