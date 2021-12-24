@@ -41,10 +41,37 @@ public class MenuBar extends JMenuBar {
 		JMenu open = new JMenu("Open");
 		open.setMnemonic('O');
 		open.setIcon(new ImageIcon("src/views/images/open.png"));
-		open.add(createMenuItem("Studenti","src/views/images/studenti.png", KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.SHIFT_MASK), 'I'));
-		open.add(createMenuItem("Predmeti","src/views/images/predmeti.png", KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.SHIFT_MASK), 'P'));
-		open.add(createMenuItem("Profesori","src/views/images/profesori.png", KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.SHIFT_MASK), 'R'));
-		open.add(createMenuItem("Katedre","src/views/images/katedre.png", KeyStroke.getKeyStroke(KeyEvent.VK_K, ActionEvent.SHIFT_MASK), 'A'));
+		JMenuItem openStudent = createMenuItem("Studenti","src/views/images/studenti.png", KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK), 'I');
+		openStudent.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getInstance().getTabbedPane().setSelectedIndex(0);
+			}
+			
+		});
+		open.add(openStudent);
+		JMenuItem openPredmeti = createMenuItem("Profesori","src/views/images/profesori.png", KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK), 'P');
+		openPredmeti.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getInstance().getTabbedPane().setSelectedIndex(1);
+			}
+			
+		});
+		open.add(openPredmeti);
+		JMenuItem openProfessor = createMenuItem("Predmeti","src/views/images/predmeti.png", KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK), 'R');
+		openProfessor.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getInstance().getTabbedPane().setSelectedIndex(2);
+			}
+			
+		});
+		open.add(openProfessor);
+		open.add(createMenuItem("Katedre","src/views/images/katedre.png", KeyStroke.getKeyStroke(KeyEvent.VK_K, ActionEvent.CTRL_MASK), 'A'));
 		file.add(open);
 		file.add(createMenuItem("Close","src/views/images/close.png",KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK), 'C'));
 		
