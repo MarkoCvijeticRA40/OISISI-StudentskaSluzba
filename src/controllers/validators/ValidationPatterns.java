@@ -15,5 +15,5 @@ public class ValidationPatterns {
 	public static final String indexNumber = "[A-Z]+[0-9]+/[0-9]+";
 	// smerBR/BR
 	//DATE
-	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 }
