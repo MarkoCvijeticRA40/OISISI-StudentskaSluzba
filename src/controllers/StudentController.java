@@ -125,7 +125,7 @@ public class StudentController {
 		if (result && input.getName().compareTo("email") == 0) {
 			if (formType.compareTo("edit") == 0 && input.getText().compareTo(EditStudentDialog.getInstance().getEditForm().getCurrentEmail()) == 0)
 				return true;
-			boolean checkMail = this.checkEmailExistence(input.getText());
+			boolean checkMail = (this.checkEmailExistence(input.getText()) || ProfessorController.getInstance().checkEmailExistence(input.getText()));
 			if(checkMail)
 				JOptionPane.showMessageDialog(null, "Email vec postoji!");
 			return !checkMail;
@@ -156,7 +156,7 @@ public class StudentController {
 				return true;
 			}
 		}
-		return ProfessorController.getInstance().checkEmailExistence(email);
+		return false;
 	}
 	
 	private boolean checkIndexNumberExistence(String indexNumber) {
