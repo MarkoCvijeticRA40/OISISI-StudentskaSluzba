@@ -36,7 +36,7 @@ public class StudentFormValidator extends BaseFormValidator {
 			case "email":
 				return validateWithRegex(inputName, inputValue, ValidationPatterns.email);
 			case "enrollmentYear":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.number);
+				return validateWithRegex(inputName, inputValue, ValidationPatterns.enrollmentYear);
 			case "indexNumber":
 				return validateWithRegex(inputName, inputValue, ValidationPatterns.indexNumber);
 			default:

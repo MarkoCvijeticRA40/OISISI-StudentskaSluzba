@@ -6,14 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import controllers.StudentController;
 import views.Student.BaseStudentFormJPanel;
-import views.Student.listeners.AddStudentFocusListener;
+import views.Student.listeners.AddStudentFormFocusListener;
+import views.Student.listeners.AddStudentFormKeyListener;
 
 public class AddStudentFormPanel extends BaseStudentFormJPanel{
 
 	private static final long serialVersionUID = 729883046410324169L;
 	
 	public AddStudentFormPanel () {
-		super(new AddStudentFocusListener());
+		super(new AddStudentFormFocusListener(), new AddStudentFormKeyListener());
 		
 		this.submitBtn.addActionListener(new ActionListener() {
 

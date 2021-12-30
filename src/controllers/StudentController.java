@@ -120,25 +120,22 @@ public class StudentController {
 				0);
 	}
 	
-	public boolean inputFieldCheck(JTextField input, String formType) {
-		boolean result =  formValidator.validateInput(input.getName(), input.getText());
-		if (result && input.getName().compareTo("email") == 0) {
-			if (formType.compareTo("edit") == 0 && input.getText().compareTo(EditStudentDialog.getInstance().getEditForm().getCurrentEmail()) == 0)
-				return true;
-			boolean checkMail = (this.checkEmailExistence(input.getText()) || ProfessorController.getInstance().checkEmailExistence(input.getText()));
-			if(checkMail)
-				JOptionPane.showMessageDialog(null, "Email vec postoji!");
-			return !checkMail;
-		}
-		else if(result && input.getName().compareTo("indexNumber") == 0) {
-			if (formType.compareTo("edit") == 0 && input.getText().compareTo(EditStudentDialog.getInstance().getEditForm().getCurrentIndexNumber()) == 0)
-				return true;
-			boolean checkIndexNumber = this.checkIndexNumberExistence(input.getText());
-			if(checkIndexNumber)
-				JOptionPane.showMessageDialog(null, "Broj indeksa vec postoji!");
-			return !checkIndexNumber;
-		}
-		return result;
+	public void inputFieldCheck(JTextField input) {
+		formValidator.validateInput(input.getName(), input.getText());
+	}
+	
+	public boolean isEmailUnique(String email) {
+		boolean result =  this.checkEmailExistence(email) || ProfessorController.getInstance().checkEmailExistence(email);
+		if (result)
+			formValidator.setValidation("email", false);
+		return !result;
+	}
+	
+	public boolean isIndexNumberUnique(String indexNumber) {
+		boolean result = this.checkIndexNumberExistence(indexNumber);
+		if (result)
+			formValidator.setValidation("indexNumber", false);
+		return !result;
 	}
 	
 	public boolean inputFieldsValidationState() {
@@ -147,6 +144,10 @@ public class StudentController {
 	
 	public void formValidatorSet(boolean state) {
 		formValidator.setValidator(state);
+	}
+	
+	public boolean getInputValidationState(String inputName) {
+		return formValidator.getValidationState(inputName);
 	}
 	
 	public boolean checkEmailExistence(String email) {

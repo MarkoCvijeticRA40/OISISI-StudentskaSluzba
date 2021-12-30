@@ -10,7 +10,8 @@ import controllers.StudentController;
 import controllers.validators.ValidationPatterns;
 import models.Student;
 import views.Student.BaseStudentFormJPanel;
-import views.Student.listeners.EditStudentFocusListener;
+import views.Student.listeners.EditStudentFormFocusListener;
+import views.Student.listeners.EditStudentFormKeyListener;
 
 public class EditStudentFormPanel extends BaseStudentFormJPanel {
 
@@ -20,7 +21,7 @@ public class EditStudentFormPanel extends BaseStudentFormJPanel {
 	private String currentIndexNumber;
 	
 	public EditStudentFormPanel() {
-		super(new EditStudentFocusListener());
+		super(new EditStudentFormFocusListener(), new EditStudentFormKeyListener());
 		
 		this.submitBtn.addActionListener(new ActionListener() {
 
