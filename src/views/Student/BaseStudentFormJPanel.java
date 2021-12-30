@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -37,7 +38,7 @@ public class BaseStudentFormJPanel extends JPanel{
 	protected JButton submitBtn;
 	protected JButton cancelBtn;
 	
-	protected BaseStudentFormJPanel(FocusListener listener) {
+	protected BaseStudentFormJPanel(FocusListener focusListener, KeyListener keyListener) {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBorder(BorderFactory.createEmptyBorder(15, 40, 15, 40));
 	
@@ -46,7 +47,8 @@ public class BaseStudentFormJPanel extends JPanel{
 		firstNamePanel.add(new JLabel("Ime*"));
 		firstNameTxt = createTextField();
 		firstNameTxt.setName("firstName");
-		firstNameTxt.addFocusListener(listener);
+		firstNameTxt.addFocusListener(focusListener);
+		firstNameTxt.addKeyListener(keyListener);
 		firstNamePanel.add(Box.createHorizontalStrut(200));
 		firstNamePanel.add(firstNameTxt);
 		this.add(firstNamePanel);
@@ -58,7 +60,8 @@ public class BaseStudentFormJPanel extends JPanel{
 		lastNamePanel.add(new JLabel("Prezime*"));
 		lastNameTxt = createTextField();
 		lastNameTxt.setName("lastName");
-		lastNameTxt.addFocusListener(listener);
+		lastNameTxt.addFocusListener(focusListener);
+		lastNameTxt.addKeyListener(keyListener);
 		lastNamePanel.add(Box.createHorizontalGlue());
 		lastNamePanel.add(lastNameTxt);
 		this.add(lastNamePanel);
@@ -70,7 +73,8 @@ public class BaseStudentFormJPanel extends JPanel{
 		dateOfBirthPanel.add(new JLabel("Datum rođenja*"));
 		dateOfBirthTxt = createTextField();
 		dateOfBirthTxt.setName("dateOfBirth");
-		dateOfBirthTxt.addFocusListener(listener);
+		dateOfBirthTxt.addFocusListener(focusListener);
+		dateOfBirthTxt.addKeyListener(keyListener);
 		dateOfBirthPanel.add(Box.createHorizontalGlue());
 		dateOfBirthPanel.add(dateOfBirthTxt);
 		this.add(dateOfBirthPanel);
@@ -82,7 +86,8 @@ public class BaseStudentFormJPanel extends JPanel{
 		addressStreetPanel.add(new JLabel("Ulica*"));
 		addressStreetTxt = createTextField();
 		addressStreetTxt.setName("addressStreet");
-		addressStreetTxt.addFocusListener(listener);
+		addressStreetTxt.addFocusListener(focusListener);
+		addressStreetTxt.addKeyListener(keyListener);
 		addressStreetPanel.add(Box.createHorizontalGlue());
 		addressStreetPanel.add(addressStreetTxt);
 		this.add(addressStreetPanel);
@@ -94,7 +99,8 @@ public class BaseStudentFormJPanel extends JPanel{
 		addressHouseNumberPanel.add(new JLabel("Broj kuće/stana*"));
 		addressHouseNumberTxt = createTextField();
 		addressHouseNumberTxt.setName("addressHouseNumber");
-		addressHouseNumberTxt.addFocusListener(listener);
+		addressHouseNumberTxt.addFocusListener(focusListener);
+		addressHouseNumberTxt.addKeyListener(keyListener);
 		addressHouseNumberPanel.add(Box.createHorizontalGlue());
 		addressHouseNumberPanel.add(addressHouseNumberTxt);
 		this.add(addressHouseNumberPanel);
@@ -106,7 +112,8 @@ public class BaseStudentFormJPanel extends JPanel{
 		addressCityPanel.add(new JLabel("Grad*"));
 		addressCityTxt = createTextField();
 		addressCityTxt.setName("addressCity");
-		addressCityTxt.addFocusListener(listener);
+		addressCityTxt.addFocusListener(focusListener);
+		addressCityTxt.addKeyListener(keyListener);
 		addressCityPanel.add(Box.createHorizontalGlue());
 		addressCityPanel.add(addressCityTxt);
 		this.add(addressCityPanel);
@@ -118,7 +125,8 @@ public class BaseStudentFormJPanel extends JPanel{
 		addressCountryPanel.add(new JLabel("Država*"));
 		addressCountryTxt = createTextField();
 		addressCountryTxt.setName("addressCountry");
-		addressCountryTxt.addFocusListener(listener);
+		addressCountryTxt.addFocusListener(focusListener);
+		addressCountryTxt.addKeyListener(keyListener);
 		addressCountryPanel.add(Box.createHorizontalGlue());
 		addressCountryPanel.add(addressCountryTxt);
 		this.add(addressCountryPanel);
@@ -130,7 +138,8 @@ public class BaseStudentFormJPanel extends JPanel{
 		phoneNumberPanel.add(new JLabel("Broj telefona*"));
 		phoneNumberTxt = createTextField();
 		phoneNumberTxt.setName("phoneNumber");
-		phoneNumberTxt.addFocusListener(listener);
+		phoneNumberTxt.addFocusListener(focusListener);
+		phoneNumberTxt.addKeyListener(keyListener);
 		phoneNumberPanel.add(Box.createHorizontalGlue());
 		phoneNumberPanel.add(phoneNumberTxt);
 		this.add(phoneNumberPanel);
@@ -142,7 +151,8 @@ public class BaseStudentFormJPanel extends JPanel{
 		emailPanel.add(new JLabel("Email*"));
 		emailTxt = createTextField();
 		emailTxt.setName("email");
-		emailTxt.addFocusListener(listener);
+		emailTxt.addFocusListener(focusListener);
+		emailTxt.addKeyListener(keyListener);
 		emailPanel.add(Box.createHorizontalGlue());
 		emailPanel.add(emailTxt);
 		this.add(emailPanel);
@@ -154,7 +164,8 @@ public class BaseStudentFormJPanel extends JPanel{
 		indexNumberPanel.add(new JLabel("Broj indeksa*"));
 		indexNumberTxt = createTextField();
 		indexNumberTxt.setName("indexNumber");
-		indexNumberTxt.addFocusListener(listener);
+		indexNumberTxt.addFocusListener(focusListener);
+		indexNumberTxt.addKeyListener(keyListener);
 		indexNumberPanel.add(Box.createHorizontalGlue());
 		indexNumberPanel.add(indexNumberTxt);
 		this.add(indexNumberPanel);
@@ -166,7 +177,8 @@ public class BaseStudentFormJPanel extends JPanel{
 		enrollmentYearPanel.add(new JLabel("Godina upisa*"));
 		enrollmentYearTxt = createTextField();
 		enrollmentYearTxt.setName("enrollmentYear");
-		enrollmentYearTxt.addFocusListener(listener);
+		enrollmentYearTxt.addFocusListener(focusListener);
+		enrollmentYearTxt.addKeyListener(keyListener);
 		enrollmentYearPanel.add(Box.createHorizontalGlue());
 		enrollmentYearPanel.add(enrollmentYearTxt);
 		this.add(enrollmentYearPanel);

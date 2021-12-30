@@ -13,6 +13,7 @@ public class ValidationPatterns {
 	public static final String idCardNumber = "[0-9]{9}";
 	public static final String number = "[1-9][0-9]*";
 	public static final String indexNumber = "[A-Z]+[0-9]+/[0-9]+";
+	public static final String enrollmentYear = "[1-9][0-9]{3}";
 	// smerBR/BR
 	//DATE
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
