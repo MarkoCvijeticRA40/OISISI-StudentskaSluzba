@@ -8,14 +8,15 @@ import javax.swing.BorderFactory;
 
 import controllers.ProfessorController;
 import views.Professor.BaseProfessorFormJPanel;
-import views.Professor.listeners.AddProfessorFocusListener;
+import views.Professor.listeners.AddProfessorFormFocusListener;
+import views.Professor.listeners.AddProfessorFormKeyListener;
 
 public class AddProfessorFormPanel extends BaseProfessorFormJPanel {
 	
 	private static final long serialVersionUID = 8830694607456986724L;
 
 	public AddProfessorFormPanel() {
-		super(new AddProfessorFocusListener());
+		super(new AddProfessorFormFocusListener(), new AddProfessorFormKeyListener());
 		
 		this.submitBtn.addActionListener(new ActionListener() {
 
@@ -47,7 +48,7 @@ public class AddProfessorFormPanel extends BaseProfessorFormJPanel {
 		this.setTextFieldsBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.GRAY));
 		this.firstNameTxt.setText("");
 		this.lastNameTxt.setText("");
-		this.dateOfBirthTxt.setText("31/01/2000");
+		this.dateOfBirthTxt.setText("dd/MM/yyyy");
 		this.addressStreetTxt.setText("");
 		this.addressHouseNumberTxt.setText("");
 		this.addressCityTxt.setText("");

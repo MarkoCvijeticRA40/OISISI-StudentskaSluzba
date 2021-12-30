@@ -84,17 +84,22 @@ public class ProfessorController {
 		return professor;
 	}
 	
-	public boolean inputFieldCheck(JTextField input, String formType) {
-		boolean result =  formValidator.validateInput(input.getName(), input.getText());
-		if (result && input.getName().compareTo("email") == 0) {
-			if (formType.compareTo("edit") == 0 && input.getText().compareTo(EditProfessorDialog.getInstance().getEditForm().getCurrentEmail()) == 0)
-				return true;
-			boolean checkEmail = (this.checkEmailExistence(input.getText()) || StudentController.getInstance().checkEmailExistence(input.getText()));
-			if(checkEmail)
-				JOptionPane.showMessageDialog(null, "Email vec postoji!");
-			return !checkEmail;
-		}
-		return result;
+	public void inputFieldCheck(JTextField input) {
+		formValidator.validateInput(input.getName(), input.getText());
+	}
+	
+	public boolean isEmailUnique(String email) {
+		boolean result =  this.checkEmailExistence(email) || StudentController.getInstance().checkEmailExistence(email);
+		if (result)
+			formValidator.setValidation("email", false);
+		return !result;
+	}
+	
+	public boolean isIdCardNumberUnique(int idCardNumber) {
+		boolean result = this.checkIdCardNumberExistence(idCardNumber);
+		if (result)
+			formValidator.setValidation("idCardNumber", false);
+		return !result;
 	}
 	
 	public boolean inputFieldsValidationState() {
@@ -103,6 +108,10 @@ public class ProfessorController {
 	
 	public void formValidatorSet(boolean state) {
 		formValidator.setValidator(state);
+	}
+	
+	public boolean getInputValidationState(String inputName) {
+		return formValidator.getValidationState(inputName);
 	}
 
 	private Professor createProfessor(BaseProfessorFormJPanel form) {
@@ -151,6 +160,16 @@ public class ProfessorController {
 		for (Professor professor : this.professorsDatabase.getProfessors()) {
 			if (professor.getEmail().compareTo(email) == 0) {
 				this.formValidator.setValidation("email", false);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean checkIdCardNumberExistence(int idCardNumber) {
+		for (Professor professor : this.professorsDatabase.getProfessors()) {
+			if (professor.getIdCardNumber() == idCardNumber) {
+				this.formValidator.setValidation("idCardNumber", false);
 				return true;
 			}
 		}

@@ -16,38 +16,47 @@ public class ProfessorFormValidator extends BaseFormValidator {
 		inputFieldsValidationState.put("officeAddressHouseNumber", false);
 		inputFieldsValidationState.put("officeAddressCity", false);
 		inputFieldsValidationState.put("officeAddressCountry", false);
+		inputFieldsValidationState.put("idCardNumber", false);
 		inputFieldsValidationState.put("yearsOfService", false);
 	}
 	
-	public boolean validateInput(String inputName, String inputValue) {
+	public void validateInput(String inputName, String inputValue) {
 		switch(inputName) {
 			case "firstName":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.onlyAlphabets);
+				validateWithRegex(inputName, inputValue, ValidationPatterns.onlyAlphabets);
+				break;
 			case "lastName":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.onlyAlphabets);
+				validateWithRegex(inputName, inputValue, ValidationPatterns.onlyAlphabets);
+				break;
 			case "dateOfBirth":
-				return validateDate(inputName, inputValue, ValidationPatterns.dateFormat);
+				validateDate(inputName, inputValue, ValidationPatterns.dateFormat);
+				break;
 			case "officeAddressStreet":
 			case "addressStreet":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.anything);
+				validateWithRegex(inputName, inputValue, ValidationPatterns.anything);
+				break;
 			case "officeAddressCity":
 			case "addressCity":
 			case "officeAddressCountry":
 			case "addressCountry":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.onlyAlphabetsWithWhiteSpace);
+				validateWithRegex(inputName, inputValue, ValidationPatterns.onlyAlphabetsWithWhiteSpace);
+				break;
 			case "officeAddressHouseNumber":
 			case "addressHouseNumber":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.number);
+				validateWithRegex(inputName, inputValue, ValidationPatterns.number);
+				break;
 			case "phoneNumber":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.phoneNumber);
+				validateWithRegex(inputName, inputValue, ValidationPatterns.phoneNumber);
+				break;
 			case "email":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.email);
+				validateWithRegex(inputName, inputValue, ValidationPatterns.email);
+				break;
 			case "idCardNumber":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.idCardNumber);
+				validateWithRegex(inputName, inputValue, ValidationPatterns.idCardNumber);
+				break;
 			case "yearsOfService":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.number);
-			default:
-				return false;
+				validateWithRegex(inputName, inputValue, ValidationPatterns.number);
+				break;
 		}
 	}
 }
