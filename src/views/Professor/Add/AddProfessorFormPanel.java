@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 
 import controllers.ProfessorController;
+import controllers.validators.ValidationPatterns;
 import views.Professor.BaseProfessorFormJPanel;
 import views.Professor.listeners.AddProfessorFormFocusListener;
 import views.Professor.listeners.AddProfessorFormKeyListener;
@@ -48,7 +49,7 @@ public class AddProfessorFormPanel extends BaseProfessorFormJPanel {
 		this.setTextFieldsBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.GRAY));
 		this.firstNameTxt.setText("");
 		this.lastNameTxt.setText("");
-		this.dateOfBirthTxt.setText("dd/MM/yyyy");
+		this.dateOfBirthTxt.setText(ValidationPatterns.dateFormat.toPattern());
 		this.addressStreetTxt.setText("");
 		this.addressHouseNumberTxt.setText("");
 		this.addressCityTxt.setText("");
