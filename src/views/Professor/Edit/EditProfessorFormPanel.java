@@ -10,16 +10,18 @@ import controllers.ProfessorController;
 import controllers.validators.ValidationPatterns;
 import models.Professor;
 import views.Professor.BaseProfessorFormJPanel;
-import views.Professor.listeners.EditProfessorFocusListener;
+import views.Professor.listeners.EditProfessorFormFocusListener;
+import views.Professor.listeners.EditProfessorFormKeyListener;
 
 public class EditProfessorFormPanel extends BaseProfessorFormJPanel {
 
 	private static final long serialVersionUID = -1915079276643860971L;
 	
 	private String currentEmail;
+	private int currentIdCarNumber;
 
 	public EditProfessorFormPanel() {
-		super(new EditProfessorFocusListener());
+		super(new EditProfessorFormFocusListener(), new EditProfessorFormKeyListener());
 		
 		this.submitBtn.addActionListener(new ActionListener() {
 
@@ -45,6 +47,7 @@ public class EditProfessorFormPanel extends BaseProfessorFormJPanel {
 		if (selectedProfessor == null)
 			return false;
 		this.currentEmail = selectedProfessor.getEmail();
+		this.currentIdCarNumber = selectedProfessor.getIdCardNumber();
 		setTextFields(selectedProfessor);
 		this.firstNameTxt.requestFocus();
 		this.submitBtn.setEnabled(true);
@@ -73,6 +76,10 @@ public class EditProfessorFormPanel extends BaseProfessorFormJPanel {
 	
 	public String getCurrentEmail() {
 		return this.currentEmail;
+	}
+	
+	public int getCurrentIdCardNumber() {
+		return this.currentIdCarNumber;
 	}
 	
 }

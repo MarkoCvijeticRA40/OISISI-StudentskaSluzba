@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -38,7 +39,7 @@ public class BaseProfessorFormJPanel extends JPanel {
 	protected JButton submitBtn;
 	protected JButton cancelBtn;
 	
-	protected BaseProfessorFormJPanel(FocusListener listener) {
+	protected BaseProfessorFormJPanel(FocusListener focusListener, KeyListener keyListener) {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBorder(BorderFactory.createEmptyBorder(15, 40, 15, 40));
 		
@@ -47,7 +48,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		firstNamePanel.add(new JLabel("Ime*"));
 		firstNameTxt = createTextField();
 		firstNameTxt.setName("firstName");
-		firstNameTxt.addFocusListener(listener);
+		firstNameTxt.addFocusListener(focusListener);
+		firstNameTxt.addKeyListener(keyListener);
 		firstNamePanel.add(Box.createHorizontalStrut(200));
 		firstNamePanel.add(firstNameTxt);
 		this.add(firstNamePanel);
@@ -59,7 +61,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		lastNamePanel.add(new JLabel("Prezime*"));
 		lastNameTxt = createTextField();
 		lastNameTxt.setName("lastName");
-		lastNameTxt.addFocusListener(listener);
+		lastNameTxt.addFocusListener(focusListener);
+		lastNameTxt.addKeyListener(keyListener);
 		lastNamePanel.add(Box.createHorizontalGlue());
 		lastNamePanel.add(lastNameTxt);
 		this.add(lastNamePanel);
@@ -71,7 +74,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		dateOfBirthPanel.add(new JLabel("Datum rođenja*"));
 		dateOfBirthTxt = createTextField();
 		dateOfBirthTxt.setName("dateOfBirth");
-		dateOfBirthTxt.addFocusListener(listener);
+		dateOfBirthTxt.addFocusListener(focusListener);
+		dateOfBirthTxt.addKeyListener(keyListener);
 		dateOfBirthPanel.add(Box.createHorizontalGlue());
 		dateOfBirthPanel.add(dateOfBirthTxt);
 		this.add(dateOfBirthPanel);
@@ -83,7 +87,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		addressStreetPanel.add(new JLabel("Ulica*"));
 		addressStreetTxt = createTextField();
 		addressStreetTxt.setName("addressStreet");
-		addressStreetTxt.addFocusListener(listener);
+		addressStreetTxt.addFocusListener(focusListener);
+		addressStreetTxt.addKeyListener(keyListener);
 		addressStreetPanel.add(Box.createHorizontalGlue());
 		addressStreetPanel.add(addressStreetTxt);
 		this.add(addressStreetPanel);
@@ -95,7 +100,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		addressHouseNumberPanel.add(new JLabel("Broj kuće/stana*"));
 		addressHouseNumberTxt = createTextField();
 		addressHouseNumberTxt.setName("addressHouseNumber");
-		addressHouseNumberTxt.addFocusListener(listener);
+		addressHouseNumberTxt.addFocusListener(focusListener);
+		addressHouseNumberTxt.addKeyListener(keyListener);
 		addressHouseNumberPanel.add(Box.createHorizontalGlue());
 		addressHouseNumberPanel.add(addressHouseNumberTxt);
 		this.add(addressHouseNumberPanel);
@@ -107,7 +113,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		addressCityPanel.add(new JLabel("Grad*"));
 		addressCityTxt = createTextField();
 		addressCityTxt.setName("addressCity");
-		addressCityTxt.addFocusListener(listener);
+		addressCityTxt.addFocusListener(focusListener);
+		addressCityTxt.addKeyListener(keyListener);
 		addressCityPanel.add(Box.createHorizontalGlue());
 		addressCityPanel.add(addressCityTxt);
 		this.add(addressCityPanel);
@@ -119,7 +126,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		addressCountryPanel.add(new JLabel("Država*"));
 		addressCountryTxt = createTextField();
 		addressCountryTxt.setName("addressCountry");
-		addressCountryTxt.addFocusListener(listener);
+		addressCountryTxt.addFocusListener(focusListener);
+		addressCountryTxt.addKeyListener(keyListener);
 		addressCountryPanel.add(Box.createHorizontalGlue());
 		addressCountryPanel.add(addressCountryTxt);
 		this.add(addressCountryPanel);
@@ -131,7 +139,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		phoneNumberPanel.add(new JLabel("Broj telefona*"));
 		phoneNumberTxt = createTextField();
 		phoneNumberTxt.setName("phoneNumber");
-		phoneNumberTxt.addFocusListener(listener);
+		phoneNumberTxt.addFocusListener(focusListener);
+		phoneNumberTxt.addKeyListener(keyListener);
 		phoneNumberPanel.add(Box.createHorizontalGlue());
 		phoneNumberPanel.add(phoneNumberTxt);
 		this.add(phoneNumberPanel);
@@ -143,7 +152,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		emailPanel.add(new JLabel("Email*"));
 		emailTxt = createTextField();
 		emailTxt.setName("email");
-		emailTxt.addFocusListener(listener);
+		emailTxt.addFocusListener(focusListener);
+		emailTxt.addKeyListener(keyListener);
 		emailPanel.add(Box.createHorizontalGlue());
 		emailPanel.add(emailTxt);
 		this.add(emailPanel);
@@ -155,7 +165,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		officeAddressStreetPanel.add(new JLabel("Ulica kancelarije*"));
 		officeAddressStreetTxt = createTextField();
 		officeAddressStreetTxt.setName("officeAddressStreet");
-		officeAddressStreetTxt.addFocusListener(listener);
+		officeAddressStreetTxt.addFocusListener(focusListener);
+		officeAddressStreetTxt.addKeyListener(keyListener);
 		officeAddressStreetPanel.add(Box.createHorizontalGlue());
 		officeAddressStreetPanel.add(officeAddressStreetTxt);
 		this.add(officeAddressStreetPanel);
@@ -167,7 +178,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		officeAddressHouseNumberPanel.add(new JLabel("Broj kuće/stana*"));
 		officeAddressHouseNumberTxt = createTextField();
 		officeAddressHouseNumberTxt.setName("officeAddressHouseNumber");
-		officeAddressHouseNumberTxt.addFocusListener(listener);
+		officeAddressHouseNumberTxt.addFocusListener(focusListener);
+		officeAddressHouseNumberTxt.addKeyListener(keyListener);
 		officeAddressHouseNumberPanel.add(Box.createHorizontalGlue());
 		officeAddressHouseNumberPanel.add(officeAddressHouseNumberTxt);
 		this.add(officeAddressHouseNumberPanel);
@@ -179,7 +191,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		officeAddressCityPanel.add(new JLabel("Grad*"));
 		officeAddressCityTxt = createTextField();
 		officeAddressCityTxt.setName("officeAddressCity");
-		officeAddressCityTxt.addFocusListener(listener);
+		officeAddressCityTxt.addFocusListener(focusListener);
+		officeAddressCityTxt.addKeyListener(keyListener);
 		officeAddressCityPanel.add(Box.createHorizontalGlue());
 		officeAddressCityPanel.add(officeAddressCityTxt);
 		this.add(officeAddressCityPanel);
@@ -191,7 +204,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		officeAddressCountryPanel.add(new JLabel("Država*"));
 		officeAddressCountryTxt = createTextField();
 		officeAddressCountryTxt.setName("officeAddressCountry");
-		officeAddressCountryTxt.addFocusListener(listener);
+		officeAddressCountryTxt.addFocusListener(focusListener);
+		officeAddressCountryTxt.addKeyListener(keyListener);
 		officeAddressCountryPanel.add(Box.createHorizontalGlue());
 		officeAddressCountryPanel.add(officeAddressCountryTxt);
 		this.add(officeAddressCountryPanel);
@@ -203,7 +217,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		idCardNumberPanel.add(new JLabel("Broj lične karte*"));
 		idCardNumberTxt = createTextField();
 		idCardNumberTxt.setName("idCardNumber");
-		idCardNumberTxt.addFocusListener(listener);
+		idCardNumberTxt.addFocusListener(focusListener);
+		idCardNumberTxt.addKeyListener(keyListener);
 		idCardNumberPanel.add(Box.createHorizontalGlue());
 		idCardNumberPanel.add(idCardNumberTxt);
 		this.add(idCardNumberPanel);
@@ -215,7 +230,8 @@ public class BaseProfessorFormJPanel extends JPanel {
 		yearsOfServicePanel.add(new JLabel("Staž*"));
 		yearsOfServiceTxt = createTextField();
 		yearsOfServiceTxt.setName("yearsOfService");
-		yearsOfServiceTxt.addFocusListener(listener);
+		yearsOfServiceTxt.addFocusListener(focusListener);
+		yearsOfServiceTxt.addKeyListener(keyListener);
 		yearsOfServicePanel.add(Box.createHorizontalGlue());
 		yearsOfServicePanel.add(yearsOfServiceTxt);
 		this.add(yearsOfServicePanel);

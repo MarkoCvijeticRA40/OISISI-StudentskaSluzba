@@ -45,4 +45,8 @@ public abstract class BaseFormValidator {
 	public void setValidation(String key, boolean state) {
 		inputFieldsValidationState.replace(key, state);
 	}
+	
+	public boolean getValidationState(String key) {
+		return inputFieldsValidationState.get(key);
+	}
 }
