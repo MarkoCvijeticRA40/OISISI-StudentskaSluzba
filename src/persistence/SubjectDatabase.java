@@ -46,6 +46,10 @@ public class SubjectDatabase {
 		this.subjects.add(subject);
 	}
 	
+	public void deleteSubject(int rowIndex) {
+		this.subjects.remove(rowIndex);
+	}
+	
 	public List<Subject> getSubjects() {
 		return this.subjects;
 	}
@@ -68,6 +72,10 @@ public class SubjectDatabase {
 			default:
 				return null;
 		}
+	}
+	
+	public Subject getRow(int row) {
+		return subjects.get(row);
 	}
 	
 	public int getRowCount() {

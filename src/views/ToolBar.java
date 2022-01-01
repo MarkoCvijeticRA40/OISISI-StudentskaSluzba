@@ -22,6 +22,7 @@ import javax.swing.KeyStroke;
 
 import controllers.ProfessorController;
 import controllers.StudentController;
+import controllers.SubjectController;
 import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
 import views.Student.Add.AddStudentDialog;
@@ -133,6 +134,20 @@ public class ToolBar extends JToolBar {
 				}
 					break;
 				case 2:
+					switch(btnName) {
+					case "add": 
+						break;
+					case "edit": 
+						break;
+					case "delete":
+						int result = JOptionPane.showConfirmDialog(null,
+								"Da li ste sigurni da zelite da obriste predmet", 
+								"Brisanje predmeta", 
+								JOptionPane.YES_NO_OPTION);
+						if (result == JOptionPane.YES_OPTION)
+							SubjectController.getInstance().delete();
+						break;
+				}
 					break;
 			}
 		}
