@@ -10,14 +10,20 @@ public class SubjectTabPanel extends JPanel {
 	private static final long serialVersionUID = -2281457415689987833L;
 	public static final String tabName = "Predmeti";
 	
+	private SubjectsJTable subjectTable;
+	
 	public SubjectTabPanel() {
 		super();
 		this.setLayout(new BorderLayout());
-		SubjectsJTable table = new SubjectsJTable();
-		JScrollPane scrollPane = new JScrollPane(table);
+		subjectTable = new SubjectsJTable();
+		JScrollPane scrollPane = new JScrollPane(subjectTable);
 		scrollPane.setBorder(BorderFactory.createEmptyBorder(15, 50, 15, 50));
 		this.add(scrollPane, BorderLayout.CENTER);
-		table.updateView();
+		subjectTable.updateView();
+	}
+	
+	public SubjectsJTable getTable() {
+		return subjectTable;
 	}
 
 }

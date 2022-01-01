@@ -15,14 +15,16 @@ public class TabbedPane extends JTabbedPane {
 	
 	private ProfessorTabPanel professorTab;
 	private StudentTabPanel studentTab;
+	private SubjectTabPanel subjectTab;
 
 	public TabbedPane() {
 		super();
 		professorTab = new ProfessorTabPanel();
 		studentTab = new StudentTabPanel();
+		subjectTab = new SubjectTabPanel();
 		this.addTab(StudentTabPanel.tabName, studentTab);
 		this.addTab(ProfessorTabPanel.tabName, professorTab);
-		this.addTab(SubjectTabPanel.tabName, new SubjectTabPanel());
+		this.addTab(SubjectTabPanel.tabName, subjectTab);
 		this.setBorder(BorderFactory.createEmptyBorder(5, 15, 15, 10));
 		
 		this.addChangeListener(new ChangeListener() {
@@ -53,5 +55,9 @@ public class TabbedPane extends JTabbedPane {
 
 	public StudentTabPanel getStudentTab() {
 		return studentTab;
+	}
+	
+	public SubjectTabPanel getSubjectTab() {
+		return subjectTab;
 	}
 }
