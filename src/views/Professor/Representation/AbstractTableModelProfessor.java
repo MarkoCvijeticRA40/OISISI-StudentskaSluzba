@@ -1,7 +1,8 @@
 package views.Professor.Representation;
 
 import javax.swing.table.AbstractTableModel;
-import persistence.ProfessorDatabase;
+
+import persistence.Database;
 
 public class AbstractTableModelProfessor extends AbstractTableModel {
 
@@ -22,16 +23,16 @@ public class AbstractTableModelProfessor extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
-		return ProfessorDatabase.getInstance().getColumnCount();
+		return Database.getInstance().getProfessorDatabase().getColumnCount();
 	}
 	
 	@Override
 	public String getColumnName(int column) {
-		return ProfessorDatabase.getInstance().getColumnName(column);
+		return Database.getInstance().getProfessorDatabase().getColumnName(column);
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		return ProfessorDatabase.getInstance().getValueAt(rowIndex, columnIndex);
+		return Database.getInstance().getProfessorDatabase().getValueAt(rowIndex, columnIndex);
 	}
 }

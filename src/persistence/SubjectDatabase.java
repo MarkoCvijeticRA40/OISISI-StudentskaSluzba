@@ -1,43 +1,16 @@
 package persistence;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import models.Professor;
-import models.Semester;
 import models.Subject;
 
 public class SubjectDatabase implements Serializable {
 	
 	private static final long serialVersionUID = -94351079205237111L;
-	private static transient SubjectDatabase db;
 	
 	private List<Subject> subjects;
-	private transient List<String> columnNames;
-	
-	private SubjectDatabase() {
-		List<Professor> professors = ProfessorDatabase.getInstance().getProfessors();
-		subjects = new LinkedList<>();
-		subjects.add(new Subject(0, "Algebra", Semester.Zimski, 1, 9, professors.get(0)));
-		subjects.add(new Subject(1, "OISISI", Semester.Zimski, 3, 6, professors.get(1)));
-		subjects.add(new Subject(2, "OS", Semester.Letnji, 2, 8, professors.get(1)));
-		subjects.add(new Subject(3, "SAU", Semester.Letnji, 2, 8, professors.get(0)));
-		subjects.add(new Subject(3, "NANS", Semester.Zimski, 3, 5, professors.get(1)));
-		columnNames = new ArrayList<>();
-		columnNames.add("Šifra");
-		columnNames.add("Naziv");
-		columnNames.add("ESPB");
-		columnNames.add("Godina");
-		columnNames.add("Semestar");
-	}
-	
-	public static SubjectDatabase getInstance() {
-		if (db == null)
-			db = new SubjectDatabase();
-		return db;
-	}
+	private transient String[] columnNames;
 	
 	public void printData() {
 		for (Subject s : subjects)
@@ -85,10 +58,15 @@ public class SubjectDatabase implements Serializable {
 	}
 	
 	public int getColumnCount() {
-		return columnNames.size();
+		return columnNames.length;
 	}
 	
 	public String getColumnName(int columnIndex) {
-		return columnNames.get(columnIndex);
+		return columnNames[columnIndex];
+	}
+	
+	private Object readResolve() {
+		this.columnNames = new String[] {"Sifra", "Naziv", "ESPB", "Godina", "Semestar"};
+		return this;
 	}
 }

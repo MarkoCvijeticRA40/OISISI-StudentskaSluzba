@@ -13,15 +13,19 @@ public class Database implements Serializable {
 	private SubjectDatabase subjectDatabase;
 	
 	private Database() {
-		this.professorDatabase = ProfessorDatabase.getInstance();
+		/*this.professorDatabase = ProfessorDatabase.getInstance();
 		this.studentDatabase = StudentDatabase.getInstance();
-		this.subjectDatabase = SubjectDatabase.getInstance();
+		this.subjectDatabase = SubjectDatabase.getInstance();*/
 	}
 	
 	public static Database getInstance() {
 		if (database == null)
 			database = new Database();
 		return database;
+	}
+	
+	public static void setInstance(Database database) {
+		Database.database = database;
 	}
 
 	public ProfessorDatabase getProfessorDatabase() {

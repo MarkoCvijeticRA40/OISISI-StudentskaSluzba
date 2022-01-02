@@ -1,84 +1,17 @@
 package persistence;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import controllers.validators.ValidationPatterns;
-import models.Address;
-import models.Status;
 import models.Student;
 import models.Subject;
 
 public class StudentDatabase implements Serializable {
 
 	private static final long serialVersionUID = 393667417381023594L;
-	private static transient StudentDatabase db;
 	
 	private List<Student> students;
-	private transient List<String> columnNames;
-	
-	private StudentDatabase() {
-		
-		students = new LinkedList<>();
-		try {
-			students.add(new Student(
-					"Marko",
-					"Markovic",
-					ValidationPatterns.dateFormat.parse("05/12/2000"),
-					new Address("Laze Kostica", 150, "Novi Sad", "Srbija"),
-					"0628440456",
-					"marko.markovic@uns.ac.rs",
-					"RA40/2019",
-					2019,
-					3,
-					Status.B,
-					8.50));
-			students.add(new Student(
-					"Dejan",
-					"Micic",
-					ValidationPatterns.dateFormat.parse("04/11/2001"),
-					new Address("Futoski put", 44, "Novi Sad", "Srbija"),
-					"0647740489",
-					"dejan.micic@uns.ac.rs",
-					"RA124/2020",
-					2020,
-					2,
-					Status.B,
-					9.12));
-			students.add(new Student(
-					"Mirko",
-					"Dejanovic",
-					ValidationPatterns.dateFormat.parse("15/02/2002"),
-					new Address("Safarikova", 10, "Novi Sad", "Srbija"),
-					"0623465409",
-					"mirko.dejanovic@uns.ac.rs",
-					"RA40/2021",
-					2021,
-					1,
-					Status.S,
-					7.10));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		this.students.get(0).getNotPassedExams().add(SubjectDatabase.getInstance().getRow(0));
-		this.students.get(0).getNotPassedExams().add(SubjectDatabase.getInstance().getRow(1));
-		columnNames = new ArrayList<>();
-		columnNames.add("Indeks");
-		columnNames.add("Ime");
-		columnNames.add("Prezime");
-		columnNames.add("Godina studija");
-		columnNames.add("Status");
-		columnNames.add("Prosek");
-	}
-	
-	public static StudentDatabase getInstance() {
-		if (db == null)
-			db = new StudentDatabase();
-		return db;
-	}
+	private transient String[] columnNames;
 	
 	public void addStudent(Student student) {
 		this.students.add(student);
@@ -134,11 +67,11 @@ public class StudentDatabase implements Serializable {
 	}
 	
 	public int getColumnCount() {
-		return columnNames.size();
+		return columnNames.length;
 	}
 	
 	public String getColumnName(int column) {
-		return columnNames.get(column);
+		return columnNames[column];
 	}
 	
 	public Subject getNotPassedExamRow(int rowIndexStudent, int rowIndexExam) {
@@ -165,5 +98,10 @@ public class StudentDatabase implements Serializable {
 		default:
 			return null;
 		}
+	}
+	
+	private Object readResolve() {
+		this.columnNames = new String[] {"Index", "Ime", "Prezime", "Godina studija", "Status", "Prosek"};
+		return this;
 	}
 }

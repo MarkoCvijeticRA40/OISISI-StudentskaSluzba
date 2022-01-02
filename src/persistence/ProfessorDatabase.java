@@ -1,96 +1,16 @@
 package persistence;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import controllers.validators.ValidationPatterns;
-import models.Address;
 import models.Professor;
 
 public class ProfessorDatabase implements Serializable {
 	
 	private static final long serialVersionUID = -2316426675809008740L;
-	private static transient ProfessorDatabase db;
 	
 	private List<Professor> professors;
-	private transient List<String> columnNames;
-	
-	private ProfessorDatabase() {
-		professors = new LinkedList<>();
-		try {
-			professors.add(new Professor(
-					"Pera",
-					"Peric",
-					ValidationPatterns.dateFormat.parse("01/01/1990"),
-					new Address("Sutjeska", 1, "Novi Sad", "Srbija"),
-					"06445679",
-					"pera.peric@uns.ac.rs",
-					new Address("Bulevar Evrope", 150, "Novi Sad", "Srbija"),
-					753951456,
-					"Asistent",
-					2));
-			professors.add(new Professor(
-					"Mika",
-					"Mikic",
-					ValidationPatterns.dateFormat.parse("01/01/1660"),
-					new Address("Pere Perica", 10, "Novi Sad", "Srbija"),
-					"065863256",
-					"mika.mikic@uns.ac.rs",
-					new Address("Bulevar Evrope", 150, "Novi Sad", "Srbija"),
-					852741963,
-					"Red. profesor",
-					30));
-			professors.add(new Professor(
-					"Djura",
-					"Djuric",
-					ValidationPatterns.dateFormat.parse("01/01/1995"),
-					new Address("Bate Brkica", 16, "Novi Sad", "Srbija"),
-					"060753863",
-					"djura.djuric@uns.ac.rs",
-					new Address("Bulevar Evrope", 150, "Novi Sad", "Srbija"),
-					753963423,
-					"Red. profesor",
-					5));
-			professors.add(new Professor(
-					"Branko",
-					"Brankovic",
-					ValidationPatterns.dateFormat.parse("01/01/1993"),
-					new Address("Branka Bajica", 30, "Novi Sad", "Srbija"),
-					"0627456893",
-					"branko.brankovic@uns.ac.rs",
-					new Address("Bulevar Evrope", 150, "Novi Sad", "Srbija"),
-					741753963,
-					"Vandr. profesor",
-					5));
-			professors.add(new Professor(
-					"Andjela",
-					"Andjelic",
-					ValidationPatterns.dateFormat.parse("01/01/1989"),
-					new Address("Futoski put", 68, "Novi Sad", "Srbija"),
-					"061423568",
-					"andjela.andjelic@uns.ac.rs",
-					new Address("Bulevar Evrope", 150, "Novi Sad", "Srbija"),
-					789456123,
-					"Asistent",
-					5));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		columnNames = new ArrayList<>();
-		columnNames.add("Ime");
-		columnNames.add("Prezime");
-		columnNames.add("Zvanje");
-		columnNames.add("Email");
-	}
-	
-	public static ProfessorDatabase getInstance() {
-		if (db == null)
-			db = new ProfessorDatabase();
-		return db;
-	}
+	private transient String[] columnNames;
 	
 	public void printData() {
 		for (Professor p : professors)
@@ -150,10 +70,15 @@ public class ProfessorDatabase implements Serializable {
 	}
 	
 	public int getColumnCount() {
-		return columnNames.size();
+		return columnNames.length;
 	}
 	
 	public String getColumnName(int column) {
-		return columnNames.get(column);
+		return columnNames[column];
+	}
+	
+	private Object readResolve() {
+		this.columnNames = new String[] {"Ime", "Prezime", "Zvanje", "Email"};
+		return this;
 	}
 }
