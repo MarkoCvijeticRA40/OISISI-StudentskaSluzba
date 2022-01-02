@@ -1,5 +1,6 @@
 package persistence;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,12 +10,13 @@ import controllers.validators.ValidationPatterns;
 import models.Address;
 import models.Professor;
 
-public class ProfessorDatabase {
+public class ProfessorDatabase implements Serializable {
 	
-	private static ProfessorDatabase db;
+	private static final long serialVersionUID = -2316426675809008740L;
+	private static transient ProfessorDatabase db;
 	
 	private List<Professor> professors;
-	private List<String> columnNames;
+	private transient List<String> columnNames;
 	
 	private ProfessorDatabase() {
 		professors = new LinkedList<>();

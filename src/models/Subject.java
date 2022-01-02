@@ -1,11 +1,14 @@
 package models;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
 
-public class Subject {
+public class Subject implements Serializable {
 
+	private static final long serialVersionUID = -826929363813020936L;
+	
 	private int id;
 	private String name;
 	private Semester semester;

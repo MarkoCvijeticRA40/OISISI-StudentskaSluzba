@@ -1,10 +1,13 @@
 package models;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Department {
+public class Department implements Serializable {
 
+	private static final long serialVersionUID = -6056426272631516162L;
+	
 	private int id;
 	private String name;
 	private Professor manager;

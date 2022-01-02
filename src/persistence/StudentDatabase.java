@@ -1,5 +1,6 @@
 package persistence;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -11,12 +12,13 @@ import models.Status;
 import models.Student;
 import models.Subject;
 
-public class StudentDatabase {
+public class StudentDatabase implements Serializable {
 
-private static StudentDatabase db;
+	private static final long serialVersionUID = 393667417381023594L;
+	private static transient StudentDatabase db;
 	
 	private List<Student> students;
-	private List<String> columnNames;
+	private transient List<String> columnNames;
 	
 	private StudentDatabase() {
 		
