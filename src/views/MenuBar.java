@@ -14,6 +14,7 @@ import javax.swing.KeyStroke;
 import controllers.ProfessorController;
 import controllers.StudentController;
 import controllers.SubjectController;
+import persistence.Serialization;
 import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
 import views.Student.Add.AddStudentDialog;
@@ -37,7 +38,19 @@ public class MenuBar extends JMenuBar {
 		});
 		file.add(newEntity);
 		
-		file.add(createMenuItem("Save","src/views/images/save.png", KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK), 'S'));
+		JMenuItem save = createMenuItem("Save","src/views/images/save.png", KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK), 'S');
+		save.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (Serialization.run())
+					JOptionPane.showMessageDialog(null, "Uspesno sacuvano!");
+				else
+					JOptionPane.showMessageDialog(null, "Neuspesno sacuvano!");
+			}
+			
+		});
+		file.add(save);
 		
 		JMenu open = new JMenu("Open");
 		open.setMnemonic('O');

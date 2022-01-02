@@ -1,5 +1,6 @@
 package persistence;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,12 +9,13 @@ import models.Professor;
 import models.Semester;
 import models.Subject;
 
-public class SubjectDatabase {
+public class SubjectDatabase implements Serializable {
 	
-	private static SubjectDatabase db;
+	private static final long serialVersionUID = -94351079205237111L;
+	private static transient SubjectDatabase db;
 	
 	private List<Subject> subjects;
-	private List<String> columnNames;
+	private transient List<String> columnNames;
 	
 	private SubjectDatabase() {
 		List<Professor> professors = ProfessorDatabase.getInstance().getProfessors();
