@@ -4,10 +4,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
 import controllers.validators.ValidationPatterns;
 import models.Address;
 import models.Status;
 import models.Student;
+import models.Subject;
 
 public class StudentDatabase {
 
@@ -133,5 +135,25 @@ private static StudentDatabase db;
 	
 	public String getColumnName(int column) {
 		return columnNames.get(column);
+	}
+	
+	public String getValueAtNotPassedExams(Student student, int rowIndex, int columnIndex) {
+		if (rowIndex >= student.getNotPassedExams().size())
+			return "";
+		Subject subject = student.getNotPassedExams().get(rowIndex);
+		switch (columnIndex) {
+		case 0:
+			return String.valueOf(subject.getId());
+		case 1:
+			return subject.getName();
+		case 2:
+			return String.valueOf(subject.getEspb());
+		case 3:
+			return String.valueOf(subject.getStudyYear());
+		case 4:
+			return subject.getSemester();
+		default:
+			return null;
+		}
 	}
 }

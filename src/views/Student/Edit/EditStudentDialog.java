@@ -4,6 +4,7 @@ import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 import controllers.StudentController;
 import views.MainFrame;
+import views.Student.Edit.Exams.Representation.NotPassedExamsPanel;
 
 public class EditStudentDialog extends JDialog {
 
@@ -22,6 +23,7 @@ public class EditStudentDialog extends JDialog {
 		JTabbedPane tabbedPane = new JTabbedPane();
 		editForm = new EditStudentFormPanel();
 		tabbedPane.addTab("Informacije", editForm);
+		tabbedPane.addTab("Nepolozeni", new NotPassedExamsPanel());
 		this.add(tabbedPane);
 		
 		this.pack();
