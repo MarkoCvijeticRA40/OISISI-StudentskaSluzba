@@ -13,6 +13,7 @@ import models.ExamGrade;
 import models.Status;
 import models.Student;
 import models.Subject;
+import persistence.Database;
 import persistence.StudentDatabase;
 import views.Student.BaseStudentFormJPanel;
 import views.Student.Add.AddStudentDialog;
@@ -38,7 +39,7 @@ public class StudentController {
 		this.editForm = EditStudentDialog.getInstance().getEditForm();
 		this.studentTable = StudentsJTable.getInstance();
 		this.examTable = ExamsJTable.getInstance();
-		this.studentsDatabase = StudentDatabase.getInstance();
+		this.studentsDatabase = Database.getInstance().getStudentDatabase();
 	}
 	
 	public static StudentController getInstance() {

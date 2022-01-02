@@ -2,8 +2,7 @@ package views.Student.Edit.Exams.NotPassed;
 
 import javax.swing.table.AbstractTableModel;
 
-import persistence.StudentDatabase;
-import persistence.SubjectDatabase;
+import persistence.Database;
 import views.Student.Representation.StudentsJTable;
 
 public class AbstractTableModelExams extends AbstractTableModel {
@@ -17,18 +16,18 @@ public class AbstractTableModelExams extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
-		return SubjectDatabase.getInstance().getColumnCount();
+		return Database.getInstance().getSubjectDatabase().getColumnCount();
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		int selectedStudentRowIndex = StudentsJTable.getInstance().getSelectedRow();
-		return StudentDatabase.getInstance().getValueAtNotPassedExams(selectedStudentRowIndex, rowIndex, columnIndex);
+		return Database.getInstance().getStudentDatabase().getValueAtNotPassedExams(selectedStudentRowIndex, rowIndex, columnIndex);
 	}
 	
 	@Override
 	public String getColumnName(int columnIndex) { 
-		return SubjectDatabase.getInstance().getColumnName(columnIndex);
+		return Database.getInstance().getSubjectDatabase().getColumnName(columnIndex);
 	}
 
 }

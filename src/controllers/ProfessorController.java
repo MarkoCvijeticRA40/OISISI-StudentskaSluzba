@@ -10,6 +10,7 @@ import controllers.validators.ProfessorFormValidator;
 import controllers.validators.ValidationPatterns;
 import models.Address;
 import models.Professor;
+import persistence.Database;
 import persistence.ProfessorDatabase;
 import views.Professor.BaseProfessorFormJPanel;
 import views.Professor.Add.AddProfessorDialog;
@@ -31,7 +32,7 @@ public class ProfessorController {
 		this.addForm = AddProfessorDialog.getInstance().getAddForm();
 		this.editForm = EditProfessorDialog.getInstance().getEditForm();
 		this.professorTable = ProfessorsJTable.getInstance();
-		this.professorsDatabase = ProfessorDatabase.getInstance();
+		this.professorsDatabase = Database.getInstance().getProfessorDatabase();
 	}
 	
 	public static ProfessorController getInstance() {

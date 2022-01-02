@@ -2,7 +2,7 @@ package views.Student.Representation;
 
 import javax.swing.table.AbstractTableModel;
 
-import persistence.StudentDatabase;
+import persistence.Database;
 
 public class AbstractTableModelStudent extends AbstractTableModel {
 
@@ -15,16 +15,16 @@ public class AbstractTableModelStudent extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
-		return StudentDatabase.getInstance().getColumnCount();
+		return Database.getInstance().getStudentDatabase().getColumnCount();
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		return StudentDatabase.getInstance().getValueAt(rowIndex, columnIndex);
+		return Database.getInstance().getStudentDatabase().getValueAt(rowIndex, columnIndex);
 	}
 	
 	@Override
 	public String getColumnName(int columnIndex) {
-		return StudentDatabase.getInstance().getColumnName(columnIndex);
+		return Database.getInstance().getStudentDatabase().getColumnName(columnIndex);
 	}
 }
