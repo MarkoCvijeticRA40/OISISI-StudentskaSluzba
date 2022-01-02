@@ -76,6 +76,19 @@ public class ProfessorController {
 		JOptionPane.showMessageDialog(null, "Profesor uspesno obrisan!");
 	}
 	
+	public void search(String query) {
+		String[] params = query.split(", ");
+		if (params.length == 3)
+			this.professorsDatabase.filter(params[0], params[1], params[2]);
+		else if (params.length == 2)
+			this.professorsDatabase.filter(params[0], params[1]);
+		else if (params.length == 1 && params[0].compareTo("") != 0)
+			this.professorsDatabase.filter(params[0]);
+		else
+			this.professorsDatabase.resetFilter();
+		this.professorTable.updateView();
+	}
+	
 	public Professor getSelectedProfessor() {
 		int selectedRow = this.professorTable.getSelectedRow();
 		if (this.professorsDatabase.getRowCount() <= selectedRow)
