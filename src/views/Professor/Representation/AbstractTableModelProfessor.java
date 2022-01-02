@@ -6,9 +6,6 @@ import persistence.Database;
 
 public class AbstractTableModelProfessor extends AbstractTableModel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7765393314528292347L;
 
 	public AbstractTableModelProfessor() {
@@ -17,8 +14,8 @@ public class AbstractTableModelProfessor extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return 40;
-		//return ProfessorDatabase.getInstance().getRowCount();
+		int rows = Database.getInstance().getProfessorDatabase().getRowCount();
+		return (rows < 40)? 40 : rows;
 	}
 
 	@Override

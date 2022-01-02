@@ -1,6 +1,7 @@
 package persistence;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import models.Professor;
@@ -10,15 +11,13 @@ public class ProfessorDatabase implements Serializable {
 	private static final long serialVersionUID = -2316426675809008740L;
 	
 	private List<Professor> professors;
+	private transient List<Boolean> filteredDataMap;
+	private transient int numOfFiltered;
 	private transient String[] columnNames;
-	
-	public void printData() {
-		for (Professor p : professors)
-			System.out.println(p);
-	}
 	
 	public void addProfessor(Professor professor) {
 		this.professors.add(professor);
+		this.filteredDataMap.add(true);
 	}
 	
 	public void editProfessor(int row, Professor professor) {
@@ -36,7 +35,11 @@ public class ProfessorDatabase implements Serializable {
 	}
 	
 	public void deleteProfessor(int row) {
-		this.professors.remove(row);
+		Professor professor = this.getRow(row);
+		this.filteredDataMap.remove(this.professors.indexOf(professor));
+		this.professors.remove(professor);
+		if (this.numOfFiltered > 0)
+			this.numOfFiltered--;
 	}
 	
 	public List<Professor> getProfessors() {
@@ -44,9 +47,11 @@ public class ProfessorDatabase implements Serializable {
 	}
 	
 	public String getValueAt(int rowIndex, int columnIndex) {
-		if (rowIndex >= professors.size())
+		if ((this.numOfFiltered == -1 && rowIndex >= this.professors.size())
+				|| this.numOfFiltered == 0
+				|| (this.numOfFiltered > 0 && rowIndex >= this.numOfFiltered))
 			return "";
-		Professor professor = professors.get(rowIndex);
+		Professor professor = this.getRow(rowIndex);
 		switch (columnIndex) {
 			case 0: 
 				return professor.getFirstName();
@@ -62,11 +67,27 @@ public class ProfessorDatabase implements Serializable {
 	}
 	
 	public Professor getRow(int rowIndex) {
-		return this.professors.get(rowIndex);
+		if (this.numOfFiltered == -1)
+			return this.professors.get(rowIndex);
+		int i;
+		int filterCounter = 0;
+		for (i = 0; i < this.filteredDataMap.size(); i++) {
+			if (this.filteredDataMap.get(i) == true) {
+				filterCounter++;
+				if (filterCounter == rowIndex + 1)
+					break;
+			}
+		}
+		return this.professors.get(i);
 	}
 	
 	public int getRowCount() {
-		return professors.size();
+		if (this.numOfFiltered == -1)
+			return this.professors.size();
+		else if (this.numOfFiltered == 0)
+			return 0;
+		else
+			return this.numOfFiltered;
 	}
 	
 	public int getColumnCount() {
@@ -77,8 +98,66 @@ public class ProfessorDatabase implements Serializable {
 		return columnNames[column];
 	}
 	
+	public void filter(String lastName) {
+		int i = 0;
+		this.numOfFiltered = 0;
+		for (Professor professor : this.professors) {
+			if (professor.getLastName().toLowerCase().contains(lastName)) {
+				this.filteredDataMap.set(i, true);
+				this.numOfFiltered++;
+			}
+			else
+				this.filteredDataMap.set(i, false);
+			i++;
+		}
+	}
+	
+	public void filter(String lastName, String firstName) {
+		int i = 0;
+		this.numOfFiltered = 0;
+		for (Professor professor : this.professors) {
+			if (professor.getLastName().toLowerCase().contains(lastName.toLowerCase()) 
+					&& professor.getFirstName().toLowerCase().contains(firstName.toLowerCase())) {
+				this.filteredDataMap.set(i, true);
+				this.numOfFiltered++;
+			}
+			else
+				this.filteredDataMap.set(i, false);
+			System.out.println(this.filteredDataMap.get(i));
+			i++;
+		}
+	}
+	
+	public void filter(String email, String lastName, String firstName) {
+		int i = 0;
+		this.numOfFiltered = 0;
+		for (Professor professor : this.professors) {
+			if (professor.getEmail().toLowerCase().contains(email)
+					&& professor.getLastName().toLowerCase().contains(lastName.toLowerCase())
+					&& professor.getFirstName().toLowerCase().contains(firstName.toLowerCase())) {
+				this.filteredDataMap.set(i, true);
+				this.numOfFiltered++;
+			}
+			else
+				this.filteredDataMap.set(i, false);
+			i++;
+		}
+	}
+	
+	public void resetFilter() {
+		int i;
+		for (i = 0; i < this.filteredDataMap.size(); i++)
+			this.filteredDataMap.set(i, true);
+		this.numOfFiltered = -1;
+	}
+	
+	@SuppressWarnings("unused")
 	private Object readResolve() {
 		this.columnNames = new String[] {"Ime", "Prezime", "Zvanje", "Email"};
+		this.filteredDataMap = new ArrayList<>();
+		for (Professor p : this.professors)
+			this.filteredDataMap.add(true);
+		this.numOfFiltered = -1;
 		return this;
 	}
 }

@@ -31,6 +31,8 @@ import views.Student.Edit.EditStudentDialog;
 public class ToolBar extends JToolBar {
 	
 	private static final long serialVersionUID = 8774931849219584680L;
+	
+	private JTextField input;
 
 	public ToolBar()
 	{
@@ -43,7 +45,7 @@ public class ToolBar extends JToolBar {
 		JButton deleteBtn = createButton("src/views/images/delete.png", "Obrisi", "delete", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		JButton searchBtn = createButton("src/views/images/search.png", "Pretraga", "search", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
 		
-		JTextField input = new JTextField();
+		input = new JTextField();
 		input.setPreferredSize(new Dimension(200, 25));
 		input.setMaximumSize(new Dimension(200, 25));
 		input.setToolTipText("Pretraga");
@@ -130,6 +132,9 @@ public class ToolBar extends JToolBar {
 								JOptionPane.YES_NO_OPTION);
 						if (result == JOptionPane.YES_OPTION)
 							ProfessorController.getInstance().delete();
+						break;
+					case "search":
+						ProfessorController.getInstance().search(input.getText());
 						break;
 				}
 					break;
