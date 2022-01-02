@@ -4,7 +4,7 @@ import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 import controllers.StudentController;
 import views.MainFrame;
-import views.Student.Edit.Exams.Representation.NotPassedExamsPanel;
+import views.Student.Edit.Exams.NotPassed.NotPassedExamsPanel;
 
 public class EditStudentDialog extends JDialog {
 

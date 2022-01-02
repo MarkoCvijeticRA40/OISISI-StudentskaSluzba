@@ -61,6 +61,8 @@ private static StudentDatabase db;
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		this.students.get(0).getNotPassedExams().add(SubjectDatabase.getInstance().getRow(0));
+		this.students.get(0).getNotPassedExams().add(SubjectDatabase.getInstance().getRow(1));
 		columnNames = new ArrayList<>();
 		columnNames.add("Indeks");
 		columnNames.add("Ime");
@@ -137,7 +139,13 @@ private static StudentDatabase db;
 		return columnNames.get(column);
 	}
 	
-	public String getValueAtNotPassedExams(Student student, int rowIndex, int columnIndex) {
+	public Subject getNotPassedExamRow(int rowIndexStudent, int rowIndexExam) {
+		Student student = students.get(rowIndexStudent);
+		return student.getNotPassedExams().get(rowIndexExam);
+	}
+	
+	public String getValueAtNotPassedExams(int rowIndexStudent, int rowIndex, int columnIndex) {
+		Student student = students.get(rowIndexStudent);
 		if (rowIndex >= student.getNotPassedExams().size())
 			return "";
 		Subject subject = student.getNotPassedExams().get(rowIndex);

@@ -48,16 +48,4 @@ public class TabbedPane extends JTabbedPane {
 		});
 		this.setSelectedIndex(0);
 	}
-	
-	public ProfessorTabPanel getProfessorTab() {
-		return this.professorTab;
-	}
-
-	public StudentTabPanel getStudentTab() {
-		return studentTab;
-	}
-	
-	public SubjectTabPanel getSubjectTab() {
-		return subjectTab;
-	}
 }

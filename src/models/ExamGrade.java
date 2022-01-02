@@ -2,14 +2,14 @@ package models;
 
 import java.util.Date;
 
-public class ExamMark {
+public class ExamGrade {
 
 	private Student student;
 	private Subject subject;
 	private int mark;
 	private Date examDate;
 	
-	public ExamMark(Student student, Subject subject, int mark, Date examDate) {
+	public ExamGrade(Student student, Subject subject, int mark, Date examDate) {
 		super();
 		this.student = student;
 		this.subject = subject;

@@ -1,10 +1,10 @@
-package views.Student.Edit.Exams.Representation;
+package views.Student.Edit.Exams.NotPassed;
 
 import javax.swing.table.AbstractTableModel;
 
-import controllers.StudentController;
 import persistence.StudentDatabase;
 import persistence.SubjectDatabase;
+import views.Student.Representation.StudentsJTable;
 
 public class AbstractTableModelExams extends AbstractTableModel {
 
@@ -22,7 +22,8 @@ public class AbstractTableModelExams extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		return StudentDatabase.getInstance().getValueAtNotPassedExams(StudentController.getInstance().getSelectedStudent(), rowIndex, columnIndex);
+		int selectedStudentRowIndex = StudentsJTable.getInstance().getSelectedRow();
+		return StudentDatabase.getInstance().getValueAtNotPassedExams(selectedStudentRowIndex, rowIndex, columnIndex);
 	}
 	
 	@Override

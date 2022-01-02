@@ -9,13 +9,16 @@ import javax.swing.JTextField;
 import controllers.validators.StudentFormValidator;
 import controllers.validators.ValidationPatterns;
 import models.Address;
+import models.ExamGrade;
 import models.Status;
 import models.Student;
+import models.Subject;
 import persistence.StudentDatabase;
-import views.MainFrame;
 import views.Student.BaseStudentFormJPanel;
 import views.Student.Add.AddStudentDialog;
 import views.Student.Edit.EditStudentDialog;
+import views.Student.Edit.Exams.NotPassed.AddPassedExamDialog;
+import views.Student.Edit.Exams.NotPassed.ExamsJTable;
 import views.Student.Representation.StudentsJTable;
 
 public class StudentController {
@@ -26,13 +29,15 @@ public class StudentController {
 	private BaseStudentFormJPanel addForm;
 	private BaseStudentFormJPanel editForm;
 	private StudentsJTable studentTable;
+	private ExamsJTable examTable;
 	private StudentDatabase studentsDatabase;
 	
 	private StudentController() {
 		this.formValidator = new StudentFormValidator();
 		this.addForm = AddStudentDialog.getInstance().getAddForm();
 		this.editForm = EditStudentDialog.getInstance().getEditForm();
-		this.studentTable = MainFrame.getInstance().getTabbedPane().getStudentTab().getTable();
+		this.studentTable = StudentsJTable.getInstance();
+		this.examTable = ExamsJTable.getInstance();
 		this.studentsDatabase = StudentDatabase.getInstance();
 	}
 	
@@ -79,6 +84,29 @@ public class StudentController {
 			return null;
 		Student student = this.studentsDatabase.getRow(selectedRow);
 		return student;
+	}
+	
+	public Subject getSelectedNotPassedExam() {
+		int selectedStudent = this.studentTable.getSelectedRow();
+		int selectedNotPassedExam = this.examTable.getSelectedRow();
+		return this.studentsDatabase.getNotPassedExamRow(selectedStudent, selectedNotPassedExam);
+	}
+	
+	public void addPassedExam() {
+		Student student = this.getSelectedStudent();
+		Subject subject = this.getSelectedNotPassedExam();
+		if (!student.getNotPassedExams().remove(subject)) {
+			JOptionPane.showMessageDialog(null, "Upis ocene neuspesan!");
+		}
+		int grade = AddPassedExamDialog.getInstance().getSelectedGrade();
+		Date date = AddPassedExamDialog.getInstance().getSelectedDate();
+		ExamGrade examGrade = new ExamGrade(
+				student, 
+				subject, 
+				grade,
+				date);
+		student.getPassedExams().add(examGrade);
+		examTable.updateView();
 	}
 	
 	private Student createStudent(BaseStudentFormJPanel form) {

@@ -1,4 +1,4 @@
-package views.Student.Edit.Exams.Representation;
+package views.Student.Edit.Exams.NotPassed;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -11,8 +11,9 @@ import javax.swing.table.TableCellRenderer;
 public class ExamsJTable extends JTable {
 	
 	private static final long serialVersionUID = -596692514521391681L;
+	private static ExamsJTable table;
 
-	public ExamsJTable() {
+	private ExamsJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(false);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -20,6 +21,12 @@ public class ExamsJTable extends JTable {
 		this.getTableHeader().setBorder(BorderFactory.createMatteBorder(1, 1, 0, 1, Color.BLACK));
 		this.setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK));
 		this.setModel(new AbstractTableModelExams());
+	}
+	
+	public static ExamsJTable getInstance() {
+		if (table == null)
+			table = new ExamsJTable();
+		return table;
 	}
 	
 	@Override

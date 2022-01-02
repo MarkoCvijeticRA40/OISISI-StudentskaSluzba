@@ -11,8 +11,9 @@ import javax.swing.table.TableCellRenderer;
 public class SubjectsJTable extends JTable {
 
 	private static final long serialVersionUID = 8052273003161493585L;
+	private static SubjectsJTable table;
 
-	public SubjectsJTable() {
+	private SubjectsJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(false);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -20,6 +21,12 @@ public class SubjectsJTable extends JTable {
 		this.getTableHeader().setBorder(BorderFactory.createMatteBorder(1, 1, 0, 1, Color.BLACK));
 		this.setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK));
 		this.setModel(new AbstractTableModelSubject());
+	}
+	
+	public static SubjectsJTable getInstance() {
+		if (table == null)
+			table = new SubjectsJTable();
+		return table;
 	}
 	
 	@Override
