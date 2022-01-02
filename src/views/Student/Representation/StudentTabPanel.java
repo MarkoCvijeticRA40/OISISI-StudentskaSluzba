@@ -23,8 +23,4 @@ public class StudentTabPanel extends JPanel{
 		this.add(scrollPane, BorderLayout.CENTER);
 		table.updateView();
 	}
-	
-	public StudentsJTable getTable() {
-		return this.table;
-	}	
 }

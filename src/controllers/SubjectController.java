@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 import models.Professor;
 import models.Subject;
 import persistence.SubjectDatabase;
-import views.MainFrame;
 import views.Subject.Representation.SubjectsJTable;
 
 public class SubjectController {
@@ -17,7 +16,7 @@ public class SubjectController {
 	
 	private SubjectController() {
 		this.subjectsDatabase = SubjectDatabase.getInstance();
-		this.subjectTable = MainFrame.getInstance().getTabbedPane().getSubjectTab().getTable();
+		this.subjectTable = SubjectsJTable.getInstance();
 	}
 	
 	public static SubjectController getInstance() {

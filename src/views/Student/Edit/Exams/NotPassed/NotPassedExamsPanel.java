@@ -1,8 +1,10 @@
-package views.Student.Edit.Exams.Representation;
+package views.Student.Edit.Exams.NotPassed;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -32,14 +34,24 @@ public class NotPassedExamsPanel extends JPanel {
 		btnPanel.add(addBtn);
 		deleteBtn = new JButton("Obrisi");
 		btnPanel.add(deleteBtn);
+		
 		passedBtn = new JButton("Polaganje");
+		passedBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AddPassedExamDialog.getInstance().init();
+			}
+			
+		});
 		btnPanel.add(passedBtn);
 		container.add(btnPanel);
 		
 		container.add(Box.createVerticalStrut(10));
 		
-		examsTable = new ExamsJTable();
+		examsTable = ExamsJTable.getInstance();
 		JScrollPane scrollPane = new JScrollPane(examsTable);
+		examsTable.updateView();
 		container.add(scrollPane);
 		
 		this.add(container, BorderLayout.NORTH);

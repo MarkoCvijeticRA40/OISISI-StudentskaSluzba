@@ -28,6 +28,7 @@ public class MainFrame extends JFrame {
 		add(tabbedPane, BorderLayout.CENTER);
 		statusBar = new StatusBar();
 		add(statusBar, BorderLayout.SOUTH);
+		this.setResizable(false);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}

@@ -11,7 +11,6 @@ import controllers.validators.ValidationPatterns;
 import models.Address;
 import models.Professor;
 import persistence.ProfessorDatabase;
-import views.MainFrame;
 import views.Professor.BaseProfessorFormJPanel;
 import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
@@ -31,7 +30,7 @@ public class ProfessorController {
 		this.formValidator = new ProfessorFormValidator();
 		this.addForm = AddProfessorDialog.getInstance().getAddForm();
 		this.editForm = EditProfessorDialog.getInstance().getEditForm();
-		this.professorTable = MainFrame.getInstance().getTabbedPane().getProfessorTab().getTable();
+		this.professorTable = ProfessorsJTable.getInstance();
 		this.professorsDatabase = ProfessorDatabase.getInstance();
 	}
 	

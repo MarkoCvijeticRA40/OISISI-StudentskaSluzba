@@ -18,7 +18,7 @@ public class Student {
 	private int currentStudiesYear;
 	private Status financingStatus;
 	private double rating;
-	private List<ExamMark> passedExams;
+	private List<ExamGrade> passedExams;
 	private List<Subject> notPassedExams;
 	
 	public Student(String firstName, String lastName, Date dateOfBirth, Address address, String phoneNumber,
@@ -128,7 +128,7 @@ public class Student {
 		this.rating = rating;
 	}
 	
-	public List<ExamMark> getPassedExams() {
+	public List<ExamGrade> getPassedExams() {
 		return this.passedExams;
 	}
 	

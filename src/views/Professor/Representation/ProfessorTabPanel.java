@@ -22,8 +22,4 @@ public class ProfessorTabPanel extends JPanel {
 		this.add(scrollPane, BorderLayout.CENTER);
 		table.updateView();
 	}
-	
-	public ProfessorsJTable getTable() {
-		return this.table;
-	}
 }
