@@ -116,9 +116,15 @@ public class AddExamDialog extends JDialog {
 	
 	@SuppressWarnings("unchecked")
 	public void init() {
-		this.list.setListData(StudentController.getInstance().getAvailableNewExams().toArray());
-		this.list.setSelectedIndex(0);
-		this.setVisible(true);
+		Object[] availableSubjects = StudentController.getInstance().getAvailableNewExams().toArray();
+		if (availableSubjects.length != 0) {
+			this.list.setListData(StudentController.getInstance().getAvailableNewExams().toArray());
+			this.list.setSelectedIndex(0);
+			this.setVisible(true);
+		}
+		else {
+			JOptionPane.showMessageDialog(dialog, "Nema dostupnih predmeta za ovog studenta!");
+		}
 	}
 
 }
