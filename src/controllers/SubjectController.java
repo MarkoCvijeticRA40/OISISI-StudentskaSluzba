@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import models.Professor;
@@ -42,6 +44,10 @@ public class SubjectController {
 			return null;
 		Subject subject = this.subjectsDatabase.getRow(selectedRow);
 		return subject;
+	}
+	
+	public List<Subject> getAllSubjects() {
+		return this.subjectsDatabase.getSubjects();
 	}
 	
 	public boolean checkProfessorExistence(Professor professor) {

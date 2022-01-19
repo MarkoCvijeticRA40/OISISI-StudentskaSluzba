@@ -2,6 +2,8 @@ package controllers;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -58,6 +60,12 @@ public class StudentController {
 		AddStudentDialog.getInstance().dispose();
 	}
 	
+	public void addNotPassedExam(Subject subject) {
+		Student student = this.getSelectedStudent();
+		student.getNotPassedExams().add(subject);
+		this.examTable.updateView();
+	}
+	
 	public void edit() {
 		Student student = createStudent(this.editForm);
 		if (student == null)
@@ -81,9 +89,8 @@ public class StudentController {
 	
 	public Student getSelectedStudent() {
 		int selectedRow = studentTable.getSelectedRow();
-		if (this.studentsDatabase.getRowCount() <= selectedRow)
-			return null;
-		Student student = this.studentsDatabase.getRow(selectedRow);
+		String indexNumber = (String) this.studentTable.getValueAt(selectedRow, 0);
+		Student student = this.studentsDatabase.getByIndexNumber(indexNumber);
 		return student;
 	}
 	
@@ -91,6 +98,28 @@ public class StudentController {
 		int selectedStudent = this.studentTable.getSelectedRow();
 		int selectedNotPassedExam = this.examTable.getSelectedRow();
 		return this.studentsDatabase.getNotPassedExamRow(selectedStudent, selectedNotPassedExam);
+	}
+	
+	public List<Subject> getAvailableNewExams() {
+		Student student = this.getSelectedStudent();
+		List<Subject> subjects = Database.getInstance().getSubjectDatabase().getSubjects();
+		List<Subject> availableSubjects = new LinkedList<>();
+		for (Subject subject : subjects) {
+			if (subject.getStudyYear() <= student.getCurrentStudiesYear()) {
+				if (!student.getNotPassedExams().contains(subject)) {
+					boolean found = false;
+					for (ExamGrade examGrade : student.getPassedExams()) {
+						if (examGrade.getSubject() == subject) {
+							found = true;
+							break;
+						}
+					}
+					if (!found)
+						availableSubjects.add(subject);
+				}
+			}
+		}
+		return availableSubjects;
 	}
 	
 	public void addPassedExam() {
