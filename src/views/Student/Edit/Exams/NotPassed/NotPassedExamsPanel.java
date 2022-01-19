@@ -31,7 +31,16 @@ public class NotPassedExamsPanel extends JPanel {
 		
 		JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		addBtn = new JButton("Dodaj");
+		addBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AddExamDialog.getInstance().init();
+			}
+	
+		});
 		btnPanel.add(addBtn);
+		
 		deleteBtn = new JButton("Obrisi");
 		btnPanel.add(deleteBtn);
 		

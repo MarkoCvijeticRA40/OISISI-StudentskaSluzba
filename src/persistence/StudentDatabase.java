@@ -79,6 +79,14 @@ public class StudentDatabase implements Serializable {
 		return student.getNotPassedExams().get(rowIndexExam);
 	}
 	
+	public Student getByIndexNumber(String indexNumber) {
+		for (Student student : this.students) {
+			if (student.getIndexNumber().compareTo(indexNumber) == 0)
+				return student;
+		}
+		return null;
+	}
+	
 	public String getValueAtNotPassedExams(int rowIndexStudent, int rowIndex, int columnIndex) {
 		Student student = students.get(rowIndexStudent);
 		if (rowIndex >= student.getNotPassedExams().size())
