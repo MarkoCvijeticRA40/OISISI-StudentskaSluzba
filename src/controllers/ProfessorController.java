@@ -55,15 +55,14 @@ public class ProfessorController {
 		Professor professor = createProfessor(this.editForm);
 		if (professor == null)
 			return;
-		int selectedRow = professorTable.getSelectedRow();
-		this.professorsDatabase.editProfessor(selectedRow, professor);
+		Professor professorToEdit = this.getSelectedProfessor();
+		this.professorsDatabase.editProfessor(professorToEdit, professor);
 		ProfessorsJTable.getInstance().updateView();
 		JOptionPane.showMessageDialog(null, "Profesor uspesno izmenjen!");
 		EditProfessorDialog.getInstance().dispose();
 	}
 	
 	public void delete() {
-		int selectedRow = professorTable.getSelectedRow();
 		Professor professor = this.getSelectedProfessor();
 		if (professor == null)
 			return;
@@ -71,7 +70,7 @@ public class ProfessorController {
 			JOptionPane.showMessageDialog(null, "Profesor neuspesno obrisan!\nPostoji referenca na predmetnog profesora.");
 			return;
 		}
-		this.professorsDatabase.deleteProfessor(selectedRow);
+		this.professorsDatabase.deleteProfessor(professor);
 		ProfessorsJTable.getInstance().updateView();
 		JOptionPane.showMessageDialog(null, "Profesor uspesno obrisan!");
 	}
@@ -91,9 +90,8 @@ public class ProfessorController {
 	
 	public Professor getSelectedProfessor() {
 		int selectedRow = this.professorTable.getSelectedRow();
-		if (this.professorsDatabase.getRowCount() <= selectedRow)
-			return null;
-		Professor professor = this.professorsDatabase.getRow(selectedRow);
+		String email = (String) this.professorTable.getValueAt(selectedRow, 3);
+		Professor professor = this.professorsDatabase.getByEmail(email);
 		return professor;
 	}
 	

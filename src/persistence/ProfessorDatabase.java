@@ -20,8 +20,7 @@ public class ProfessorDatabase implements Serializable {
 		this.filteredDataMap.add(true);
 	}
 	
-	public void editProfessor(int row, Professor professor) {
-		Professor professorToEdit = this.getRow(row);
+	public void editProfessor(Professor professorToEdit, Professor professor) {
 		professorToEdit.setFirstName(professor.getFirstName());
 		professorToEdit.setLastName(professor.getLastName());
 		professorToEdit.setDateOfBirth(professor.getDateOfBirth());
@@ -34,8 +33,7 @@ public class ProfessorDatabase implements Serializable {
 		professorToEdit.setYearsOfService(professor.getYearsOfService());
 	}
 	
-	public void deleteProfessor(int row) {
-		Professor professor = this.getRow(row);
+	public void deleteProfessor(Professor professor) {
 		this.filteredDataMap.remove(this.professors.indexOf(professor));
 		this.professors.remove(professor);
 		if (this.numOfFiltered > 0)
@@ -64,6 +62,14 @@ public class ProfessorDatabase implements Serializable {
 			default:
 				return null;
 		}
+	}
+	
+	public Professor getByEmail(String email) {
+		for(Professor p : this.professors) {
+			if (p.getEmail().compareTo(email) == 0)
+				return p;
+		}
+		return null;
 	}
 	
 	public Professor getRow(int rowIndex) {
