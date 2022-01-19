@@ -87,6 +87,13 @@ public class StudentController {
 		JOptionPane.showMessageDialog(null, "Student uspesno obrisan!");
 	}
 	
+	public void deleteNotPassExam(int id) {
+		Subject exam = Database.getInstance().getSubjectDatabase().getSubjctById(id);
+		Student student = this.getSelectedStudent();
+		student.getNotPassedExams().remove(exam);
+		this.examTable.updateView();
+	}
+	
 	public Student getSelectedStudent() {
 		int selectedRow = studentTable.getSelectedRow();
 		String indexNumber = (String) this.studentTable.getValueAt(selectedRow, 0);

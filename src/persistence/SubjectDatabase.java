@@ -29,6 +29,14 @@ public class SubjectDatabase implements Serializable {
 		return this.subjects;
 	}
 	
+	public Subject getSubjctById(int id) {
+		for (Subject s : this.subjects) {
+			if (s.getId() == id)
+				return s;
+		}
+		return null;
+	}
+	
 	public String getValueAt(int rowIndex, int columnIndex) {
 		if (rowIndex >= subjects.size())
 			return "";
