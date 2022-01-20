@@ -1,8 +1,6 @@
 package views.Subject;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyListener;
 
@@ -64,8 +62,8 @@ public class BaseSubjectFormJPanel extends JPanel {
 		semesterPanel.setLayout(new BoxLayout(semesterPanel, BoxLayout.X_AXIS));
 		semesterPanel.add(new JLabel("Semestar*"));
 		semesterCmb = new JComboBox<Semester>(Semester.values());
-		semesterCmb.setPreferredSize(new Dimension(200, 25));
-		semesterCmb.setMaximumSize(new Dimension(200, 25));
+		semesterCmb.setPreferredSize(new Dimension(250, 25));
+		semesterCmb.setMaximumSize(new Dimension(250, 25));
 		semesterPanel.add(Box.createHorizontalGlue());
 		semesterPanel.add(semesterCmb);
 		this.add(semesterPanel);
@@ -90,24 +88,12 @@ public class BaseSubjectFormJPanel extends JPanel {
 		studyYearPanel.add(new JLabel("Godina studija*"));
 		Integer[] studyYears = new Integer[] {1, 2, 3, 4};
 		studyYearCmb = new JComboBox<Integer>(studyYears);
-		studyYearCmb.setPreferredSize(new Dimension(200, 25));
-		studyYearCmb.setMaximumSize(new Dimension(200, 25));
+		studyYearCmb.setPreferredSize(new Dimension(250, 25));
+		studyYearCmb.setMaximumSize(new Dimension(250, 25));
 		studyYearPanel.add(Box.createHorizontalGlue());
+		studyYearPanel.add(Box.createHorizontalStrut(20));
 		studyYearPanel.add(studyYearCmb);
 		this.add(studyYearPanel);
-		
-		this.add(Box.createVerticalStrut(10));
-		
-		JPanel btnPanel = new JPanel();
-		FlowLayout layout = new FlowLayout(FlowLayout.CENTER);
-		layout.setHgap(50);
-		btnPanel.setLayout(layout);
-		submitBtn = new JButton("Potvrdi");
-		submitBtn.setEnabled(false);
-		cancelBtn = new JButton("Odustani");
-		btnPanel.add(submitBtn, BorderLayout.CENTER);
-		btnPanel.add(cancelBtn, BorderLayout.CENTER);
-		this.add(btnPanel);
 	}
 	
 	protected void setTextFieldsBorder(Border border) {
@@ -116,10 +102,10 @@ public class BaseSubjectFormJPanel extends JPanel {
 		this.esbpTxt.setBorder(border);
 	}
 	
-	private JTextField createTextField() {
+	protected JTextField createTextField() {
 		JTextField input = new JTextField();
-		input.setPreferredSize(new Dimension(200, 25));
-		input.setMaximumSize(new Dimension(200, 25));
+		input.setPreferredSize(new Dimension(250, 25));
+		input.setMaximumSize(new Dimension(250, 25));
 		return input;
 	}
 

@@ -1,10 +1,15 @@
 package views.Subject.Add;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import controllers.SubjectController;
 import views.Subject.BaseSubjectFormJPanel;
@@ -17,6 +22,19 @@ public class AddSubjectFormPanel extends BaseSubjectFormJPanel {
 
 	public AddSubjectFormPanel() {
 		super(new AddSubjectFormFocusListener(), new AddSubjectFormKeyListener());
+		
+		this.add(Box.createVerticalStrut(10));
+		
+		JPanel btnPanel = new JPanel();
+		FlowLayout layout = new FlowLayout(FlowLayout.CENTER);
+		layout.setHgap(50);
+		btnPanel.setLayout(layout);
+		this.submitBtn = new JButton("Potvrdi");
+		this.submitBtn.setEnabled(false);
+		this.cancelBtn = new JButton("Odustani");
+		btnPanel.add(submitBtn, BorderLayout.CENTER);
+		btnPanel.add(cancelBtn, BorderLayout.CENTER);
+		this.add(btnPanel);
 		
 		this.submitBtn.addActionListener(new ActionListener() {
 
