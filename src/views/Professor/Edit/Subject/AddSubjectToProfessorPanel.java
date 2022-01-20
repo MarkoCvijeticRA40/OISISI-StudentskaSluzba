@@ -3,6 +3,8 @@ package views.Professor.Edit.Subject;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -27,6 +29,14 @@ public class AddSubjectToProfessorPanel extends JPanel {
 		
 		JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		addBtn = new JButton("Dodaj predmet");
+		addBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ListSubjectsDialog.getInstance().init();
+			}
+			
+		});
 		btnPanel.add(addBtn);
 		
 		deleteBtn = new JButton("Ukloni predmet");

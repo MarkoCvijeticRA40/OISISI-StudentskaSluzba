@@ -1,10 +1,12 @@
-package views.Student.Edit.Exams.NotPassed;
+package views.Professor.Edit.Subject;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -12,32 +14,31 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 
-import controllers.StudentController;
+import controllers.ProfessorController;
 import models.Subject;
 import views.Student.Edit.EditStudentDialog;
 
-public class AddExamDialog extends JDialog {
+public class ListSubjectsDialog extends JDialog {
 
-	private static final long serialVersionUID = 3000656877878384922L;
-	private static AddExamDialog dialog;
+	private static final long serialVersionUID = 571989358345934587L;
+	private static ListSubjectsDialog dialog;
 	
 	@SuppressWarnings("rawtypes")
 	private JList list;
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private AddExamDialog() {
+	private ListSubjectsDialog() {
 		this.setTitle("Dodavanje predmet");
 		this.setResizable(false);
 		this.setModal(true);
 		
 		list = new JList();
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setCellRenderer(new DefaultListCellRenderer() {
 
 			private static final long serialVersionUID = -4600806215264076585L;
@@ -63,32 +64,34 @@ public class AddExamDialog extends JDialog {
 		JPanel container = new JPanel();
 		BoxLayout box = new BoxLayout(container, BoxLayout.Y_AXIS);
 		container.setLayout(box);
-		container.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+		container.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+		
+		JPanel labelPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		labelPanel.add(new JLabel("Predmeti:"));
+		container.add(labelPanel);
+		
+		container.add(Box.createVerticalStrut(5));
 		
 		JScrollPane scrollPane = new JScrollPane(list);
 		scrollPane.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 		container.add(scrollPane);
 		
-		JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
+		this.add(container, BorderLayout.CENTER);
 		
-		JButton addBtn = new JButton("Dodaj");
-		addBtn.addActionListener(new ActionListener() {
+		JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+		btnPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
+		JButton confirmBtn = new JButton("Potvrdi");
+		confirmBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int result = JOptionPane.showConfirmDialog(null,
-						"Da li ste sigurni da zelite da dodate predmet studentu?", 
-						"Dodavanje predmeta", 
-						JOptionPane.YES_NO_OPTION);
-				if (result == JOptionPane.YES_OPTION) {
-					Subject selectedSubject = (Subject) list.getSelectedValue();
-					StudentController.getInstance().addNotPassedExam(selectedSubject);
-					dialog.dispose();
-				}
+				List<Subject> selectedSubjects = list.getSelectedValuesList();
+				ProfessorController.getInstance().addSubjects(selectedSubjects);
+				dialog.dispose();
 			}
 			
 		});
-		btnPanel.add(addBtn);
+		btnPanel.add(confirmBtn);
 		
 		JButton cancelBtn = new JButton("Odustani");
 		cancelBtn.addActionListener(new ActionListener() {
@@ -101,31 +104,28 @@ public class AddExamDialog extends JDialog {
 		});
 		btnPanel.add(cancelBtn);
 		
-		container.add(Box.createVerticalStrut(10));
-		container.add(btnPanel);
-		
-		this.add(container);
+		this.add(btnPanel, BorderLayout.SOUTH);
 		
 		this.pack();
 		this.setLocationRelativeTo(EditStudentDialog.getInstance());
 	}
 	
-	public static AddExamDialog getInstance() {
+	public static ListSubjectsDialog getInstance() {
 		if (dialog == null)
-			dialog = new AddExamDialog();
+			dialog = new ListSubjectsDialog();
 		return dialog;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void init() {
-		Object[] availableSubjects = StudentController.getInstance().getAvailableNewExams().toArray();
-		if (availableSubjects.length != 0) {
-			this.list.setListData(availableSubjects);
+		Object[] availabelSubjects = ProfessorController.getInstance().getPossibleNewSubjects().toArray();
+		if (availabelSubjects.length > 0) {
+			this.list.setListData(availabelSubjects);
 			this.list.setSelectedIndex(0);
 			this.setVisible(true);
 		}
 		else {
-			JOptionPane.showMessageDialog(dialog, "Nema dostupnih predmeta za ovog studenta!");
+			JOptionPane.showMessageDialog(dialog, "Nema dostupnih predmeta u sistemu!");
 		}
 	}
 
