@@ -74,6 +74,12 @@ public class SubjectController {
 		JOptionPane.showMessageDialog(null, "Predmet uspesno obrisan!");
 	}
 	
+	public void deleteProfessor() {
+		Subject subject = this.getSelectedSubject();
+		subject.setProfessor(null);
+		EditSubjectDialog.getInstance().getEditForm().init();
+	}
+	
 	public Subject getSelectedSubject() {
 		int selectedRow = SubjectsJTable.getInstance().getSelectedRow();
 		if (this.subjectsDatabase.getRowCount() <= selectedRow)
