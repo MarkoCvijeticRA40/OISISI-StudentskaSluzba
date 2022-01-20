@@ -5,6 +5,7 @@ import javax.swing.JTabbedPane;
 
 import controllers.ProfessorController;
 import views.MainFrame;
+import views.Professor.Edit.Subject.AddSubjectToProfessorPanel;
 
 public class EditProfessorDialog extends JDialog {
 
@@ -23,6 +24,7 @@ public class EditProfessorDialog extends JDialog {
 		JTabbedPane tabbedPane = new JTabbedPane();
 		editForm = new EditProfessorFormPanel();
 		tabbedPane.addTab("Informacije", editForm);
+		tabbedPane.add("Predmeti", new AddSubjectToProfessorPanel());
 		this.add(tabbedPane);
 		
 		this.pack();

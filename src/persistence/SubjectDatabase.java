@@ -56,11 +56,11 @@ public class SubjectDatabase implements Serializable {
 			case 1:
 				return subject.getName();
 			case 2:
-				return String.valueOf(subject.getEspb());
-			case 3:
 				return String.valueOf(subject.getStudyYear());
-			case 4:
+			case 3:
 				return subject.getSemester().toString();
+			case 4:
+				return String.valueOf(subject.getEspb());
 			default:
 				return null;
 		}
@@ -91,7 +91,7 @@ public class SubjectDatabase implements Serializable {
 	}
 	
 	private Object readResolve() {
-		this.columnNames = new String[] {"Sifra", "Naziv", "ESPB", "Godina", "Semestar"};
+		this.columnNames = new String[] {"Sifra", "Naziv", "Godina", "Semestar", "ESPB"};
 		this.examGradeNames = new String[] {"Sifra predmeta", "Naziv predmeta", "ESPB", "Ocena", "Datum"};
 		return this;
 	}

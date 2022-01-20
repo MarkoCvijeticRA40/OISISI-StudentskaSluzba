@@ -1,4 +1,4 @@
-package views.Student.Edit.Exams.NotPassed;
+package views.Subject.Edit;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -17,21 +17,22 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import controllers.StudentController;
+import controllers.ProfessorController;
+import controllers.SubjectController;
+import models.Professor;
 import models.Subject;
-import views.Student.Edit.EditStudentDialog;
 
-public class AddExamDialog extends JDialog {
+public class AddProfessorDialog extends JDialog {
 
-	private static final long serialVersionUID = 3000656877878384922L;
-	private static AddExamDialog dialog;
+	private static final long serialVersionUID = -8210857508852111956L;
+	private static AddProfessorDialog dialog;
 	
 	@SuppressWarnings("rawtypes")
 	private JList list;
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private AddExamDialog() {
-		this.setTitle("Dodavanje predmet");
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	private AddProfessorDialog() {
+		this.setTitle("Odaberi profesora");
 		this.setResizable(false);
 		this.setModal(true);
 		
@@ -42,7 +43,7 @@ public class AddExamDialog extends JDialog {
 			
 			@Override
 			public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-			    String name = String.valueOf(((Subject) value).getId()) + " - " + ((Subject) value).getName();
+			    String name = ((Professor) value).getFirstName() + " " + ((Professor) value).getLastName();
 			    Component c =  super.getListCellRendererComponent(list, name, index, isSelected, cellHasFocus);
 			    if (isSelected) {
 					c.setBackground(Color.MAGENTA);
@@ -68,27 +69,28 @@ public class AddExamDialog extends JDialog {
 		container.add(scrollPane);
 		
 		JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
-		
 		JButton addBtn = new JButton("Dodaj");
+		btnPanel.add(addBtn);
+		
 		addBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int result = JOptionPane.showConfirmDialog(null,
-						"Da li ste sigurni da zelite da dodate predmet studentu?", 
-						"Dodavanje predmeta", 
+						"Da li ste sigurni da zelite da dodate profesora predmetu?", 
+						"Dodavanje profesora", 
 						JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
-					Subject selectedSubject = (Subject) list.getSelectedValue();
-					StudentController.getInstance().addNotPassedExam(selectedSubject);
-					dialog.dispose();
+					Professor selectedProfessor = (Professor) list.getSelectedValue(); 
+					SubjectController.getInstance().addProfessor(selectedProfessor);
 				}
 			}
 			
 		});
-		btnPanel.add(addBtn);
 		
 		JButton cancelBtn = new JButton("Odustani");
+		btnPanel.add(cancelBtn);
+		
 		cancelBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -97,7 +99,6 @@ public class AddExamDialog extends JDialog {
 			}
 			
 		});
-		btnPanel.add(cancelBtn);
 		
 		container.add(Box.createVerticalStrut(10));
 		container.add(btnPanel);
@@ -105,26 +106,26 @@ public class AddExamDialog extends JDialog {
 		this.add(container);
 		
 		this.pack();
-		this.setLocationRelativeTo(EditStudentDialog.getInstance());
+		this.setLocationRelativeTo(EditSubjectDialog.getInstance());
 	}
-	
-	public static AddExamDialog getInstance() {
+
+	public static AddProfessorDialog getInstance() {
 		if (dialog == null)
-			dialog = new AddExamDialog();
+			dialog = new AddProfessorDialog();
 		return dialog;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void init() {
-		Object[] availableSubjects = StudentController.getInstance().getAvailableNewExams().toArray();
-		if (availableSubjects.length != 0) {
-			this.list.setListData(availableSubjects);
+		Subject selectedSubject = SubjectController.getInstance().getSelectedSubject();
+		Object[] availableProfessors = ProfessorController.getInstance().getProfessorsBySubject(selectedSubject.getId()).toArray();
+		if (availableProfessors.length !=0) {
+			this.list.setListData(availableProfessors);
 			this.list.setSelectedIndex(0);
 			this.setVisible(true);
 		}
 		else {
-			JOptionPane.showMessageDialog(dialog, "Nema dostupnih predmeta za ovog studenta!");
+			JOptionPane.showMessageDialog(dialog, "Nema dostupnih profesora za ovoj predmet!");
 		}
 	}
-
 }

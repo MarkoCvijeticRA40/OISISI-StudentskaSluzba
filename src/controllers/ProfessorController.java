@@ -2,6 +2,7 @@ package controllers;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -22,16 +23,10 @@ public class ProfessorController {
 	private static ProfessorController controller;
 	
 	private ProfessorFormValidator formValidator;
-	private BaseProfessorFormJPanel addForm;
-	private BaseProfessorFormJPanel editForm;
-	private ProfessorsJTable professorTable;
 	private ProfessorDatabase professorsDatabase;
 	
 	private ProfessorController() {
 		this.formValidator = new ProfessorFormValidator();
-		this.addForm = AddProfessorDialog.getInstance().getAddForm();
-		this.editForm = EditProfessorDialog.getInstance().getEditForm();
-		this.professorTable = ProfessorsJTable.getInstance();
 		this.professorsDatabase = Database.getInstance().getProfessorDatabase();
 	}
 	
@@ -42,7 +37,7 @@ public class ProfessorController {
 	}
 	
 	public void add() {
-		Professor professor = createProfessor(this.addForm);
+		Professor professor = createProfessor(AddProfessorDialog.getInstance().getAddForm());
 		if (professor == null)
 			return;
 		this.professorsDatabase.addProfessor(professor);
@@ -52,7 +47,7 @@ public class ProfessorController {
 	}
 	
 	public void edit() {
-		Professor professor = createProfessor(this.editForm);
+		Professor professor = createProfessor(EditProfessorDialog.getInstance().getEditForm());
 		if (professor == null)
 			return;
 		Professor professorToEdit = this.getSelectedProfessor();
@@ -85,14 +80,28 @@ public class ProfessorController {
 			this.professorsDatabase.filter(params[0]);
 		else
 			this.professorsDatabase.resetFilter();
-		this.professorTable.updateView();
+		ProfessorsJTable.getInstance().updateView();
 	}
 	
 	public Professor getSelectedProfessor() {
-		int selectedRow = this.professorTable.getSelectedRow();
-		String email = (String) this.professorTable.getValueAt(selectedRow, 3);
+		int selectedRow = ProfessorsJTable.getInstance().getSelectedRow();
+		String email = (String) ProfessorsJTable.getInstance().getValueAt(selectedRow, 3);
 		Professor professor = this.professorsDatabase.getByEmail(email);
 		return professor;
+	}
+	
+	public List<Professor> getProfessorsBySubject(int subjectId) {
+		/*List<Professor> availableProfessor = new LinkedList<>();
+		for (Professor professor : this.professorsDatabase.getProfessors()) {
+			for (Subject subject : professor.getSubjects()) {
+				if (subject.getId() == subjectId) {
+					availableProfessor.add(professor);
+					break;
+				}
+			}
+		}
+		return availableProfessor;*/
+		return this.professorsDatabase.getProfessors();
 	}
 	
 	public void inputFieldCheck(JTextField input) {
