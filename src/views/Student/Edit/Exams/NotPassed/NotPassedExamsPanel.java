@@ -22,7 +22,7 @@ public class NotPassedExamsPanel extends JPanel {
 	private JButton addBtn;
 	private JButton deleteBtn;
 	private JButton passedBtn;
-	private ExamsJTable examsTable;
+	private NotPassedExamsJTable examsTable;
 	
 	public NotPassedExamsPanel() {
 		this.setLayout(new BorderLayout());
@@ -38,7 +38,7 @@ public class NotPassedExamsPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AddExamDialog.getInstance().init();
+				AddPassedExamDialog.getInstance().init();
 			}
 	
 		});
@@ -76,7 +76,7 @@ public class NotPassedExamsPanel extends JPanel {
 		
 		container.add(Box.createVerticalStrut(10));
 		
-		examsTable = ExamsJTable.getInstance();
+		examsTable = NotPassedExamsJTable.getInstance();
 		JScrollPane scrollPane = new JScrollPane(examsTable);
 		examsTable.updateView();
 		container.add(scrollPane);

@@ -21,7 +21,7 @@ import views.Student.BaseStudentFormJPanel;
 import views.Student.Add.AddStudentDialog;
 import views.Student.Edit.EditStudentDialog;
 import views.Student.Edit.Exams.NotPassed.AddPassedExamDialog;
-import views.Student.Edit.Exams.NotPassed.ExamsJTable;
+import views.Student.Edit.Exams.NotPassed.NotPassedExamsJTable;
 import views.Student.Representation.StudentsJTable;
 
 public class StudentController {
@@ -32,7 +32,7 @@ public class StudentController {
 	private BaseStudentFormJPanel addForm;
 	private BaseStudentFormJPanel editForm;
 	private StudentsJTable studentTable;
-	private ExamsJTable examTable;
+	private NotPassedExamsJTable examTable;
 	private StudentDatabase studentsDatabase;
 	
 	private StudentController() {
@@ -40,7 +40,7 @@ public class StudentController {
 		this.addForm = AddStudentDialog.getInstance().getAddForm();
 		this.editForm = EditStudentDialog.getInstance().getEditForm();
 		this.studentTable = StudentsJTable.getInstance();
-		this.examTable = ExamsJTable.getInstance();
+		this.examTable = NotPassedExamsJTable.getInstance();
 		this.studentsDatabase = Database.getInstance().getStudentDatabase();
 	}
 	
