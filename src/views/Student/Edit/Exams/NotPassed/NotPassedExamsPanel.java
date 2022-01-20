@@ -10,8 +10,11 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import controllers.StudentController;
 public class NotPassedExamsPanel extends JPanel {
 
 	private static final long serialVersionUID = 5644133560248498219L;
@@ -19,7 +22,7 @@ public class NotPassedExamsPanel extends JPanel {
 	private JButton addBtn;
 	private JButton deleteBtn;
 	private JButton passedBtn;
-	private ExamsJTable examsTable;
+	private NotPassedExamsJTable examsTable;
 	
 	public NotPassedExamsPanel() {
 		this.setLayout(new BorderLayout());
@@ -35,13 +38,30 @@ public class NotPassedExamsPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AddExamDialog.getInstance().init();
+				AddNotPassedExamDialog.getInstance().init();
 			}
 	
 		});
 		btnPanel.add(addBtn);
 		
 		deleteBtn = new JButton("Obrisi");
+		deleteBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String examId = (String) examsTable.getValueAt(examsTable.getSelectedRow(), 0);
+				if (examId.isEmpty())
+					return;
+				int result = JOptionPane.showConfirmDialog(null,
+						"Da li ste sigurni da zelite da obrisete predmet", 
+						"Brisanje predmeta", 
+						JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					StudentController.getInstance().deleteNotPassExam(Integer.valueOf(examId));
+				}
+			}
+			
+		});
 		btnPanel.add(deleteBtn);
 		
 		passedBtn = new JButton("Polaganje");
@@ -49,6 +69,9 @@ public class NotPassedExamsPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String examId = (String) examsTable.getValueAt(examsTable.getSelectedRow(), 0);
+				if (examId.isEmpty())
+					return;
 				AddPassedExamDialog.getInstance().init();
 			}
 			
@@ -58,8 +81,9 @@ public class NotPassedExamsPanel extends JPanel {
 		
 		container.add(Box.createVerticalStrut(10));
 		
-		examsTable = ExamsJTable.getInstance();
+		examsTable = NotPassedExamsJTable.getInstance();
 		JScrollPane scrollPane = new JScrollPane(examsTable);
+		scrollPane.setBorder(BorderFactory.createEmptyBorder());
 		examsTable.updateView();
 		container.add(scrollPane);
 		

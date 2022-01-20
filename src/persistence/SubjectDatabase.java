@@ -11,6 +11,7 @@ public class SubjectDatabase implements Serializable {
 	
 	private List<Subject> subjects;
 	private transient String[] columnNames;
+	private transient String[] examGradeNames;
 	
 	public void printData() {
 		for (Subject s : subjects)
@@ -27,6 +28,14 @@ public class SubjectDatabase implements Serializable {
 	
 	public List<Subject> getSubjects() {
 		return this.subjects;
+	}
+	
+	public Subject getSubjctById(int id) {
+		for (Subject s : this.subjects) {
+			if (s.getId() == id)
+				return s;
+		}
+		return null;
 	}
 	
 	public String getValueAt(int rowIndex, int columnIndex) {
@@ -65,8 +74,17 @@ public class SubjectDatabase implements Serializable {
 		return columnNames[columnIndex];
 	}
 	
+	public int getExamGradeColumnCount() {
+		return this.examGradeNames.length;
+	}
+	
+	public String getExamGradeColumnName(int columnIndex) {
+		return examGradeNames[columnIndex];
+	}
+	
 	private Object readResolve() {
 		this.columnNames = new String[] {"Sifra", "Naziv", "ESPB", "Godina", "Semestar"};
+		this.examGradeNames = new String[] {"Sifra predmeta", "Naziv predmeta", "ESPB", "Ocena", "Datum"};
 		return this;
 	}
 }
