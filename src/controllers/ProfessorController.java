@@ -2,6 +2,7 @@ package controllers;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -11,11 +12,13 @@ import controllers.validators.ProfessorFormValidator;
 import controllers.validators.ValidationPatterns;
 import models.Address;
 import models.Professor;
+import models.Subject;
 import persistence.Database;
 import persistence.ProfessorDatabase;
 import views.Professor.BaseProfessorFormJPanel;
 import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
+import views.Professor.Edit.Subject.ProfessorSubjectsJTable;
 import views.Professor.Representation.ProfessorsJTable;
 
 public class ProfessorController {
@@ -44,6 +47,12 @@ public class ProfessorController {
 		ProfessorsJTable.getInstance().updateView();
 		JOptionPane.showMessageDialog(null, "Profesor uspesno dodat!");
 		AddProfessorDialog.getInstance().dispose();
+	}
+	
+	public void addSubjects(List<Subject> subjects) {
+		Professor professor = this.getSelectedProfessor();
+		professor.getSubjects().addAll(subjects);
+		ProfessorSubjectsJTable.getInstance().updateView();
 	}
 	
 	public void edit() {
@@ -91,7 +100,7 @@ public class ProfessorController {
 	}
 	
 	public List<Professor> getProfessorsBySubject(int subjectId) {
-		/*List<Professor> availableProfessor = new LinkedList<>();
+		List<Professor> availableProfessor = new LinkedList<>();
 		for (Professor professor : this.professorsDatabase.getProfessors()) {
 			for (Subject subject : professor.getSubjects()) {
 				if (subject.getId() == subjectId) {
@@ -100,8 +109,19 @@ public class ProfessorController {
 				}
 			}
 		}
-		return availableProfessor;*/
-		return this.professorsDatabase.getProfessors();
+		return availableProfessor;
+	}
+	
+	public List<Subject> getPossibleNewSubjects() {
+		Professor professor = this.getSelectedProfessor();
+		if (professor.getSubjects().size() == 0)
+			return SubjectController.getInstance().getAllSubjects();
+		List<Subject> availableSubjects = new LinkedList<>();
+		for (Subject subject : SubjectController.getInstance().getAllSubjects()) {
+			if (!professor.getSubjects().contains(subject))
+				availableSubjects.add(subject);
+		}
+		return availableSubjects;
 	}
 	
 	public void inputFieldCheck(JTextField input) {
