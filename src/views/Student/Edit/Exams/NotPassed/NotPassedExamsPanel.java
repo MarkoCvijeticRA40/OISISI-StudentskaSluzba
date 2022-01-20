@@ -38,7 +38,7 @@ public class NotPassedExamsPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AddPassedExamDialog.getInstance().init();
+				AddNotPassedExamDialog.getInstance().init();
 			}
 	
 		});
@@ -49,12 +49,14 @@ public class NotPassedExamsPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String examId = (String) examsTable.getValueAt(examsTable.getSelectedRow(), 0);
+				if (examId.isEmpty())
+					return;
 				int result = JOptionPane.showConfirmDialog(null,
 						"Da li ste sigurni da zelite da obrisete predmet", 
 						"Brisanje predmeta", 
 						JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
-					String examId = (String) examsTable.getValueAt(examsTable.getSelectedRow(), 0);
 					StudentController.getInstance().deleteNotPassExam(Integer.valueOf(examId));
 				}
 			}
@@ -67,6 +69,9 @@ public class NotPassedExamsPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String examId = (String) examsTable.getValueAt(examsTable.getSelectedRow(), 0);
+				if (examId.isEmpty())
+					return;
 				AddPassedExamDialog.getInstance().init();
 			}
 			
@@ -78,6 +83,7 @@ public class NotPassedExamsPanel extends JPanel {
 		
 		examsTable = NotPassedExamsJTable.getInstance();
 		JScrollPane scrollPane = new JScrollPane(examsTable);
+		scrollPane.setBorder(BorderFactory.createEmptyBorder());
 		examsTable.updateView();
 		container.add(scrollPane);
 		

@@ -5,6 +5,7 @@ import javax.swing.JTabbedPane;
 import controllers.StudentController;
 import views.MainFrame;
 import views.Student.Edit.Exams.NotPassed.NotPassedExamsPanel;
+import views.Student.Edit.Exams.Passed.PassedExamsPanel;
 
 public class EditStudentDialog extends JDialog {
 
@@ -13,6 +14,7 @@ public class EditStudentDialog extends JDialog {
 	
 	private final String dialogTitle = "Izmena studenta";
 	private EditStudentFormPanel editForm;
+	private PassedExamsPanel passedExamsPanel;
 	
 	private EditStudentDialog() {
 		super();
@@ -23,6 +25,8 @@ public class EditStudentDialog extends JDialog {
 		JTabbedPane tabbedPane = new JTabbedPane();
 		editForm = new EditStudentFormPanel();
 		tabbedPane.addTab("Informacije", editForm);
+		passedExamsPanel = new PassedExamsPanel();
+		tabbedPane.addTab("Polozeni", passedExamsPanel);
 		tabbedPane.addTab("Nepolozeni", new NotPassedExamsPanel());
 		this.add(tabbedPane);
 		
@@ -38,11 +42,17 @@ public class EditStudentDialog extends JDialog {
 	
 	public void init() {
 		StudentController.getInstance().formValidatorSet(true);
-		if (editForm.init())
+		if (editForm.init()) {
+			this.passedExamsPanel.updateView();
 			this.setVisible(true);
+		}
 	}
 	
 	public EditStudentFormPanel getEditForm() {
 		return this.editForm;
+	}
+	
+	public PassedExamsPanel getPassedExamesPanel() {
+		return this.passedExamsPanel;
 	}
 }

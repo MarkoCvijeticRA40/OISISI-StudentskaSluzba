@@ -29,18 +29,11 @@ public class StudentController {
 	private static StudentController controller;
 	
 	private StudentFormValidator formValidator;
-	private BaseStudentFormJPanel addForm;
-	private BaseStudentFormJPanel editForm;
-	private StudentsJTable studentTable;
-	private NotPassedExamsJTable examTable;
 	private StudentDatabase studentsDatabase;
 	
 	private StudentController() {
+		System.out.println("asdasd");
 		this.formValidator = new StudentFormValidator();
-		this.addForm = AddStudentDialog.getInstance().getAddForm();
-		this.editForm = EditStudentDialog.getInstance().getEditForm();
-		this.studentTable = StudentsJTable.getInstance();
-		this.examTable = NotPassedExamsJTable.getInstance();
 		this.studentsDatabase = Database.getInstance().getStudentDatabase();
 	}
 	
@@ -51,11 +44,11 @@ public class StudentController {
 	}
 	
 	public void add() {
-		Student student = createStudent(this.addForm);
+		Student student = createStudent(AddStudentDialog.getInstance().getAddForm());
 		if (student == null)
 			return;
 		this.studentsDatabase.addStudent(student);
-		this.studentTable.updateView();
+		StudentsJTable.getInstance().updateView();
 		JOptionPane.showMessageDialog(null, "Student uspesno dodat!");
 		AddStudentDialog.getInstance().dispose();
 	}
@@ -63,27 +56,27 @@ public class StudentController {
 	public void addNotPassedExam(Subject subject) {
 		Student student = this.getSelectedStudent();
 		student.getNotPassedExams().add(subject);
-		this.examTable.updateView();
+		NotPassedExamsJTable.getInstance().updateView();
 	}
 	
 	public void edit() {
-		Student student = createStudent(this.editForm);
+		Student student = createStudent(EditStudentDialog.getInstance().getEditForm());
 		if (student == null)
 			return;
-		int selectedRow = studentTable.getSelectedRow();
+		int selectedRow = StudentsJTable.getInstance().getSelectedRow();
 		this.studentsDatabase.editStudent(selectedRow,student);
-		this.studentTable.updateView();
+		StudentsJTable.getInstance().updateView();
 		JOptionPane.showMessageDialog(null, "Student uspesno izmenjen!");
 		EditStudentDialog.getInstance().dispose();
 	}
 	
 	public void delete() {
-		int selectedRow = studentTable.getSelectedRow();
+		int selectedRow = StudentsJTable.getInstance().getSelectedRow();
 		Student student = this.getSelectedStudent();
 		if (student  == null)
 			return;
 		this.studentsDatabase.deleteStudent(selectedRow);
-		this.studentTable.updateView();
+		StudentsJTable.getInstance().updateView();
 		JOptionPane.showMessageDialog(null, "Student uspesno obrisan!");
 	}
 	
@@ -91,19 +84,19 @@ public class StudentController {
 		Subject exam = Database.getInstance().getSubjectDatabase().getSubjctById(id);
 		Student student = this.getSelectedStudent();
 		student.getNotPassedExams().remove(exam);
-		this.examTable.updateView();
+		NotPassedExamsJTable.getInstance().updateView();
 	}
 	
 	public Student getSelectedStudent() {
-		int selectedRow = studentTable.getSelectedRow();
-		String indexNumber = (String) this.studentTable.getValueAt(selectedRow, 0);
+		int selectedRow = StudentsJTable.getInstance().getSelectedRow();
+		String indexNumber = (String) StudentsJTable.getInstance().getValueAt(selectedRow, 0);
 		Student student = this.studentsDatabase.getByIndexNumber(indexNumber);
 		return student;
 	}
 	
 	public Subject getSelectedNotPassedExam() {
-		int selectedStudent = this.studentTable.getSelectedRow();
-		int selectedNotPassedExam = this.examTable.getSelectedRow();
+		int selectedStudent = StudentsJTable.getInstance().getSelectedRow();
+		int selectedNotPassedExam = NotPassedExamsJTable.getInstance().getSelectedRow();
 		return this.studentsDatabase.getNotPassedExamRow(selectedStudent, selectedNotPassedExam);
 	}
 	
@@ -143,7 +136,7 @@ public class StudentController {
 				grade,
 				date);
 		student.getPassedExams().add(examGrade);
-		examTable.updateView();
+		NotPassedExamsJTable.getInstance().updateView();
 	}
 	
 	private Student createStudent(BaseStudentFormJPanel form) {

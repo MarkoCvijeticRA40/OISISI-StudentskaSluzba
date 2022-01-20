@@ -3,6 +3,8 @@ package persistence;
 import java.io.Serializable;
 import java.util.List;
 
+import controllers.validators.ValidationPatterns;
+import models.ExamGrade;
 import models.Student;
 import models.Subject;
 
@@ -87,8 +89,7 @@ public class StudentDatabase implements Serializable {
 		return null;
 	}
 	
-	public String getValueAtNotPassedExams(int rowIndexStudent, int rowIndex, int columnIndex) {
-		Student student = students.get(rowIndexStudent);
+	public String getValueAtNotPassedExams(Student student, int rowIndex, int columnIndex) {
 		if (rowIndex >= student.getNotPassedExams().size())
 			return "";
 		Subject subject = student.getNotPassedExams().get(rowIndex);
@@ -103,6 +104,26 @@ public class StudentDatabase implements Serializable {
 			return String.valueOf(subject.getStudyYear());
 		case 4:
 			return subject.getSemester();
+		default:
+			return null;
+		}
+	}
+	
+	public String getValueAtPassedExams(Student student, int rowIndex, int columnIndex) {
+		if (rowIndex >= student.getPassedExams().size())
+			return "";
+		ExamGrade examGrade = student.getPassedExams().get(rowIndex);
+		switch (columnIndex) {
+		case 0:
+			return String.valueOf(examGrade.getSubject().getId());
+		case 1:
+			return examGrade.getSubject().getName();
+		case 2:
+			return String.valueOf(examGrade.getSubject().getEspb());
+		case 3:
+			return String.valueOf(examGrade.getMark());
+		case 4:
+			return ValidationPatterns.dateFormat.format(examGrade.getExamDate());
 		default:
 			return null;
 		}

@@ -128,6 +128,7 @@ public class AddPassedExamDialog extends JDialog {
 						JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					StudentController.getInstance().addPassedExam();
+					EditStudentDialog.getInstance().getPassedExamesPanel().updateView();
 					dialog.dispose();
 				}
 			}
