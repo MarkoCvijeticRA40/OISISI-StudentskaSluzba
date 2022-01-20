@@ -87,6 +87,20 @@ public class StudentController {
 		NotPassedExamsJTable.getInstance().updateView();
 	}
 	
+	public void deletePassedExam(int id) {
+		Subject exam = Database.getInstance().getSubjectDatabase().getSubjctById(id);
+		Student student = this.getSelectedStudent();
+		for (ExamGrade examGrade : student.getPassedExams()) {
+			if (examGrade.getSubject() == exam) {
+				student.getPassedExams().remove(examGrade);
+				break;
+			}
+		}
+		student.getNotPassedExams().add(exam);
+		EditStudentDialog.getInstance().getPassedExamesPanel().updateView();
+		NotPassedExamsJTable.getInstance().updateView();
+	}
+	
 	public Student getSelectedStudent() {
 		int selectedRow = StudentsJTable.getInstance().getSelectedRow();
 		String indexNumber = (String) StudentsJTable.getInstance().getValueAt(selectedRow, 0);
