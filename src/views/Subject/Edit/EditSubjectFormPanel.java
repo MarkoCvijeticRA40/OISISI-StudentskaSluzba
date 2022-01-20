@@ -1,10 +1,19 @@
 package views.Subject.Edit;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import controllers.SubjectController;
 import models.Subject;
@@ -17,9 +26,47 @@ public class EditSubjectFormPanel extends BaseSubjectFormJPanel {
 	private static final long serialVersionUID = 6001948153229635000L;
 	
 	private int currentId;
+	private JTextField professorTxt;
+	private JButton addBtn;
+	private JButton deleteBtn;
 
 	public EditSubjectFormPanel() {
 		super(new EditSubjectFormFocusListener(), new EditSubjectFormKeyListener());
+		
+		this.add(Box.createVerticalStrut(10));
+		
+		JPanel professorPanel = new JPanel();
+		professorPanel.setLayout(new BoxLayout(professorPanel, BoxLayout.X_AXIS));
+		professorPanel.add(new JLabel("Profesor*"));
+		this.professorTxt = new JTextField();
+		this.professorTxt.setEditable(false);
+		professorPanel.add(Box.createHorizontalGlue());
+		professorPanel.add(this.professorTxt);
+		this.addBtn = new JButton("+");
+
+		this.professorTxt.setPreferredSize(new Dimension(255 - 2*5 - 2*this.addBtn.getMaximumSize().width, 25));
+		this.professorTxt.setMaximumSize(new Dimension(255 - 2*5 - 2*this.addBtn.getMaximumSize().width, 25));
+		
+		professorPanel.add(Box.createHorizontalStrut(5));
+		professorPanel.add(addBtn);
+		this.deleteBtn = new JButton("-");
+		professorPanel.add(Box.createHorizontalStrut(5));
+		professorPanel.add(deleteBtn);
+		this.add(professorPanel);
+		
+		this.add(Box.createVerticalStrut(10));
+		
+		JPanel btnPanel = new JPanel();
+		FlowLayout layout = new FlowLayout(FlowLayout.CENTER);
+		layout.setHgap(50);
+		btnPanel.setLayout(layout);
+		submitBtn = new JButton("Potvrdi");
+		submitBtn.setEnabled(false);
+		
+		cancelBtn = new JButton("Odustani");
+		btnPanel.add(submitBtn, BorderLayout.CENTER);
+		btnPanel.add(cancelBtn, BorderLayout.CENTER);
+		this.add(btnPanel);
 		
 		this.submitBtn.addActionListener(new ActionListener() {
 
@@ -38,6 +85,15 @@ public class EditSubjectFormPanel extends BaseSubjectFormJPanel {
 			}
 			
 		});
+		
+		this.addBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AddProfessorDialog.getInstance().init();
+			}
+			
+		});
 	}
 	
 	public boolean init() {
@@ -48,6 +104,14 @@ public class EditSubjectFormPanel extends BaseSubjectFormJPanel {
 		this.setTextFields(subject);
 		this.idTxt.requestFocus();
 		this.submitBtn.setEnabled(true);
+		if (subject.getProfessor() != null) {
+			this.professorTxt.setText(subject.getProfessor().getFirstName() + " " + subject.getProfessor().getLastName());
+			this.addBtn.setEnabled(false);
+		}
+		else {
+			this.addBtn.setEnabled(true);
+			this.professorTxt.setText("");
+		}
 		return true;
 	}
 	
@@ -62,6 +126,14 @@ public class EditSubjectFormPanel extends BaseSubjectFormJPanel {
 	
 	public int getCurrentId() {
 		return this.currentId;
+	}
+	
+	public JButton getAddBtn() {
+		return this.addBtn;
+	}
+	
+	public JButton getDeleteBtn() {
+		return this.deleteBtn;
 	}
 
 }

@@ -2,6 +2,7 @@ package controllers;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -93,6 +94,20 @@ public class ProfessorController {
 		String email = (String) this.professorTable.getValueAt(selectedRow, 3);
 		Professor professor = this.professorsDatabase.getByEmail(email);
 		return professor;
+	}
+	
+	public List<Professor> getProfessorsBySubject(int subjectId) {
+		/*List<Professor> availableProfessor = new LinkedList<>();
+		for (Professor professor : this.professorsDatabase.getProfessors()) {
+			for (Subject subject : professor.getSubjects()) {
+				if (subject.getId() == subjectId) {
+					availableProfessor.add(professor);
+					break;
+				}
+			}
+		}
+		return availableProfessor;*/
+		return this.professorsDatabase.getProfessors();
 	}
 	
 	public void inputFieldCheck(JTextField input) {
