@@ -12,6 +12,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -94,6 +95,21 @@ public class EditSubjectFormPanel extends BaseSubjectFormJPanel {
 			}
 			
 		});
+		
+		this.deleteBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int result = JOptionPane.showConfirmDialog(null,
+						"Da li ste sigurni?", 
+						"Ukloni profesora", 
+						JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					SubjectController.getInstance().deleteProfessor();
+				}
+			}
+			
+		});
 	}
 	
 	public boolean init() {
@@ -107,9 +123,11 @@ public class EditSubjectFormPanel extends BaseSubjectFormJPanel {
 		if (subject.getProfessor() != null) {
 			this.professorTxt.setText(subject.getProfessor().getFirstName() + " " + subject.getProfessor().getLastName());
 			this.addBtn.setEnabled(false);
+			this.deleteBtn.setEnabled(true);
 		}
 		else {
 			this.addBtn.setEnabled(true);
+			this.deleteBtn.setEnabled(false);
 			this.professorTxt.setText("");
 		}
 		return true;
