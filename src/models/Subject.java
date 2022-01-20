@@ -18,14 +18,13 @@ public class Subject implements Serializable {
 	private List<Student> passedStudents;
 	private List<Student> notPassedStudents;
 	
-	public Subject(int id, String name, Semester semester, int studyYear, int espb, Professor professor) {
+	public Subject(int id, String name, Semester semester, int studyYear, int espb) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.semester = semester;
 		this.studyYear = studyYear;
 		this.espb = espb;
-		this.professor = professor;
 		this.passedStudents = new LinkedList<>();
 		this.notPassedStudents = new LinkedList<>();
 	}
@@ -46,8 +45,8 @@ public class Subject implements Serializable {
 		this.name = name;
 	}
 	
-	public String getSemester() {
-		return semester.toString();
+	public Semester getSemester() {
+		return semester;
 	}
 	
 	public void setSemester(Semester semester) {

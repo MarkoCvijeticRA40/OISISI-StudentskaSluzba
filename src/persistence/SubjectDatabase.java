@@ -22,6 +22,14 @@ public class SubjectDatabase implements Serializable {
 		this.subjects.add(subject);
 	}
 	
+	public void editSubject(Subject subject, Subject subjectToEdit) {
+		subjectToEdit.setId(subject.getId());
+		subjectToEdit.setName(subject.getName());
+		subjectToEdit.setStudyYear(subject.getStudyYear());
+		subjectToEdit.setEspb(subject.getEspb());
+		subjectToEdit.setSemester(subject.getSemester());
+	}
+	
 	public void deleteSubject(int rowIndex) {
 		this.subjects.remove(rowIndex);
 	}
@@ -52,7 +60,7 @@ public class SubjectDatabase implements Serializable {
 			case 3:
 				return String.valueOf(subject.getStudyYear());
 			case 4:
-				return subject.getSemester();
+				return subject.getSemester().toString();
 			default:
 				return null;
 		}

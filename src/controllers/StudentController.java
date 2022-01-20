@@ -32,7 +32,6 @@ public class StudentController {
 	private StudentDatabase studentsDatabase;
 	
 	private StudentController() {
-		System.out.println("asdasd");
 		this.formValidator = new StudentFormValidator();
 		this.studentsDatabase = Database.getInstance().getStudentDatabase();
 	}

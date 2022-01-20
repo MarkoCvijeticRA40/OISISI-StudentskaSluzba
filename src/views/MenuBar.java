@@ -19,6 +19,8 @@ import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
 import views.Student.Add.AddStudentDialog;
 import views.Student.Edit.EditStudentDialog;
+import views.Subject.Add.AddSubjectDialog;
+import views.Subject.Edit.EditSubjectDialog;
 
 @SuppressWarnings("serial")
 public class MenuBar extends JMenuBar {
@@ -171,9 +173,11 @@ public class MenuBar extends JMenuBar {
 				break;
 			case 2:
 				switch(window) {
-				case "add": 
+				case "add":
+					AddSubjectDialog.getInstance().init();
 					break;
 				case "edit": 
+					EditSubjectDialog.getInstance().init();
 					break;
 				case "delete":
 					int result = JOptionPane.showConfirmDialog(null,

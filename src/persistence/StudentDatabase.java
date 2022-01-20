@@ -103,7 +103,7 @@ public class StudentDatabase implements Serializable {
 		case 3:
 			return String.valueOf(subject.getStudyYear());
 		case 4:
-			return subject.getSemester();
+			return subject.getSemester().toString();
 		default:
 			return null;
 		}
