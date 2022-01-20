@@ -4,12 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -35,8 +38,25 @@ public class PassedExamsPanel extends JPanel {
 		
 		JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		JButton addBtn = new JButton("Ponisti ocenu");
-		btnPanel.add(addBtn);
+		JButton removeBtn = new JButton("Ponisti ocenu");
+		removeBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String examId = (String) examsTable.getValueAt(examsTable.getSelectedRow(), 0);
+				if (examId.isEmpty())
+					return;
+				int result = JOptionPane.showConfirmDialog(null,
+						"Da li ste sigurni da zelite da ponistite ocenu?", 
+						"Ponistavanje ocene", 
+						JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					StudentController.getInstance().deletePassedExam(Integer.valueOf(examId));
+				}
+			}
+			
+		});
+		btnPanel.add(removeBtn);
 		container.add(btnPanel);
 		
 		container.add(Box.createVerticalStrut(10));
