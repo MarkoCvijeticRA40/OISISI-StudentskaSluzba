@@ -27,6 +27,8 @@ import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
 import views.Student.Add.AddStudentDialog;
 import views.Student.Edit.EditStudentDialog;
+import views.Subject.Add.AddSubjectDialog;
+import views.Subject.Edit.EditSubjectDialog;
 
 public class ToolBar extends JToolBar {
 	
@@ -140,9 +142,11 @@ public class ToolBar extends JToolBar {
 					break;
 				case 2:
 					switch(btnName) {
-					case "add": 
+					case "add":
+						AddSubjectDialog.getInstance().init();
 						break;
 					case "edit": 
+						EditSubjectDialog.getInstance().init();
 						break;
 					case "delete":
 						int result = JOptionPane.showConfirmDialog(null,
