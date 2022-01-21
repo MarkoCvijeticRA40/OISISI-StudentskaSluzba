@@ -14,8 +14,7 @@ public class AbstractTableModelSubject extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		int rowCount = Database.getInstance().getSubjectDatabase().getRowCount();
-		return (rowCount < 40)? 40 : rowCount;
+		return Database.getInstance().getSubjectDatabase().getRowCount();
 	}
 
 	@Override
