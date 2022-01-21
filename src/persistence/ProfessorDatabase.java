@@ -15,6 +15,10 @@ public class ProfessorDatabase implements Serializable {
 	private transient int numOfFiltered;
 	private transient String[] columnNames;
 	
+	public void set(List<Professor> professors) {
+		this.professors = professors;
+	}
+	
 	public void addProfessor(Professor professor) {
 		this.professors.add(professor);
 		this.filteredDataMap.add(true);
@@ -45,10 +49,10 @@ public class ProfessorDatabase implements Serializable {
 	}
 	
 	public String getValueAt(int rowIndex, int columnIndex) {
-		if ((this.numOfFiltered == -1 && rowIndex >= this.professors.size())
+		/*if ((this.numOfFiltered == -1 && rowIndex >= this.professors.size())
 				|| this.numOfFiltered == 0
 				|| (this.numOfFiltered > 0 && rowIndex >= this.numOfFiltered))
-			return "";
+			return "";*/
 		Professor professor = this.getRow(rowIndex);
 		switch (columnIndex) {
 			case 0: 
@@ -56,7 +60,7 @@ public class ProfessorDatabase implements Serializable {
 			case 1:
 				return professor.getLastName();
 			case 2:
-				return professor.getTitle();
+				return professor.getTitle().toString();
 			case 3:
 				return professor.getEmail();
 			default:
@@ -108,7 +112,7 @@ public class ProfessorDatabase implements Serializable {
 		int i = 0;
 		this.numOfFiltered = 0;
 		for (Professor professor : this.professors) {
-			if (professor.getLastName().toLowerCase().contains(lastName)) {
+			if (professor.getLastName().toLowerCase().contains(lastName.toLowerCase())) {
 				this.filteredDataMap.set(i, true);
 				this.numOfFiltered++;
 			}
@@ -129,7 +133,6 @@ public class ProfessorDatabase implements Serializable {
 			}
 			else
 				this.filteredDataMap.set(i, false);
-			System.out.println(this.filteredDataMap.get(i));
 			i++;
 		}
 	}
@@ -138,7 +141,7 @@ public class ProfessorDatabase implements Serializable {
 		int i = 0;
 		this.numOfFiltered = 0;
 		for (Professor professor : this.professors) {
-			if (professor.getEmail().toLowerCase().contains(email)
+			if (professor.getEmail().toLowerCase().contains(email.toLowerCase())
 					&& professor.getLastName().toLowerCase().contains(lastName.toLowerCase())
 					&& professor.getFirstName().toLowerCase().contains(firstName.toLowerCase())) {
 				this.filteredDataMap.set(i, true);

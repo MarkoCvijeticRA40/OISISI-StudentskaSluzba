@@ -51,5 +51,5 @@ public class ExamGrade implements Serializable {
 
 	public void setExamDate(Date examDate) {
 		this.examDate = examDate;
-	}	
+	}
 }

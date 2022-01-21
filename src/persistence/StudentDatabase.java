@@ -1,6 +1,7 @@
 package persistence;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import controllers.validators.ValidationPatterns;
@@ -13,10 +14,17 @@ public class StudentDatabase implements Serializable {
 	private static final long serialVersionUID = 393667417381023594L;
 	
 	private List<Student> students;
+	private transient List<Boolean> filteredDataMap;
+	private transient int numOfFiltered;
 	private transient String[] columnNames;
+	
+	public void set(List<Student> students) {
+		this.students = students;
+	}
 	
 	public void addStudent(Student student) {
 		this.students.add(student);
+		this.filteredDataMap.add(true);
 	}
 	
 	public void editStudent(int row, Student student) {
@@ -31,17 +39,70 @@ public class StudentDatabase implements Serializable {
 		studentToEdit.setCurrentStudiesYear(student.getCurrentStudiesYear());
 		studentToEdit.setFinancingStatus(student.getFinancingStatus());
 	}
-	public void deleteStudent(int row) {
-		this.students.remove(row);
+	
+	public void deleteStudent(Student student) {
+		this.filteredDataMap.remove(this.students.indexOf(student));
+		this.students.remove(student);
+		if (this.numOfFiltered > 0)
+			this.numOfFiltered--;
+	}
+	
+	public void filter(String lName) {
+		int i = 0;
+		this.numOfFiltered = 0;
+		for (Student student : this.students) {
+			if (student.getLastName().toLowerCase().contains(lName.toLowerCase())) {
+				this.filteredDataMap.set(i, true);
+				this.numOfFiltered++;
+			}
+			else
+				this.filteredDataMap.set(i, false);
+			i++;
+		}
+	}
+	
+	public void filter(String lName, String fName) {
+		int i = 0;
+		this.numOfFiltered = 0;
+		for (Student student : this.students) {
+			if (student.getLastName().toLowerCase().contains(lName.toLowerCase()) 
+					&& student.getFirstName().toLowerCase().contains(fName.toLowerCase())) {
+				System.out.println(i);
+				this.filteredDataMap.set(i, true);
+				this.numOfFiltered++;
+			}
+			else
+				this.filteredDataMap.set(i, false);
+			i++;
+		}
+	}
+
+	public void filter(String index, String lName, String fName) {
+		int i = 0;
+		this.numOfFiltered = 0;
+		for (Student student : this.students) {
+			if (student.getLastName().toLowerCase().contains(lName.toLowerCase()) 
+					&& student.getFirstName().toLowerCase().contains(fName.toLowerCase())
+					&& student.getIndexNumber().toLowerCase().contains(index.toLowerCase())) {
+				this.filteredDataMap.set(i, true);
+				this.numOfFiltered++;
+			}
+			else
+				this.filteredDataMap.set(i, false);
+			i++;
+		}
 	}
 	
 	public List<Student> getStudents() {
 		return students;
 	}
+	
 	public String getValueAt(int rowIndex, int columnIndex) {
-		if (rowIndex >= students.size())
+		if ((this.numOfFiltered == -1 && rowIndex >= this.students.size())
+				|| this.numOfFiltered == 0
+				|| (this.numOfFiltered > 0 && rowIndex >= this.numOfFiltered))
 			return "";
-		Student student = students.get(rowIndex);
+		Student student = this.getRow(rowIndex);
 		switch (columnIndex) {
 			case 0: 
 				return student.getIndexNumber();
@@ -61,11 +122,27 @@ public class StudentDatabase implements Serializable {
 	}
 	
 	public Student getRow(int rowIndex) {
-		return this.students.get(rowIndex);
+		if (this.numOfFiltered == -1)
+			return this.students.get(rowIndex);
+		int i;
+		int filterCounter = 0;
+		for (i = 0; i < this.filteredDataMap.size(); i++) {
+			if (this.filteredDataMap.get(i) == true) {
+				filterCounter++;
+				if (filterCounter == rowIndex + 1)
+					break;
+			}
+		}
+		return students.get(i);
 	}
 	
 	public int getRowCount() {
-		return students.size();
+		if (this.numOfFiltered == -1)
+			return this.students.size();
+		else if (this.numOfFiltered == 0)
+			return 0;
+		else
+			return this.numOfFiltered;
 	}
 	
 	public int getColumnCount() {
@@ -129,8 +206,20 @@ public class StudentDatabase implements Serializable {
 		}
 	}
 	
+	public void resetFilter() {
+		int i;
+		for (i = 0; i < this.filteredDataMap.size(); i++)
+			this.filteredDataMap.set(i, true);
+		this.numOfFiltered = -1;
+	}
+	
+	@SuppressWarnings("unused")
 	private Object readResolve() {
 		this.columnNames = new String[] {"Index", "Ime", "Prezime", "Godina studija", "Status", "Prosek"};
+		this.filteredDataMap = new ArrayList<>();
+		for (Student s : this.students)
+			this.filteredDataMap.add(true);
+		this.numOfFiltered = -1;
 		return this;
 	}
 }

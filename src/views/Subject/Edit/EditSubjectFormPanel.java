@@ -26,7 +26,7 @@ public class EditSubjectFormPanel extends BaseSubjectFormJPanel {
 	
 	private static final long serialVersionUID = 6001948153229635000L;
 	
-	private int currentId;
+	private String currentId;
 	private JTextField professorTxt;
 	private JButton addBtn;
 	private JButton deleteBtn;
@@ -142,7 +142,7 @@ public class EditSubjectFormPanel extends BaseSubjectFormJPanel {
 		this.studyYearCmb.setSelectedItem(subject.getStudyYear());
 	}
 	
-	public int getCurrentId() {
+	public String getCurrentId() {
 		return this.currentId;
 	}
 	

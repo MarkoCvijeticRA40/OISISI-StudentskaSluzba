@@ -23,7 +23,7 @@ public class AddSubjectFormFocusListener implements FocusListener {
 		JTextField input = (JTextField)e.getComponent();
 		boolean result = SubjectController.getInstance().getInputValidationState(input.getName());
 		if (result && input.getName().compareTo("id") == 0) {
-			result = SubjectController.getInstance().isIdUnique(Integer.valueOf(input.getText()));
+			result = SubjectController.getInstance().isIdUnique(input.getText());
 			if (!result) {
 				AddSubjectDialog.getInstance().getAddForm().getSubmitButton().setEnabled(false);
 				JOptionPane.showMessageDialog(null, "Id vec postoji!");

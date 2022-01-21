@@ -13,6 +13,7 @@ import controllers.validators.ValidationPatterns;
 import models.Address;
 import models.Professor;
 import models.Subject;
+import models.Title;
 import persistence.Database;
 import persistence.ProfessorDatabase;
 import views.Professor.BaseProfessorFormJPanel;
@@ -79,9 +80,9 @@ public class ProfessorController {
 		JOptionPane.showMessageDialog(null, "Profesor uspesno obrisan!");
 	}
 	
-	public void deleteSubjects(List<Integer> selectedIds) {
+	public void deleteSubjects(List<String> selectedIds) {
 		Professor professor = this.getSelectedProfessor();
-		for (int selectedId : selectedIds) {
+		for (String selectedId : selectedIds) {
 			Subject subject = SubjectController.getInstance().getSubjectById(selectedId);
 			if (subject != null)
 				professor.getSubjects().remove(subject);
@@ -109,11 +110,11 @@ public class ProfessorController {
 		return professor;
 	}
 	
-	public List<Professor> getProfessorsBySubject(int subjectId) {
+	public List<Professor> getProfessorsBySubject(String subjectId) {
 		List<Professor> availableProfessor = new LinkedList<>();
 		for (Professor professor : this.professorsDatabase.getProfessors()) {
 			for (Subject subject : professor.getSubjects()) {
-				if (subject.getId() == subjectId) {
+				if (subject.getId().compareTo(subjectId) == 0) {
 					availableProfessor.add(professor);
 					break;
 				}
@@ -180,18 +181,18 @@ public class ProfessorController {
 		}
 		Address address = new Address(
 				form.getAddressStreetTxt().getText(),
-				Integer.parseInt(form.getAddressHouseNumberTxt().getText()),
+				form.getAddressHouseNumberTxt().getText(),
 				form.getAddressCityTxt().getText(),
 				form.getAddressCountryTxt().getText());
 		String phoneNumber = form.getPhoneNumberTxt().getText();
 		String email = form.getEmailTxt().getText();
 		Address officeAddress = new Address(
 				form.getOfficeAddressStreetTxt().getText(),
-				Integer.parseInt(form.getOfficeAddressHouseNumberTxt().getText()),
+				form.getOfficeAddressHouseNumberTxt().getText(),
 				form.getOfficeAddressCityTxt().getText(),
 				form.getOfficeAddressCountryTxt().getText());
 		int idCardNumber = Integer.parseInt(form.getIdCardNumberTxt().getText());
-		String title = (String) form.getTitleCmb().getSelectedItem();
+		Title title = (Title) form.getTitleCmb().getSelectedItem();
 		int yearsOfService = Integer.parseInt(form.getYearsOfServiceTxt().getText());
 		return new Professor(
 				firstName,

@@ -10,8 +10,7 @@ public class AbstractTableModelStudent extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		int rows = Database.getInstance().getStudentDatabase().getRowCount();
-		return (rows < 40)? 40 : rows;
+		return Database.getInstance().getStudentDatabase().getRowCount();
 	}
 
 	@Override
