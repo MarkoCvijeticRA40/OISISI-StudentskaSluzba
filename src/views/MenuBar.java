@@ -3,6 +3,7 @@ package views;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
@@ -30,7 +31,7 @@ public class MenuBar extends JMenuBar {
 		JMenu file = new JMenu("File");
 		file.setMnemonic('F');
 		
-		JMenuItem newEntity = createMenuItem("New","src/views/images/new.png", KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK), 'N');
+		JMenuItem newEntity = createMenuItem("New","images" + File.separator + "new.png", KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK), 'N');
 		newEntity.addActionListener(new ActionListener() {
 
 			@Override
@@ -41,7 +42,7 @@ public class MenuBar extends JMenuBar {
 		});
 		file.add(newEntity);
 		
-		JMenuItem save = createMenuItem("Save","src/views/images/save.png", KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK), 'S');
+		JMenuItem save = createMenuItem("Save","images" + File.separator + "save.png", KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK), 'S');
 		save.addActionListener(new ActionListener() {
 
 			@Override
@@ -57,8 +58,8 @@ public class MenuBar extends JMenuBar {
 		
 		JMenu open = new JMenu("Open");
 		open.setMnemonic('O');
-		open.setIcon(new ImageIcon("src/views/images/open.png"));
-		JMenuItem openStudent = createMenuItem("Studenti","src/views/images/studenti.png", KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK), 'I');
+		open.setIcon(new ImageIcon("images" + File.separator + "open.png"));
+		JMenuItem openStudent = createMenuItem("Studenti","images" + File.separator + "studenti.png", KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK), 'I');
 		openStudent.addActionListener(new ActionListener() {
 
 			@Override
@@ -68,7 +69,7 @@ public class MenuBar extends JMenuBar {
 			
 		});
 		open.add(openStudent);
-		JMenuItem openPredmeti = createMenuItem("Profesori","src/views/images/profesori.png", KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK), 'P');
+		JMenuItem openPredmeti = createMenuItem("Profesori","images" + File.separator + "profesori.png", KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK), 'P');
 		openPredmeti.addActionListener(new ActionListener() {
 
 			@Override
@@ -78,7 +79,7 @@ public class MenuBar extends JMenuBar {
 			
 		});
 		open.add(openPredmeti);
-		JMenuItem openProfessor = createMenuItem("Predmeti","src/views/images/predmeti.png", KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK), 'R');
+		JMenuItem openProfessor = createMenuItem("Predmeti","images" + File.separator + "predmeti.png", KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK), 'R');
 		openProfessor.addActionListener(new ActionListener() {
 
 			@Override
@@ -89,7 +90,7 @@ public class MenuBar extends JMenuBar {
 		});
 		open.add(openProfessor);
 		
-		JMenuItem openKatedre = createMenuItem("Katedre","src/views/images/katedre.png", KeyStroke.getKeyStroke(KeyEvent.VK_K, ActionEvent.CTRL_MASK), 'A');
+		JMenuItem openKatedre = createMenuItem("Katedre","images" + File.separator + "katedre.png", KeyStroke.getKeyStroke(KeyEvent.VK_K, ActionEvent.CTRL_MASK), 'A');
 		openKatedre.addActionListener(new ActionListener() {
 
 			@Override
@@ -101,11 +102,11 @@ public class MenuBar extends JMenuBar {
 		open.add(openKatedre);
 		file.add(open);
 		
-		file.add(createMenuItem("Close","src/views/images/close.png",KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK), 'C'));
+		file.add(createMenuItem("Close","images" + File.separator + "close.png",KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK), 'C'));
 		
 		JMenu edit = new JMenu("Edit");
 		edit.setMnemonic('E');
-		JMenuItem editEntity = createMenuItem("Edit","src/views/images/edit.png",KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK), 'D');
+		JMenuItem editEntity = createMenuItem("Edit","images" + File.separator + "edit.png",KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK), 'D');
 		editEntity.addActionListener(new ActionListener() {
 
 			@Override
@@ -115,7 +116,7 @@ public class MenuBar extends JMenuBar {
 			
 		});
 		edit.add(editEntity);
-		JMenuItem deleteEntity = createMenuItem("Delete","src/views/images/delete.png",KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK), 'T');
+		JMenuItem deleteEntity = createMenuItem("Delete","images" + File.separator + "delete.png",KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK), 'T');
 		deleteEntity.addActionListener(new ActionListener() {
 
 			@Override
@@ -128,8 +129,8 @@ public class MenuBar extends JMenuBar {
 		
 		JMenu help = new JMenu("Help");
 		help.setMnemonic('H');
-		help.add(createMenuItem("Help","src/views/images/help.png",KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK), 'L'));
-		help.add(createMenuItem("About","src/views/images/about.png",KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK), 'B'));
+		help.add(createMenuItem("Help","images" + File.separator + "help.png",KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK), 'L'));
+		help.add(createMenuItem("About","images" + File.separator + "about.png",KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK), 'B'));
 		add(file);
 		add(edit);
 		add(help);

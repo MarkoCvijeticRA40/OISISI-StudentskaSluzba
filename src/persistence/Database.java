@@ -6,7 +6,7 @@ public class Database implements Serializable {
 	
 	private static final long serialVersionUID = -5033381225427085285L;
 	private static transient Database database;
-	public static final String dbPath = "src/persistence/database.txt";
+	public static final String dbPath = "database.txt";
 	
 	private ProfessorDatabase professorDatabase;
 	private StudentDatabase studentDatabase;

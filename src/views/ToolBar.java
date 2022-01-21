@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -42,10 +43,10 @@ public class ToolBar extends JToolBar {
 		setFloatable(false);
 		setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, Color.DARK_GRAY));
 		
-		JButton newBtn = createButton("src/views/images/new.png", "Novi", "add", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-		JButton editBtn = createButton("src/views/images/edit.png", "Izmeni", "edit", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		JButton deleteBtn = createButton("src/views/images/delete.png", "Obrisi", "delete", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-		JButton searchBtn = createButton("src/views/images/search.png", "Pretraga", "search", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
+		JButton newBtn = createButton("images" + File.separator + "new.png", "Novi", "add", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		JButton editBtn = createButton("images" + File.separator + "edit.png", "Izmeni", "edit", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		JButton deleteBtn = createButton("images" + File.separator + "delete.png", "Obrisi", "delete", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		JButton searchBtn = createButton("images" + File.separator + "search.png", "Pretraga", "search", getBackground(), KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
 		
 		input = new JTextField();
 		input.setPreferredSize(new Dimension(200, 25));
