@@ -80,6 +80,17 @@ public class SubjectController {
 		EditSubjectDialog.getInstance().getEditForm().init();
 	}
 	
+	public void search(String query) {
+		String[] params = query.split(", ");
+		if (params.length == 2)
+			this.subjectsDatabase.filter(params[0], params[1]);
+		else if (params.length == 1 && params[0].compareTo("") != 0)
+			this.subjectsDatabase.filter(params[0]);
+		else
+			this.subjectsDatabase.resetFilter();
+		SubjectsJTable.getInstance().updateView();
+	}
+	
 	public Subject getSelectedSubject() {
 		int selectedRow = SubjectsJTable.getInstance().getSelectedRow();
 		if (this.subjectsDatabase.getRowCount() <= selectedRow)
@@ -88,9 +99,9 @@ public class SubjectController {
 		return subject;
 	}
 	
-	public Subject getSubjectById(int id) {
+	public Subject getSubjectById(String id) {
 		for (Subject subject : this.subjectsDatabase.getSubjects()) {
-			if (subject.getId() == id)
+			if (subject.getId().compareTo(id) == 0)
 				return subject;
 		}
 		return null;
@@ -102,15 +113,15 @@ public class SubjectController {
 	
 	public boolean checkProfessorExistence(Professor professor) {
 		for (Subject subject : subjectsDatabase.getSubjects()) {
-			if (subject.getProfessor().equals(professor))
+			if (subject.getProfessor() == professor)
 				return true;
 		}
 		return false;
 	}
 	
-	public boolean isIdUnique(int id) {
+	public boolean isIdUnique(String id) {
 		for (Subject subject : this.subjectsDatabase.getSubjects()) {
-			if (subject.getId() == id)
+			if (subject.getId().compareTo(id) == 0)
 				return false;
 		}
 		return true;
@@ -137,7 +148,7 @@ public class SubjectController {
 			JOptionPane.showMessageDialog(null, "Podaci nisu validni!");
 			return null;
 		}
-		int id = Integer.valueOf(form.getIdTxt().getText());
+		String id = form.getIdTxt().getText();
 		String name = form.getNameTxt().getText();
 		int esbp = Integer.valueOf(form.getEsbpTxt().getText());
 		Semester semester = (Semester) form.getSemesterCmb().getSelectedItem();

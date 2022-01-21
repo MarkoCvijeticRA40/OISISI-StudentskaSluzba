@@ -8,12 +8,12 @@ public class Department implements Serializable {
 
 	private static final long serialVersionUID = -6056426272631516162L;
 	
-	private int id;
+	private String id;
 	private String name;
 	private Professor manager;
 	private List<Professor> professors;
 	
-	public Department(int id, String name, Professor manager) {
+	public Department(String id, String name, Professor manager) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -21,11 +21,11 @@ public class Department implements Serializable {
 		this.professors = new LinkedList<>();
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -47,5 +47,10 @@ public class Department implements Serializable {
 
 	public List<Professor> getProfessors() {
 		return professors;
+	}
+
+	@Override
+	public String toString() {
+		return "Department [id=" + id + ", name=" + name + ", manager=" + manager + ", professors=" + professors + "]";
 	}
 }

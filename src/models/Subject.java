@@ -9,7 +9,7 @@ public class Subject implements Serializable {
 
 	private static final long serialVersionUID = -826929363813020936L;
 	
-	private int id;
+	private String id;
 	private String name;
 	private Semester semester;
 	private int studyYear;
@@ -18,7 +18,7 @@ public class Subject implements Serializable {
 	private List<Student> passedStudents;
 	private List<Student> notPassedStudents;
 	
-	public Subject(int id, String name, Semester semester, int studyYear, int espb) {
+	public Subject(String id, String name, Semester semester, int studyYear, int espb) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -29,11 +29,11 @@ public class Subject implements Serializable {
 		this.notPassedStudents = new LinkedList<>();
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
@@ -85,9 +85,4 @@ public class Subject implements Serializable {
 		return notPassedStudents;
 	}
 
-	@Override
-	public String toString() {
-		return "Subject [id=" + id + ", name=" + name + ", semester=" + semester + ", studyYear=" + studyYear
-				+ ", espb=" + espb + "]";
-	}
 }

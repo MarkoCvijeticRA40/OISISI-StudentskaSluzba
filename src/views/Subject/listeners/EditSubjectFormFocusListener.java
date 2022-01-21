@@ -23,8 +23,8 @@ public class EditSubjectFormFocusListener implements FocusListener {
 		JTextField input = (JTextField)e.getComponent();
 		boolean result = SubjectController.getInstance().getInputValidationState(input.getName());
 		if (result && input.getName().compareTo("id") == 0) {
-			if (!(EditSubjectDialog.getInstance().getEditForm().getCurrentId() == Integer.valueOf(input.getText()))) {
-				result = SubjectController.getInstance().isIdUnique(Integer.valueOf(input.getText()));
+			if (!(EditSubjectDialog.getInstance().getEditForm().getCurrentId().compareTo(input.getText()) == 0)) {
+				result = SubjectController.getInstance().isIdUnique(input.getText());
 				if (!result) {
 					EditSubjectDialog.getInstance().getEditForm().getSubmitButton().setEnabled(false);
 					JOptionPane.showMessageDialog(null, "Id vec postoji!");

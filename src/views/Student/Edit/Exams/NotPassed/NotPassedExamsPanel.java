@@ -57,7 +57,7 @@ public class NotPassedExamsPanel extends JPanel {
 						"Brisanje predmeta", 
 						JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
-					StudentController.getInstance().deleteNotPassExam(Integer.valueOf(examId));
+					StudentController.getInstance().deleteNotPassExam(examId);
 				}
 			}
 			

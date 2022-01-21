@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableRowSorter;
 
 public class ProfessorsJTable extends JTable {
 	
@@ -20,7 +21,11 @@ public class ProfessorsJTable extends JTable {
 		this.getTableHeader().setBackground(Color.LIGHT_GRAY);
 		this.getTableHeader().setBorder(BorderFactory.createMatteBorder(1, 1, 0, 1, Color.BLACK));
 		this.setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK));
-		this.setModel(new AbstractTableModelProfessor());
+		AbstractTableModelProfessor model = new AbstractTableModelProfessor();
+		this.setModel(model);
+		TableRowSorter<AbstractTableModelProfessor> sorter = new TableRowSorter<>(model);
+		this.setRowSorter(sorter);
+		this.getTableHeader().setReorderingAllowed(false);
 	}
 	
 	public static ProfessorsJTable getInstance() {
@@ -47,6 +52,7 @@ public class ProfessorsJTable extends JTable {
 	public void updateView() {
 		AbstractTableModelProfessor model = (AbstractTableModelProfessor) this.getModel();
 		model.fireTableDataChanged();
-		this.setRowSelectionInterval(0, 0);
+		if (this.getRowCount() != 0)
+			this.setRowSelectionInterval(0, 0);
 	}
 }
