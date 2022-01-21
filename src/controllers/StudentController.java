@@ -70,11 +70,10 @@ public class StudentController {
 	}
 	
 	public void delete() {
-		int selectedRow = StudentsJTable.getInstance().getSelectedRow();
 		Student student = this.getSelectedStudent();
 		if (student  == null)
 			return;
-		this.studentsDatabase.deleteStudent(selectedRow);
+		this.studentsDatabase.deleteStudent(student);
 		StudentsJTable.getInstance().updateView();
 		JOptionPane.showMessageDialog(null, "Student uspesno obrisan!");
 	}
@@ -98,6 +97,19 @@ public class StudentController {
 		student.getNotPassedExams().add(exam);
 		EditStudentDialog.getInstance().getPassedExamesPanel().updateView();
 		NotPassedExamsJTable.getInstance().updateView();
+	}
+	
+	public void search(String query) {
+		String[] params = query.split(", ");
+		if (params.length == 3)
+			this.studentsDatabase.filter(params[0], params[1], params[2]);
+		else if (params.length == 2)
+			this.studentsDatabase.filter(params[0], params[1]);
+		else if (params.length == 1 && params[0].compareTo("") != 0)
+			this.studentsDatabase.filter(params[0]);
+		else
+			this.studentsDatabase.resetFilter();
+		StudentsJTable.getInstance().updateView();
 	}
 	
 	public Student getSelectedStudent() {

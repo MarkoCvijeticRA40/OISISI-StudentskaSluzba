@@ -117,6 +117,9 @@ public class ToolBar extends JToolBar {
 						if (result == JOptionPane.YES_OPTION)
 							StudentController.getInstance().delete();
 						break;
+					case "search":
+						StudentController.getInstance().search(input.getText());
+						break;
 					}
 					break;
 				case 1:
