@@ -30,7 +30,7 @@ public class StudentFormValidator extends BaseFormValidator {
 			case "addressCountry":
 				return validateWithRegex(inputName, inputValue, ValidationPatterns.onlyAlphabetsWithWhiteSpace);
 			case "addressHouseNumber":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.number);
+				return validateWithRegex(inputName, inputValue, ValidationPatterns.houseNumber);
 			case "phoneNumber":
 				return validateWithRegex(inputName, inputValue, ValidationPatterns.phoneNumber);
 			case "email":
