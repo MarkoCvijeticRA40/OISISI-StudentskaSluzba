@@ -95,6 +95,8 @@ public class StudentController {
 			}
 		}
 		student.getNotPassedExams().add(exam);
+		student.setRating(this.studentsDatabase.getAvgRating(student));
+		StudentsJTable.getInstance().updateView();
 		EditStudentDialog.getInstance().getPassedExamesPanel().updateView();
 		NotPassedExamsJTable.getInstance().updateView();
 	}
@@ -161,6 +163,8 @@ public class StudentController {
 				grade,
 				date);
 		student.getPassedExams().add(examGrade);
+		student.setRating(this.studentsDatabase.getAvgRating(student));
+		StudentsJTable.getInstance().updateView();
 		NotPassedExamsJTable.getInstance().updateView();
 	}
 	

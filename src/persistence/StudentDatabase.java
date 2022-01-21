@@ -166,6 +166,16 @@ public class StudentDatabase implements Serializable {
 		return null;
 	}
 	
+	public double getAvgRating(Student student) {
+		double sum = 0;
+		for (ExamGrade grade : student.getPassedExams()) {
+			sum += grade.getMark();
+		}
+		if (sum != 0)
+			return sum / student.getPassedExams().size();
+		return 0;
+	}
+	
 	public String getValueAtNotPassedExams(Student student, int rowIndex, int columnIndex) {
 		if (rowIndex >= student.getNotPassedExams().size())
 			return "";
