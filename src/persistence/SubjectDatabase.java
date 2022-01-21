@@ -16,9 +16,8 @@ public class SubjectDatabase implements Serializable {
 	private transient String[] columnNames;
 	private transient String[] examGradeNames;
 	
-	public void printData() {
-		for (Subject s : subjects)
-			System.out.println(s);
+	public void set(List<Subject> subjects) {
+		this.subjects = subjects;
 	}
 	
 	public void addSubject(Subject subject) {

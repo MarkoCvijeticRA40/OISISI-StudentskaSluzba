@@ -71,6 +71,7 @@ public class SubjectsJTable extends JTable {
 	public void updateView() {
 		AbstractTableModelSubject model = (AbstractTableModelSubject) this.getModel();
 		model.fireTableDataChanged();
-		this.setRowSelectionInterval(0, 0);
+		if (this.getRowCount() != 0)
+			this.setRowSelectionInterval(0, 0);
 	}
 }

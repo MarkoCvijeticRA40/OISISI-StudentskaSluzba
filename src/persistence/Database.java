@@ -11,12 +11,7 @@ public class Database implements Serializable {
 	private ProfessorDatabase professorDatabase;
 	private StudentDatabase studentDatabase;
 	private SubjectDatabase subjectDatabase;
-	
-	private Database() {
-		this.professorDatabase = new ProfessorDatabase();
-		this.studentDatabase = new StudentDatabase();
-		this.subjectDatabase = new SubjectDatabase();
-	}
+	private DepartmentDatabase departmentDatabase;
 	
 	public static Database getInstance() {
 		if (database == null)
@@ -38,6 +33,10 @@ public class Database implements Serializable {
 
 	public SubjectDatabase getSubjectDatabase() {
 		return subjectDatabase;
+	}
+	
+	public DepartmentDatabase getDepartmentDatabase() {
+		return this.departmentDatabase;
 	}
 	
 }

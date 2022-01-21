@@ -138,4 +138,16 @@ public class Student implements Serializable {
 	public List<Subject> getNotPassedExams() { 
 		return this.notPassedExams;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setPassedExams(List<ExamGrade> passedExams) {
+		this.passedExams = passedExams;
+	}
+
+	public void setNotPassedExams(List<Subject> notPassedExams) {
+		this.notPassedExams = notPassedExams;
+	}
 }

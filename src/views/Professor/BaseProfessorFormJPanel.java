@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import models.Title;
+
 public class BaseProfessorFormJPanel extends JPanel {
 
 	private static final long serialVersionUID = 9054594765895744121L;
@@ -35,7 +37,7 @@ public class BaseProfessorFormJPanel extends JPanel {
 	protected JTextField officeAddressCountryTxt;
 	protected JTextField idCardNumberTxt;
 	protected JTextField yearsOfServiceTxt;
-	protected JComboBox<String> titleCmb;
+	protected JComboBox<Title> titleCmb;
 	protected JButton submitBtn;
 	protected JButton cancelBtn;
 	
@@ -241,8 +243,7 @@ public class BaseProfessorFormJPanel extends JPanel {
 		JPanel titlePanel = new JPanel();
 		titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.X_AXIS));
 		titlePanel.add(new JLabel("Zvanje*"));
-		String[] titles = new String[] {"Red. profesor", "Vandr. profesor", "Asistent"};
-		titleCmb = new JComboBox<String>(titles);
+		titleCmb = new JComboBox<Title>(Title.values());
 		titleCmb.setPreferredSize(new Dimension(200, 25));
 		titleCmb.setMaximumSize(new Dimension(200, 25));
 		titlePanel.add(Box.createHorizontalGlue());
@@ -352,7 +353,7 @@ public class BaseProfessorFormJPanel extends JPanel {
 		return officeAddressCountryTxt;
 	}
 	
-	public JComboBox<String> getTitleCmb() {
+	public JComboBox<Title> getTitleCmb() {
 		return this.titleCmb;
 	}
 }

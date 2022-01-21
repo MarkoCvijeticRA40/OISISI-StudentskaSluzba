@@ -168,7 +168,7 @@ public class StudentController {
 		}
 		Address address = new Address(
 				form.getAddressStreetTxt().getText(),
-				Integer.parseInt(form.getAddressHouseNumberTxt().getText()),
+				form.getAddressHouseNumberTxt().getText(),
 				form.getAddressCityTxt().getText(),
 				form.getAddressCountryTxt().getText());
 		String phoneNumber = form.getPhoneNumberTxt().getText();

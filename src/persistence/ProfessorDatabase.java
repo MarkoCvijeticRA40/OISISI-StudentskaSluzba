@@ -15,6 +15,10 @@ public class ProfessorDatabase implements Serializable {
 	private transient int numOfFiltered;
 	private transient String[] columnNames;
 	
+	public void set(List<Professor> professors) {
+		this.professors = professors;
+	}
+	
 	public void addProfessor(Professor professor) {
 		this.professors.add(professor);
 		this.filteredDataMap.add(true);
@@ -56,7 +60,7 @@ public class ProfessorDatabase implements Serializable {
 			case 1:
 				return professor.getLastName();
 			case 2:
-				return professor.getTitle();
+				return professor.getTitle().toString();
 			case 3:
 				return professor.getEmail();
 			default:

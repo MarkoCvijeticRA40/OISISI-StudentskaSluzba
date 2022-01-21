@@ -13,6 +13,7 @@ import controllers.validators.ValidationPatterns;
 import models.Address;
 import models.Professor;
 import models.Subject;
+import models.Title;
 import persistence.Database;
 import persistence.ProfessorDatabase;
 import views.Professor.BaseProfessorFormJPanel;
@@ -180,18 +181,18 @@ public class ProfessorController {
 		}
 		Address address = new Address(
 				form.getAddressStreetTxt().getText(),
-				Integer.parseInt(form.getAddressHouseNumberTxt().getText()),
+				form.getAddressHouseNumberTxt().getText(),
 				form.getAddressCityTxt().getText(),
 				form.getAddressCountryTxt().getText());
 		String phoneNumber = form.getPhoneNumberTxt().getText();
 		String email = form.getEmailTxt().getText();
 		Address officeAddress = new Address(
 				form.getOfficeAddressStreetTxt().getText(),
-				Integer.parseInt(form.getOfficeAddressHouseNumberTxt().getText()),
+				form.getOfficeAddressHouseNumberTxt().getText(),
 				form.getOfficeAddressCityTxt().getText(),
 				form.getOfficeAddressCountryTxt().getText());
 		int idCardNumber = Integer.parseInt(form.getIdCardNumberTxt().getText());
-		String title = (String) form.getTitleCmb().getSelectedItem();
+		Title title = (Title) form.getTitleCmb().getSelectedItem();
 		int yearsOfService = Integer.parseInt(form.getYearsOfServiceTxt().getText());
 		return new Professor(
 				firstName,
