@@ -25,7 +25,7 @@ public class MainFrame extends JFrame {
 		Dimension screenDimension = kit.getScreenSize();
 		setSize(3 * (screenDimension.width / 4), 3 * (screenDimension.height / 4));
 		setLocationRelativeTo(null);
-		setTitle("Studentska sluûba");
+		setTitle("Studentska slu≈æba");
 		setJMenuBar(new MenuBar());
 		add(new ToolBar(), BorderLayout.NORTH);
 		tabbedPane = new TabbedPane();
