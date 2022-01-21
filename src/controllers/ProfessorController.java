@@ -79,9 +79,9 @@ public class ProfessorController {
 		JOptionPane.showMessageDialog(null, "Profesor uspesno obrisan!");
 	}
 	
-	public void deleteSubjects(List<Integer> selectedIds) {
+	public void deleteSubjects(List<String> selectedIds) {
 		Professor professor = this.getSelectedProfessor();
-		for (int selectedId : selectedIds) {
+		for (String selectedId : selectedIds) {
 			Subject subject = SubjectController.getInstance().getSubjectById(selectedId);
 			if (subject != null)
 				professor.getSubjects().remove(subject);
@@ -109,11 +109,11 @@ public class ProfessorController {
 		return professor;
 	}
 	
-	public List<Professor> getProfessorsBySubject(int subjectId) {
+	public List<Professor> getProfessorsBySubject(String subjectId) {
 		List<Professor> availableProfessor = new LinkedList<>();
 		for (Professor professor : this.professorsDatabase.getProfessors()) {
 			for (Subject subject : professor.getSubjects()) {
-				if (subject.getId() == subjectId) {
+				if (subject.getId().compareTo(subjectId) == 0) {
 					availableProfessor.add(professor);
 					break;
 				}

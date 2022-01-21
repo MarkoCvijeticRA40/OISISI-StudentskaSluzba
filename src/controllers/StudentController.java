@@ -79,14 +79,14 @@ public class StudentController {
 		JOptionPane.showMessageDialog(null, "Student uspesno obrisan!");
 	}
 	
-	public void deleteNotPassExam(int id) {
+	public void deleteNotPassExam(String id) {
 		Subject exam = Database.getInstance().getSubjectDatabase().getSubjctById(id);
 		Student student = this.getSelectedStudent();
 		student.getNotPassedExams().remove(exam);
 		NotPassedExamsJTable.getInstance().updateView();
 	}
 	
-	public void deletePassedExam(int id) {
+	public void deletePassedExam(String id) {
 		Subject exam = Database.getInstance().getSubjectDatabase().getSubjctById(id);
 		Student student = this.getSelectedStudent();
 		for (ExamGrade examGrade : student.getPassedExams()) {

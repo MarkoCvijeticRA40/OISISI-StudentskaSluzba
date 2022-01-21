@@ -129,7 +129,6 @@ public class ProfessorDatabase implements Serializable {
 			}
 			else
 				this.filteredDataMap.set(i, false);
-			System.out.println(this.filteredDataMap.get(i));
 			i++;
 		}
 	}

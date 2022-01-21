@@ -50,13 +50,13 @@ public class ProfessorSubjectsJTable extends JTable {
 		this.setRowSelectionInterval(0, 0);
 	}
 	
-	public List<Integer> getSelectedIds() {
-		List<Integer> selectedIds = new ArrayList<>();
+	public List<String> getSelectedIds() {
+		List<String> selectedIds = new ArrayList<>();
 		for (int selectedRow : getInstance().getSelectedRows()) {
 			String value = (String) getInstance().getValueAt(selectedRow, 0);
 			if (value.isEmpty())
 				continue;
-			selectedIds.add(Integer.valueOf(value));
+			selectedIds.add(value);
 		}
 		return selectedIds;
 	}
