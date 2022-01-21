@@ -137,22 +137,6 @@ public class ProfessorDatabase implements Serializable {
 		}
 	}
 	
-	public void filter(String email, String lastName, String firstName) {
-		int i = 0;
-		this.numOfFiltered = 0;
-		for (Professor professor : this.professors) {
-			if (professor.getEmail().toLowerCase().contains(email.toLowerCase())
-					&& professor.getLastName().toLowerCase().contains(lastName.toLowerCase())
-					&& professor.getFirstName().toLowerCase().contains(firstName.toLowerCase())) {
-				this.filteredDataMap.set(i, true);
-				this.numOfFiltered++;
-			}
-			else
-				this.filteredDataMap.set(i, false);
-			i++;
-		}
-	}
-	
 	public void resetFilter() {
 		int i;
 		for (i = 0; i < this.filteredDataMap.size(); i++)

@@ -20,7 +20,6 @@ public class MyApp {
 		}
 		MainFrame.getInstance();
 		
-		
 		/*addresses =  loadAddress();
 		students = loadStudents();
 		professors = loadProfessors();

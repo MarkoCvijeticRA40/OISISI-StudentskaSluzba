@@ -3,9 +3,13 @@ package views;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+
+import persistence.Serialization;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
@@ -31,6 +35,14 @@ public class MainFrame extends JFrame {
 		this.setResizable(false);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+            public void windowClosing(WindowEvent e) {
+                Serialization.run();
+                System.exit(0);
+            }
+		});
 	}
 	
 	public static MainFrame getInstance() {
