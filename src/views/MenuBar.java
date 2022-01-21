@@ -129,8 +129,27 @@ public class MenuBar extends JMenuBar {
 		
 		JMenu help = new JMenu("Help");
 		help.setMnemonic('H');
-		help.add(createMenuItem("Help","images" + File.separator + "help.png",KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK), 'L'));
-		help.add(createMenuItem("About","images" + File.separator + "about.png",KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK), 'B'));
+		JMenuItem helpItem = createMenuItem("Help","images" + File.separator + "help.png",KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK), 'L');
+		helpItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HelpDialog.getInstance();
+			}
+			
+		});
+		help.add(helpItem);
+		
+		JMenuItem aboutItem = createMenuItem("About","images" + File.separator + "about.png",KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK), 'B');
+		aboutItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AboutDialog.getInstance();
+			}
+			
+		});
+		help.add(aboutItem);
 		add(file);
 		add(edit);
 		add(help);
