@@ -43,7 +43,7 @@ public class ProfessorFormValidator extends BaseFormValidator {
 				break;
 			case "officeAddressHouseNumber":
 			case "addressHouseNumber":
-				validateWithRegex(inputName, inputValue, ValidationPatterns.number);
+				validateWithRegex(inputName, inputValue, ValidationPatterns.houseNumber);
 				break;
 			case "phoneNumber":
 				validateWithRegex(inputName, inputValue, ValidationPatterns.phoneNumber);

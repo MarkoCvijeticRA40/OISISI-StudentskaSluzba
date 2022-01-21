@@ -237,6 +237,18 @@ public class StudentController {
 		return formValidator.getValidationState(inputName);
 	}
 	
+	public boolean checkSubjectExistence(Subject subject) {
+		for (Student s : this.studentsDatabase.getStudents()) {
+			if (s.getNotPassedExams().contains(subject))
+				return true;
+			for (ExamGrade grade : s.getPassedExams()) {
+				if (grade.getSubject() == subject)
+					return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean checkEmailExistence(String email) {
 		for (Student student : this.studentsDatabase.getStudents()) {
 			if (student.getEmail().compareTo(email) == 0) {

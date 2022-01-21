@@ -207,6 +207,14 @@ public class ProfessorController {
 				yearsOfService);
 	}
 	
+	public boolean checkSubjectExistence(Subject subject) {
+		for (Professor p : this.professorsDatabase.getProfessors()) {
+			if(p.getSubjects().contains(subject))
+				return true;
+		}
+		return false;
+	}
+	
 	public boolean checkEmailExistence(String email) {
 		for (Professor professor : this.professorsDatabase.getProfessors()) {
 			if (professor.getEmail().compareTo(email) == 0) {

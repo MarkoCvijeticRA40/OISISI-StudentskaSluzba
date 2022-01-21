@@ -67,6 +67,11 @@ public class SubjectController {
 		Subject subject = this.getSelectedSubject();
 		if (subject == null)
 			return;
+		if (StudentController.getInstance().checkSubjectExistence(subject)
+				|| ProfessorController.getInstance().checkSubjectExistence(subject)) {
+			JOptionPane.showMessageDialog(null, "Predmet neuspesno obrisan!\nPostoji referenca na predmet!");
+			return;
+		}
 		this.subjectsDatabase.deleteSubject(selectedRow);
 		SubjectsJTable.getInstance().updateView();
 		JOptionPane.showMessageDialog(null, "Predmet uspesno obrisan!");
