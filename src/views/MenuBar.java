@@ -15,6 +15,7 @@ import controllers.ProfessorController;
 import controllers.StudentController;
 import controllers.SubjectController;
 import persistence.Serialization;
+import views.Department.DepartmentDialog;
 import views.Professor.Add.AddProfessorDialog;
 import views.Professor.Edit.EditProfessorDialog;
 import views.Student.Add.AddStudentDialog;
@@ -87,8 +88,19 @@ public class MenuBar extends JMenuBar {
 			
 		});
 		open.add(openProfessor);
-		open.add(createMenuItem("Katedre","src/views/images/katedre.png", KeyStroke.getKeyStroke(KeyEvent.VK_K, ActionEvent.CTRL_MASK), 'A'));
+		
+		JMenuItem openKatedre = createMenuItem("Katedre","src/views/images/katedre.png", KeyStroke.getKeyStroke(KeyEvent.VK_K, ActionEvent.CTRL_MASK), 'A');
+		openKatedre.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DepartmentDialog.getInstance().init();
+			}
+			
+		});
+		open.add(openKatedre);
 		file.add(open);
+		
 		file.add(createMenuItem("Close","src/views/images/close.png",KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK), 'C'));
 		
 		JMenu edit = new JMenu("Edit");
