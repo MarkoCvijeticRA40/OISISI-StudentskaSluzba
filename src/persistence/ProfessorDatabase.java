@@ -45,10 +45,10 @@ public class ProfessorDatabase implements Serializable {
 	}
 	
 	public String getValueAt(int rowIndex, int columnIndex) {
-		if ((this.numOfFiltered == -1 && rowIndex >= this.professors.size())
+		/*if ((this.numOfFiltered == -1 && rowIndex >= this.professors.size())
 				|| this.numOfFiltered == 0
 				|| (this.numOfFiltered > 0 && rowIndex >= this.numOfFiltered))
-			return "";
+			return "";*/
 		Professor professor = this.getRow(rowIndex);
 		switch (columnIndex) {
 			case 0: 

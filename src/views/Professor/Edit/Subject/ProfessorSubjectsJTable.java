@@ -21,6 +21,7 @@ public class ProfessorSubjectsJTable extends JTable {
 		this.getTableHeader().setBorder(BorderFactory.createMatteBorder(1, 1, 0, 1, Color.BLACK));
 		this.setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK));
 		this.setModel(new AbstractTableModelProfessorSubjects());
+		this.getTableHeader().setReorderingAllowed(false);
 	}
 	
 	public static ProfessorSubjectsJTable getInstance() {
