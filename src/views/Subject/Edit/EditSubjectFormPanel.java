@@ -27,6 +27,7 @@ public class EditSubjectFormPanel extends BaseSubjectFormJPanel {
 	private static final long serialVersionUID = 6001948153229635000L;
 	
 	private String currentId;
+	private String professorEmail;
 	private JTextField professorTxt;
 	private JButton addBtn;
 	private JButton deleteBtn;
@@ -105,7 +106,10 @@ public class EditSubjectFormPanel extends BaseSubjectFormJPanel {
 						"Ukloni profesora", 
 						JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
-					SubjectController.getInstance().deleteProfessor();
+					professorEmail = "";
+					professorTxt.setText("");
+					addBtn.setEnabled(true);
+					deleteBtn.setEnabled(false);
 				}
 			}
 			
@@ -152,6 +156,18 @@ public class EditSubjectFormPanel extends BaseSubjectFormJPanel {
 	
 	public JButton getDeleteBtn() {
 		return this.deleteBtn;
+	}
+	
+	public JTextField getProfessorTxt() {
+		return this.professorTxt;
+	}
+	
+	public String getProfessorEmail() {
+		return this.professorEmail;
+	}
+	
+	public void setProfessorEmail(String id) {
+		this.professorEmail = id;
 	}
 
 }
