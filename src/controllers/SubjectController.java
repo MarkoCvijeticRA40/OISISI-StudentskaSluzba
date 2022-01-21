@@ -13,7 +13,6 @@ import persistence.Database;
 import persistence.SubjectDatabase;
 import views.Subject.BaseSubjectFormJPanel;
 import views.Subject.Add.AddSubjectDialog;
-import views.Subject.Edit.AddProfessorDialog;
 import views.Subject.Edit.EditSubjectDialog;
 import views.Subject.Representation.SubjectsJTable;
 
@@ -45,19 +44,18 @@ public class SubjectController {
 		AddSubjectDialog.getInstance().dispose();
 	}
 	
-	public void addProfessor(Professor professor) {
-		Subject subject = this.getSelectedSubject();
-		subject.setProfessor(professor);
-		AddProfessorDialog.getInstance().dispose();
-		EditSubjectDialog.getInstance().getEditForm().getAddBtn().setEnabled(false);
-		EditSubjectDialog.getInstance().getEditForm().init();
-	}
-	
 	public void edit() {
 		Subject subject = createSubject(EditSubjectDialog.getInstance().getEditForm());
 		if (subject == null)
 			return;
 		Subject subjectToEdit = this.getSelectedSubject();
+		String professorEmail = EditSubjectDialog.getInstance().getEditForm().getProfessorEmail();
+		if (!professorEmail.isEmpty()) {
+			Professor p = Database.getInstance().getProfessorDatabase().getByEmail(professorEmail);
+			subjectToEdit.setProfessor(p);
+		}
+		else
+			subjectToEdit.setProfessor(null);
 		this.subjectsDatabase.editSubject(subject, subjectToEdit);
 		SubjectsJTable.getInstance().updateView();
 		JOptionPane.showMessageDialog(null, "Predmet uspesno izmenjen!");
@@ -72,12 +70,6 @@ public class SubjectController {
 		this.subjectsDatabase.deleteSubject(selectedRow);
 		SubjectsJTable.getInstance().updateView();
 		JOptionPane.showMessageDialog(null, "Predmet uspesno obrisan!");
-	}
-	
-	public void deleteProfessor() {
-		Subject subject = this.getSelectedSubject();
-		subject.setProfessor(null);
-		EditSubjectDialog.getInstance().getEditForm().init();
 	}
 	
 	public void search(String query) {
