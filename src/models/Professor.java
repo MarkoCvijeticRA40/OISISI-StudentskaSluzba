@@ -120,4 +120,9 @@ public class Professor implements Serializable {
 	public List<Subject> getSubjects() {
 		return this.subjects;
 	}
+	
+	@Override
+	public String toString() {
+		return firstName + " " + lastName;
+	}
 }

@@ -17,10 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import controllers.ProfessorController;
-import controllers.SubjectController;
 import models.Professor;
-import models.Subject;
+import persistence.Database;
 
 public class AddProfessorDialog extends JDialog {
 
@@ -82,7 +80,12 @@ public class AddProfessorDialog extends JDialog {
 						JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					Professor selectedProfessor = (Professor) list.getSelectedValue(); 
-					SubjectController.getInstance().addProfessor(selectedProfessor);
+					EditSubjectDialog.getInstance().getEditForm().setProfessorEmail(selectedProfessor.getEmail());
+					AddProfessorDialog.getInstance().dispose();
+					EditSubjectDialog.getInstance().getEditForm().getAddBtn().setEnabled(false);
+					EditSubjectDialog.getInstance().getEditForm().getDeleteBtn().setEnabled(true);
+					String value = selectedProfessor.getFirstName() + " " + selectedProfessor.getLastName();
+					EditSubjectDialog.getInstance().getEditForm().getProfessorTxt().setText(value);
 				}
 			}
 			
@@ -117,8 +120,7 @@ public class AddProfessorDialog extends JDialog {
 	
 	@SuppressWarnings("unchecked")
 	public void init() {
-		Subject selectedSubject = SubjectController.getInstance().getSelectedSubject();
-		Object[] availableProfessors = ProfessorController.getInstance().getProfessorsBySubject(selectedSubject.getId()).toArray();
+		Object[] availableProfessors = Database.getInstance().getProfessorDatabase().getProfessors().toArray();
 		if (availableProfessors.length !=0) {
 			this.list.setListData(availableProfessors);
 			this.list.setSelectedIndex(0);

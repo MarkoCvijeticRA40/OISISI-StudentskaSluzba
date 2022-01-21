@@ -70,6 +70,7 @@ public class StudentsJTable extends JTable {
 	public void updateView() {
 		AbstractTableModelStudent model = (AbstractTableModelStudent) this.getModel();
 		model.fireTableDataChanged();
-		this.setRowSelectionInterval(0, 0);
+		if (studentsTable.getRowCount() != 0)
+			this.setRowSelectionInterval(0, 0);
 	}
 }

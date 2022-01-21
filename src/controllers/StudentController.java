@@ -95,6 +95,8 @@ public class StudentController {
 			}
 		}
 		student.getNotPassedExams().add(exam);
+		student.setRating(this.studentsDatabase.getAvgRating(student));
+		StudentsJTable.getInstance().updateView();
 		EditStudentDialog.getInstance().getPassedExamesPanel().updateView();
 		NotPassedExamsJTable.getInstance().updateView();
 	}
@@ -161,6 +163,8 @@ public class StudentController {
 				grade,
 				date);
 		student.getPassedExams().add(examGrade);
+		student.setRating(this.studentsDatabase.getAvgRating(student));
+		StudentsJTable.getInstance().updateView();
 		NotPassedExamsJTable.getInstance().updateView();
 	}
 	
@@ -231,6 +235,18 @@ public class StudentController {
 	
 	public boolean getInputValidationState(String inputName) {
 		return formValidator.getValidationState(inputName);
+	}
+	
+	public boolean checkSubjectExistence(Subject subject) {
+		for (Student s : this.studentsDatabase.getStudents()) {
+			if (s.getNotPassedExams().contains(subject))
+				return true;
+			for (ExamGrade grade : s.getPassedExams()) {
+				if (grade.getSubject() == subject)
+					return true;
+			}
+		}
+		return false;
 	}
 	
 	public boolean checkEmailExistence(String email) {
