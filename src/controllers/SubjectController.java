@@ -88,6 +88,14 @@ public class SubjectController {
 		return subject;
 	}
 	
+	public Subject getSubjectById(int id) {
+		for (Subject subject : this.subjectsDatabase.getSubjects()) {
+			if (subject.getId() == id)
+				return subject;
+		}
+		return null;
+	}
+	
 	public List<Subject> getAllSubjects() {
 		return this.subjectsDatabase.getSubjects();
 	}

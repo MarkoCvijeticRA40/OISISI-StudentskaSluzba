@@ -5,12 +5,16 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import controllers.ProfessorController;
 
 public class AddSubjectToProfessorPanel extends JPanel {
 
@@ -40,6 +44,23 @@ public class AddSubjectToProfessorPanel extends JPanel {
 		btnPanel.add(addBtn);
 		
 		deleteBtn = new JButton("Ukloni predmet");
+		deleteBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				List<Integer> selectedIds = ProfessorSubjectsJTable.getInstance().getSelectedIds();
+				if (selectedIds.size() == 0)
+					return;
+				int result = JOptionPane.showConfirmDialog(null,
+						"Da li ste sigurni?", 
+						"Ukloni predmet", 
+						JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					ProfessorController.getInstance().deleteSubjects(selectedIds);
+				}
+			}
+			
+		});
 		btnPanel.add(deleteBtn);
 		
 		container.add(btnPanel);

@@ -35,11 +35,11 @@ public class AbstractTableModelProfessorSubjects extends AbstractTableModel {
 			case 1:
 				return subject.getName();
 			case 2:
-				String.valueOf(subject.getStudyYear());
+				return String.valueOf(subject.getStudyYear());
 			case 3:
-				subject.getSemester().toString();
-				default:
-			return "";
+				return subject.getSemester().toString();
+			default:
+				return "";
 		}
 	}
 	
