@@ -48,7 +48,7 @@ public class AddSubjectToProfessorPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				List<Integer> selectedIds = ProfessorSubjectsJTable.getInstance().getSelectedIds();
+				List<String> selectedIds = ProfessorSubjectsJTable.getInstance().getSelectedIds();
 				if (selectedIds.size() == 0)
 					return;
 				int result = JOptionPane.showConfirmDialog(null,

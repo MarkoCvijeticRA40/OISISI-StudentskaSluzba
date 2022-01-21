@@ -11,7 +11,7 @@ public class SubjectValidator extends BaseFormValidator {
 	public boolean validateInput(String inputName, String inputValue) {
 		switch(inputName) {
 			case "id":
-				return validateWithRegex(inputName, inputValue, ValidationPatterns.number);
+				return validateWithRegex(inputName, inputValue, ValidationPatterns.anything);
 			case "name": 
 				return validateWithRegex(inputName, inputValue, ValidationPatterns.anything);
 			case "esbp":

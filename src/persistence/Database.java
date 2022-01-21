@@ -13,9 +13,9 @@ public class Database implements Serializable {
 	private SubjectDatabase subjectDatabase;
 	
 	private Database() {
-		/*this.professorDatabase = ProfessorDatabase.getInstance();
-		this.studentDatabase = StudentDatabase.getInstance();
-		this.subjectDatabase = SubjectDatabase.getInstance();*/
+		this.professorDatabase = new ProfessorDatabase();
+		this.studentDatabase = new StudentDatabase();
+		this.subjectDatabase = new SubjectDatabase();
 	}
 	
 	public static Database getInstance() {

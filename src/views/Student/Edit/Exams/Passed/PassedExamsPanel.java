@@ -51,7 +51,7 @@ public class PassedExamsPanel extends JPanel {
 						"Ponistavanje ocene", 
 						JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
-					StudentController.getInstance().deletePassedExam(Integer.valueOf(examId));
+					StudentController.getInstance().deletePassedExam(examId);
 				}
 			}
 			
