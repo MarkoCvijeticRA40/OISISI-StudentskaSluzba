@@ -2,11 +2,13 @@ package views.Student.Representation;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.util.Comparator;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableRowSorter;
 
 public class StudentsJTable extends JTable {
 
@@ -21,7 +23,26 @@ public class StudentsJTable extends JTable {
 		this.getTableHeader().setBackground(Color.LIGHT_GRAY);
 		this.getTableHeader().setBorder(BorderFactory.createMatteBorder(1, 1, 0, 1, Color.BLACK));
 		this.setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK));
-		this.setModel(new AbstractTableModelStudent());
+		AbstractTableModelStudent model = new AbstractTableModelStudent();
+		this.setModel(model);
+		TableRowSorter<AbstractTableModelStudent> rowSorter = new TableRowSorter<>(model);
+		rowSorter.setComparator(3, new Comparator<String>() {
+
+			@Override
+			public int compare(String o1, String o2) {
+				double d1 = Double.parseDouble(o1);
+				double d2 = Double.parseDouble(o2);
+				if (d1 > d2)
+					return 1;
+				else if (d1 < d2)
+					return -1;
+				else
+					return 0;
+			}
+			
+		});
+		rowSorter.setComparator(5, rowSorter.getComparator(3));
+		this.setRowSorter(rowSorter);
 		this.getTableHeader().setReorderingAllowed(false);
 	}
 	
