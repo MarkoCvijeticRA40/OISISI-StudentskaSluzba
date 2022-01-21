@@ -79,6 +79,16 @@ public class ProfessorController {
 		JOptionPane.showMessageDialog(null, "Profesor uspesno obrisan!");
 	}
 	
+	public void deleteSubjects(List<Integer> selectedIds) {
+		Professor professor = this.getSelectedProfessor();
+		for (int selectedId : selectedIds) {
+			Subject subject = SubjectController.getInstance().getSubjectById(selectedId);
+			if (subject != null)
+				professor.getSubjects().remove(subject);
+		}
+		ProfessorSubjectsJTable.getInstance().updateView();
+	}
+	
 	public void search(String query) {
 		String[] params = query.split(", ");
 		if (params.length == 3)

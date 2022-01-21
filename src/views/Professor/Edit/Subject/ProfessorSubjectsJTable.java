@@ -2,10 +2,11 @@ package views.Professor.Edit.Subject;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
 
 public class ProfessorSubjectsJTable extends JTable {
@@ -16,7 +17,6 @@ public class ProfessorSubjectsJTable extends JTable {
 	private ProfessorSubjectsJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(false);
-		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.getTableHeader().setBackground(Color.LIGHT_GRAY);
 		this.getTableHeader().setBorder(BorderFactory.createMatteBorder(1, 1, 0, 1, Color.BLACK));
 		this.setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK));
@@ -48,6 +48,17 @@ public class ProfessorSubjectsJTable extends JTable {
 		AbstractTableModelProfessorSubjects model = (AbstractTableModelProfessorSubjects) table.getModel();
 		model.fireTableDataChanged();
 		this.setRowSelectionInterval(0, 0);
+	}
+	
+	public List<Integer> getSelectedIds() {
+		List<Integer> selectedIds = new ArrayList<>();
+		for (int selectedRow : getInstance().getSelectedRows()) {
+			String value = (String) getInstance().getValueAt(selectedRow, 0);
+			if (value.isEmpty())
+				continue;
+			selectedIds.add(Integer.valueOf(value));
+		}
+		return selectedIds;
 	}
 
 }
