@@ -15,6 +15,10 @@ public class StudentDatabase implements Serializable {
 	private List<Student> students;
 	private transient String[] columnNames;
 	
+	public void set(List<Student> students) {
+		this.students = students;
+	}
+	
 	public void addStudent(Student student) {
 		this.students.add(student);
 	}

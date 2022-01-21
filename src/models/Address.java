@@ -7,11 +7,11 @@ public class Address implements Serializable {
 	private static final long serialVersionUID = 4149277647796613283L;
 	
 	private String street;
-	private int houseNumber;
+	private String houseNumber;
 	private String city;
 	private String country;
 	
-	public Address(String street, int houseNumber, String city, String country) {
+	public Address(String street, String houseNumber, String city, String country) {
 		super();
 		this.street = street;
 		this.houseNumber = houseNumber;
@@ -27,11 +27,11 @@ public class Address implements Serializable {
 		this.street = street;
 	}
 
-	public int getHouseNumber() {
+	public String getHouseNumber() {
 		return houseNumber;
 	}
 
-	public void setHouseNumber(int houseNumber) {
+	public void setHouseNumber(String houseNumber) {
 		this.houseNumber = houseNumber;
 	}
 

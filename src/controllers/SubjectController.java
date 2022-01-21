@@ -113,7 +113,7 @@ public class SubjectController {
 	
 	public boolean checkProfessorExistence(Professor professor) {
 		for (Subject subject : subjectsDatabase.getSubjects()) {
-			if (subject.getProfessor().equals(professor))
+			if (subject.getProfessor() == professor)
 				return true;
 		}
 		return false;

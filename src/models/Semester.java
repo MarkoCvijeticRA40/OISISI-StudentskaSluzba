@@ -3,6 +3,6 @@ package models;
 import java.io.Serializable;
 
 public enum Semester implements Serializable {
-	Zimski,
-	Letnji
+	ZIMSKI,
+	LETNJI
 }

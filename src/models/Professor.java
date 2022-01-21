@@ -17,12 +17,12 @@ public class Professor implements Serializable {
 	private String email;
 	private Address officeAddress;
 	private int idCardNumber;
-	private String title;
+	private Title title;
 	private int yearsOfService;
 	private List<Subject> subjects;
 	
 	public Professor(String firstName, String lastName, Date dateOfBirth, Address address, String phoneNumber,
-			String email, Address officeAddress, int idCardNumber, String title, int yearsOfService) {
+			String email, Address officeAddress, int idCardNumber, Title title, int yearsOfService) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -35,14 +35,6 @@ public class Professor implements Serializable {
 		this.title = title;
 		this.yearsOfService = yearsOfService;
 		this.subjects = new LinkedList<>();
-	}
-	
-	public Professor(String firstName, String lastName, String title, String email) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.title = title;
-		this.email = email;
 	}
 	
 	public String getFirstName() {
@@ -109,11 +101,11 @@ public class Professor implements Serializable {
 		this.idCardNumber = idCardNumber;
 	}
 	
-	public String getTitle() {
+	public Title getTitle() {
 		return title;
 	}
 	
-	public void setTitle(String title) {
+	public void setTitle(Title title) {
 		this.title = title;
 	}
 	
@@ -127,11 +119,5 @@ public class Professor implements Serializable {
 	
 	public List<Subject> getSubjects() {
 		return this.subjects;
-	}
-
-	@Override
-	public String toString() {
-		return "Professor [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", title=" + title
-				+ "]";
 	}
 }

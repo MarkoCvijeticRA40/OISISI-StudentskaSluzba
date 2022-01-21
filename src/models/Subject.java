@@ -85,9 +85,4 @@ public class Subject implements Serializable {
 		return notPassedStudents;
 	}
 
-	@Override
-	public String toString() {
-		return "Subject [id=" + id + ", name=" + name + ", semester=" + semester + ", studyYear=" + studyYear
-				+ ", espb=" + espb + "]";
-	}
 }
